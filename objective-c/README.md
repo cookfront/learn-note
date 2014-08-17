@@ -8,4 +8,4 @@ Objective c
 
 
 
-[1]: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265
+[1]: https://github.com/cookfront/learn-note/blob/master/objective-c/data-types.md

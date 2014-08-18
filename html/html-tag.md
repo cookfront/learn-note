@@ -43,6 +43,11 @@ JavaScript：
         downloadLink.href = canvas.toDataURL();
         downloadLink.download = "squares.png";
     })();
+    
+
+> 注：
+1.如果HTTP头的Content-Disposition：存在，并且给出了一个不同的文件名 和这个属性相比，HTTP头优先于此属性。
+2.如果这个属性存在Content-Disposition：被设置为内联，火狐优先考虑Content-Disposition，像文件名​​的情况下，而Chrome 下载属性优先。
 
 可以点击线上的[demo][3]。
 
@@ -53,6 +58,10 @@ JavaScript：
 这是对于`a`标签唯一必须定义的属性，这个属性定义了所需要链接的目的链接。它可以是一个`URL`或者`URL fragment`。一个`URL fragment`是以`#`开始，并且链接到当前文档的一个目标位置。`URLs`则可以是浏览器支持的任何协议。例如：`file`、`ftp`或`mailto`可以在大多数的用户代理工作。
 
 > 你可以使用一个特殊的`fragment`,`top`创建了一个回到页面顶部的`fragment`，这个只能在`HTML5`中使用。例如：`<a href="#top">Return to top</a>`。
+
+##### hreflang
+
+该属性用于指定被链接文档的语言。仅在使用 href 属性时才可以指定 hreflang 属性。和 lang 属性类似，hreflang 属性的值也是 ISO 标准的双字符语言代码。和 lang 属性不同的是，hreflang 属性不会指定标签中的内容所使用的语言，而是指定被 href 属性调用的文档所使用的语言。hreflang允许的值由HTML5 BCP47 和HTML RFC1766所决定。
 
 ##### media
 
@@ -73,11 +82,9 @@ JavaScript：
         </li>
     </ul>
     
-
-##### ping
 ##### rel
 
-对于存在`href`属性的锚点，这个属性定义了当前文档与目标URL的关系。它的值是一个以空格分隔的关系值列表。默认的关系值为`void`，且必须在`href`属性定义的情况下才能定义该属性。`rel`详细的[关系值][5]。
+对于存在`href`属性的锚点，这个属性定义了当前文档与目标URL的关系。它的值是一个以空格分隔的关系值列表。该值和语义可能将会被一些权威文档编者赋予不同的含义。默认的关系值为`void`，且必须在`href`属性定义的情况下才能定义该属性。`rel`详细的[关系值][5]。
 
 ##### target
 
@@ -88,9 +95,6 @@ JavaScript：
  - _parent：在`HTML4`中当前框架的父框架或者`HTML5`的父浏览上下文加载响应，如果没有父亲，则和`_self`一样
  - _top：这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。
 
-##### title
-
-`title`属性定义了`a`标签的额外属性，当鼠标悬浮时会显示一个类似文本提示的文字。
 
 #### 实例
 
@@ -99,6 +103,148 @@ JavaScript：
     <img src="http://lamaquinadiferencial.files.wordpress.com/2012/02/128px-mozilla_firefox_3-5_logo_256.png?w=500" alt="firefox logo" />
 </a>
 ```
+
+### abbr
+
+HTML中的<abbr>元素（或HTML缩写元素）表示一个缩写，并且可以视需要对它提供完整描述。如果提供描述，那么title属性的值必须是这个完整描述，而不能是其他值。
+
+#### 属性
+
+这个元素只有[全局属性][6]。
+
+使用title属性定义对缩写的完整描述时，很多用户代理把完整描述以提示框的形式描述。
+
+#### 实例
+
+```c
+<p>Tony Blair is the prime minister of the <abbr title="United Kingdom">UK</abbr></p>
+```
+ 
+### address
+
+HTML的`<address>`元素可以让作者为它最近的`<article>`或者`<body>`祖先元素提供联系信息。在后一种情况下，它应用于整个文档。
+
+> 用法说明
+1.当表示一个和联系信息无关的任意的地址时，使用`<p>`元素而不是`<address>`元素。
+2.这个元素不能包含除了联系信息之外的任何信息，比如出版日期（这应该包含在`<time>`元素中）。
+3.通常，`<address>`元素可以放在当前section的`<footer>`元素中，如果存在的话。
+
+#### 属性
+
+这个元素只有[全局属性][7]。
+
+#### 实例
+
+```c
+<address>
+    You can contact author at <a href="http://www.somedomain.com/contact">www.somedomain.com</a>.<br>
+    If you see any bugs, please <a href="mailto:webmaster@somedomain.com">contact webmaster</a>.<br>
+    You may also want to visit us:<br>
+    Mozilla Foundation<br>
+    1981 Landings Drive<br>
+    Building K<br>
+    Mountain View, CA 94043-0801<br>
+    USA
+</address>
+```
+
+还可以看看这里[The Address Element][8]。[The Address Element翻译版][9]。
+
+### area
+
+`HTML`中的`area`元素在一个图片上定义了一个热点区域，并且可选的关联了一个超链接地址。该元素只能用在`<map>`元素中。
+
+#### 属性
+
+##### alt
+
+当浏览器不能显示图片时的替换文本。
+
+##### coords
+
+这个属性设置了`area`的坐标，它要和`shape`属性来结合使用。
+
+ - shape="rect"：矩形。`coords`需要定义为类似这样`coords="x1,y1,x2,y2"`，`x1,y1`为左上角坐标，`x2,y2`为右下角坐标
+ - shape="circle"：圆形。`coords`需要定义为类似这样`coords="x,y,r"，这里`x,y`定义了圆心的位置，`r`则定义了圆的半径
+ - shape="polygon"：多边形。`coords`需要定义多对`x,y`坐标，类似这样`coords="x1,y1,x2,y2,x3,y3"`
+
+##### download `HTML5`
+
+这个和`a`标签的[download][10]属性一样。
+
+##### href
+
+该属性代表了该区域的超链接。它的值必须为一个有效的`URL`。
+
+##### hreflang `HTML5`
+
+表明了链接资源的语言，只有在使用了`href`属性时才能使用该属性。
+
+##### media `HTML5`
+
+这个和`a`标签的[media][11]属性一样。
+
+##### rel
+
+对于存在`href`属性的锚点，这个属性定义了当前文档与目标URL的关系。它的值是一个以空格分隔的关系值列表。该值和语义可能将会被一些权威文档编者赋予不同的含义。默认的关系值为`void`，且必须在`href`属性定义的情况下才能定义该属性。`rel`详细的[关系值][12]。
+
+##### shape
+
+在上面的`coords`中已经介绍了。
+
+##### target
+
+这个属性定义了在哪里显示链接的资源。有以下值：
+
+ - _self：如果没有定义该属性时的属性值，表示在当前页面加载链接的资源
+ - _blank：在新的未命名的`HTML4 window`或者`HTML5 browsing context`加载响应。
+ - _parent：在`HTML4`中当前框架的父框架或者`HTML5`的父浏览上下文加载响应，如果没有父亲，则和`_self`一样
+ - _top：这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。
+
+#### 实例
+
+```c
+<img src="/i/eg_planets.jpg" border="0" usemap="#planetmap" alt="Planets" />
+
+<map name="planetmap" id="planetmap">
+
+<area shape="circle" coords="180,139,14" href ="/example/html/venus.html" target ="_blank" alt="Venus" />
+
+<area shape="circle" coords="129,161,10" href ="/example/html/mercur.html" target ="_blank" alt="Mercury" />
+
+<area shape="rect" coords="0,0,110,260" href ="/example/html/sun.html" target ="_blank" alt="Sun" />
+
+</map>
+```
+
+> 注意：
+需要在图片中设置好`usemap`属性，引用 map 元素中的 "id" 或 "name"属性（根据浏览器），所以我们同时向 map 元素添加了 "id" 和 "name" 属性。
+
+### b
+
+`HTML`中的`b`元素代表了一些不同于普通文本样式的文本，并且没有表达任何重要性和相关性。通常用于总结中的关键字，评论中的产品名或者其他通常表现为加粗的文本。另一个用途是用于一篇文章每一个段落的引导句。
+
+> 使用注意：
+1.不要混淆了`<b>`元素和[strong][13]、[em][14]、[mark][15]元素。`<strong>`元素代表了某些重要的文本。`<em>`元素主要是向文本添加了一些强调，`<mark>`元素则代表了一定相关性的文字。`<b>`元素不传达这样特殊的语义信息，只有当其他不合适时，才使用它。
+2.同样的，不要使用`<b>`元素来标记标题。这是应该使用`<h1>`到`<h6>`元素。此外，样式表可以改变这些元素的默认的样式，其结果是它们不必以粗体显示。
+3.最好能在`<b>`元素上使用`class`属性，这样可以传达额外的语义信息（例如：`<b class="lede">`用于段落中的第一个句子）。
+4.在之前，`<b>`元素是为了让文本加粗。因为HTML4的样式信息已经过时，所以在<b>元素的意义也已经改变。
+5.如果在使用<b>元素没有任何语义的目的，使用`CSS`属性的`font-weight`可能是更好的选
+
+#### 属性
+
+这个元素只有[全局属性][7]。
+
+#### 实例
+
+```c
+<p>
+  This article describes several <b>text-level</b> elements. It explains their usage in an <b>HTML</b> document.   
+</p>
+```
+
+ 
+
  
   
  
@@ -109,7 +255,7 @@ JavaScript：
  
 参考文献：
 
- 1. [New HTML5 Attributes for Hyperlinks: download, media, and ping][6]
+ 1. [New HTML5 Attributes for Hyperlinks: download, media, and ping][16]
 
 
   [1]: https://developer.mozilla.org/en-US/docs/Web/API/URL.createObjectURL
@@ -117,4 +263,14 @@ JavaScript：
   [3]: http://jsbin.com/buhoreli/1/edit
   [4]: http://caniuse.com/download
   [5]: http://www.w3school.com.cn/tags/att_a_rel.asp
-  [6]: http://www.sitepoint.com/new-html5-attributes-hyperlinks-download-media-ping/
+  [6]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [7]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [8]: http://html5doctor.com/the-address-element/
+  [9]: http://cookfront.github.io/2014/03/31/html5-semantics/#address
+  [10]: #a
+  [11]: #a
+  [12]: http://www.w3school.com.cn/tags/att_a_rel.asp
+  [13]: http://devdocs.io/html/strong
+  [14]: http://devdocs.io/html/em
+  [15]: http://devdocs.io/html/mark
+  [16]: http://www.sitepoint.com/new-html5-attributes-hyperlinks-download-media-ping/

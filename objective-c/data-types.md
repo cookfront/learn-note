@@ -127,8 +127,33 @@
 
 ### NSDecimalNumber
 
-`NSDecimalNumber`是`NSNumber`的一个子类，相对于`float`和`double`，它可以提供更加准确的数据，可以用于代表一些精确的数据(例如：货币)。
+`NSDecimalNumber`是`NSNumber`的一个子类，相对于`float`和`double`，它可以提供更加准确的数据，可以用于代表一些精确的数据(例如：货币。可以看看这篇[Objective-C精确的货币计算][7])。最简单创建一个`NSDecimalNumber`的方法就是利用`decimalNumberWithString`:
 
+```c
+NSDecimalNumber *subtotal = [NSDecimalNumber decimalNumberWithString:@"10.99"];
+```
+
+还可以像`NSNumber`通过`initWithString`方法来创建一个`NSDecimalNumber`:
+
+```c
+NSDecimalNumber *decimal = [[NSDecimalNumber alloc] initWithString: @"10.55"];
+```
+有时候可能需要获取到`NSDecimalNumber`中的值，有两个方法`decimalValue`和`doubleValue`，这两个方法分别返回`NSDecimal`和`double`类型的数据。例如：
+
+```c
+NSDecimalNumber *decimal = [[NSDecimalNumber alloc] initWithString: @"10.55"];
+double access = [decimal doubleValue];
+NSLog(@"decimal %@", decimal);
+NSLog(@"access %f", access);
+```
+
+`NSDecimalNumber`还提供了关于算数运算的一些方法：
+
+ - `- (NSDecimalNumber *)decimalNumberByAdding:(NSDecimalNumber *)decimalNumber`：将当前的`NSDecimalNumber`与参数`decimalNumber`相加后的结果并返回
+ - `- (NSDecimalNumber *)decimalNumberBySubtracting:(NSDecimalNumber *)decimalNumber`：减法
+ - `- (NSDecimalNumber *)decimalNumberByMultiplyingBy:(NSDecimalNumber *)decimalNumber`：乘法
+ - `- (NSDecimalNumber *)decimalNumberByDividingBy:(NSDecimalNumber *)decimalNumber`：除法
+ - 
 
   [1]: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265
   [2]: https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/classes/NSValue_Class/Reference/Reference.html#//apple_ref/occ/cl/NSValue
@@ -136,3 +161,4 @@
   [4]: https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSOrderedAscending
   [5]: https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSOrderedSame
   [6]: https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSOrderedDescending
+  [7]: http://arthurchen.blog.51cto.com/2483760/761426

@@ -243,7 +243,84 @@ HTML的`<address>`元素可以让作者为它最近的`<article>`或者`<body>`�
 </p>
 ```
 
+### base
+
+`HTML`的`base`元素指定了用于包含在文档中的所有相对URL的基本URL。
+
+> 使用注意：如果定义了多个`base`元素，则只有第一个包含`href`和`target`属性起作用，其他的都将被忽略。
+
+
+#### 属性
+
+##### href
+
+可以用于整个文档相对URL地址的基本URL。如果指定此属性，这个元素必须出现在任何带有`URLs`地址属性的元素之前，其值是网址。
+
+绝对和相对的`URLs`都是允许的。
+
+##### target
+
+这个属性定义了在哪里显示链接的资源。有以下值：
+
+ - _self：如果没有定义该属性时的属性值，表示在当前页面加载链接的资源
+ - _blank：在新的未命名的`HTML4 window`或者`HTML5 browsing context`加载响应。
+ - _parent：在`HTML4`中当前框架的父框架或者`HTML5`的父浏览上下文加载响应，如果没有父亲，则和`_self`一样
+ - _top：这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。
+
+#### 实例
+
+```c
+<base href="http://www.example.com/">
+<base target="_blank" href="http://www.example.com/"> 
+```
+
+#### 笔记
+
+ - 可以通过`document.baseURI`检索到基本`URL`
+ - `href`属性的相对`URL`是在`Gecko 2.0`添加的
+
+### bdo
+
+`HTML`的`bdo`元素用于覆盖当前的文本的方向性。
+
+#### 属性
+
+##### dir
+
+在这个元素中文本的方向性。可能的值有：
+
+ - ltr：表明文本从左到右显示
+ - rtl：表明文本从右到左显示
+ - auto：浏览器决定文本的方向性
+
+#### 实例
+
+```c
+<!-- Switch text direction -->
+<p>This text will go left to right.</p>
+<p><bdo dir="rtl">This text will go right to left.</bdo></p>
+```
+
+### blockquote
+
+`HTML`的`<blockquote>`元素表明该元素中围绕的文本是一个扩展的引文。并且浏览器会渲染一些缩进。对于引文来源的`URL`可能通过`cite`属性来指定，然而文本表示的来源可以通过`<cite>`元素给出。
  
+#### 属性
+
+这个元素只有[全局属性][7]。
+
+##### cite
+
+`cite`属性规定引用的来源。该属性的值是一个包含在引号中并指向联机文档的URL，以及（如果有可能的话）引用在该文档中的确切位置。
+
+#### 实例
+
+```c
+<blockquote cite="http://developer.mozilla.org">
+  <p>This is a quotation taken from the Mozilla Developer Center.</p>
+</blockquote>
+```
+
 
  
   

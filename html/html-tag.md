@@ -307,7 +307,7 @@ HTML的`<address>`元素可以让作者为它最近的`<article>`或者`<body>`�
  
 #### 属性
 
-这个元素只有[全局属性][7]。
+这个元素包含[全局属性][7]。
 
 ##### cite
 
@@ -321,7 +321,161 @@ HTML的`<address>`元素可以让作者为它最近的`<article>`或者`<body>`�
 </blockquote>
 ```
 
+### body
 
+这个元素应该是我们最熟悉的了。它代表了文档的内容，且每个文档中只有一个`<body>`元素。可以通过`document.body`在`JavaScript`中获取到`body`元素。
+
+#### 属性
+
+这个元素包含[全局属性][7]。
+
+##### onafterprint `HTML5`
+
+当用户打印文档后的调用的函数。
+
+##### onbeforeprint `HTML5`
+
+当用户请求打印文档时调用的函数。
+
+##### onbeforeunload `HTML5`
+
+当文档将被卸载时调用的函数。
+
+##### onblur `HTML5`
+
+当文档失去焦点时调用的函数。
+
+##### onerror `HTML5`
+
+当文档加载错误时调用的函数。
+
+##### onfocus `HTML5`
+
+当文档或取到焦点时调用的函数。
+
+##### onhaschange `HTML5`
+
+当文档的片段标识符（以`#`开头的字符）在当前文档的地址中发生变化时调用的函数。
+
+##### onload `HTML5`
+
+当文档加载完成后调用的函数。
+
+##### onmessage `HTML5`
+
+当文档接收到一个消息时调用的函数。
+
+##### onoffline `HTML5`
+
+当网络连接失败时调用的函数。
+
+##### ononline `HTML5`
+
+当网络连接恢复时调用的函数。
+
+##### onpopstate `HTML5`
+
+当用户导航到历史记录时调用的函数。
+
+##### onredo `HTML5`
+
+当用户正在撤销交易历史时调用的函数。
+
+##### onresize `HTML5`
+
+当文档改变大小时调用的函数。
+
+##### onstorage `HTML5`
+
+当存储区域发生变化时调用的函数。
+
+##### onundo `HTML5`
+
+Function to call when the user has moved backward in undo transaction history.
+
+##### onunload `HTML5`
+
+当文档要卸载时调用的函数。
+
+### button
+
+`HTML`的`<button>`元素代表了一个可点击的按钮。
+
+#### 属性
+
+这个元素包含[全局属性][7]。
+
+##### autofocus `HTML5`
+
+该属性是一个布尔值属性，让你指定页面加载完后是否应该获取焦点，除非用户覆盖了它。且在文档中，只有一个表单关联的元素能设置此属性。
+
+##### disabled
+
+该属性是一个布尔值属性，表明用户不能与该按钮交互。如果该属性没有指定，该按钮继承该包含元素的设置，例如`<fieldset>`，如果包含元素中没有设置`disabled`，则该按钮是激活的。
+
+##### form `HTML5`
+
+该属性指定该元素关联的`form`元素。且它的属性值必须是相同文档中`<form>`元素的`id`属性值。如果该属性没有指定，则`<button>`元素必须是`form`元素的后代。这个属性可以让你将`button`放置在任何地方，而不一定要作为`form`元素的后代。
+
+##### formaction `HTML5`
+
+指定表单提交时的处理的URL，该属性会覆盖掉拥有该按钮的`form`元素中的`action`属性。
+
+##### formenctype `HTML5`
+
+如果该按钮时一个提交按钮，该属性指定了从表单提交到服务器的内容的类型。可能的值有：
+
+ - application/x-www-form-urlencoded：如果该属性没有指定时的默认值
+ - multipart/form-data：如果你有一个`<input>`类型为`file`需要提交时使用
+ - text/plain
+
+如果指定了该属性，将会覆盖掉`<form>`元素中的`enctype`属性。
+
+##### formmethod `HTML5`
+
+如果该按钮时一个提交按钮，该属性指定了表单提交时的`HTTP method`。可能的值有：
+
+ - post
+ - get
+
+如果指定了该属性，将会覆盖掉`<form>`元素中的`method`属性。
+
+##### formnovalidate `HTML5`
+
+如果该按钮时一个提交按钮，这个布尔属性指定了在表单提交时将不需要被验证。如果指定了该属性，将会覆盖掉`<form>`元素中的`novalidate`属性。
+
+##### formtarget `HTML5`
+
+如果该按钮是一个提交按钮，该属性指定了当表单被提交后在哪里显示返回的响应。如果指定了该属性，将会覆盖掉`<form>`元素中的`target`属性。
+
+ - _self
+ - _blank
+ - _parent
+ - _top
+
+##### name
+
+该属性指定了按钮的名字，将会和表单数据一起被提交。
+
+##### type
+
+按钮的类型。可能的值有：
+
+ - submit
+ - reset
+ - button
+
+##### value
+
+按钮的默认值。
+
+#### 实例
+
+```c
+<button name="button">Click me</button>
+```
+ 
+ 
  
   
  

@@ -474,6 +474,13 @@ Function to call when the user has moved backward in undo transaction history.
 ```c
 <button name="button">Click me</button>
 ```
+
+### caption
+
+`HTML`的`caption`元素代表了`table`的标题。尽管它总是作为`<table>`元素的第一个后代，然而可以使用`CSS`将它放在任何地方，相对于`table`。
+
+这个元素拥有[全局属性][7]。
+
  
  
  
@@ -504,4 +511,4 @@ Function to call when the user has moved backward in undo transaction history.
   [13]: http://devdocs.io/html/strong
   [14]: http://devdocs.io/html/em
   [15]: http://devdocs.io/html/mark
-  [16]: http://www.sitepoint.com/new-html5-attributes-hyperlinks-download-media-ping/
+  [16]: http://www.sitepoint.com/new-html5-attributes-hyperlinks-download-media-ping/       q`1

@@ -63,6 +63,28 @@
 
 ![enter image description here][3]
 
+## 缺点：g元素没有x和y属性
+
+`<g>`元素相对于`<svg>`元素有一个缺点，你不能通过设置`x`和`y`属性来移动`<g>`元素的位置。因为`<g>`元素没有`x`和`y`属性。为了移动`<g>`元素，你可以使用`transform`属性的`tramslate`函数来实现。例如：`transform="translate(x,y)"`。
+
+如果你需要移动`<g>`元素内的所有形状，你可以将`<g>`元素嵌套在`<svg>`元素内，然后在`<svg>`元素上设置`x`和`y`属性。例如：
+
+```c
+<svg x="100"
+    <g transform="rotate(45 50 50)">
+        <line x1="10" y1="10" x2="85" y2="10"
+            style="stroke: #006600;"/>
+
+        <rect x="10" y="20" height="50" width="75"
+            style="stroke: #006600; fill: #006600"/>
+
+        <text x="10" y="90" style="stroke: #660000; fill: #660000">
+          Text grouped with shapes</text>
+
+    </g>
+</svg> 
+```
+
 
 
 

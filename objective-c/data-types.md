@@ -153,8 +153,27 @@ NSLog(@"access %f", access);
  - `- (NSDecimalNumber *)decimalNumberBySubtracting:(NSDecimalNumber *)decimalNumber`：减法
  - `- (NSDecimalNumber *)decimalNumberByMultiplyingBy:(NSDecimalNumber *)decimalNumber`：乘法
  - `- (NSDecimalNumber *)decimalNumberByDividingBy:(NSDecimalNumber *)decimalNumber`：除法
- - 
+ - `- (NSDecimalNumber *)decimalNumberByRaisingToPower:(NSUInteger)power`：返回当前`NSDecimalNumber`的`power`次方。例如：
 
+```c
+NSDecimalNumber *decimal = [[NSDecimalNumber alloc] initWithString: @"3.0s"];
+NSDecimalNumber *total = [decimal decimalNumberByRaisingToPower: 4];
+double val = [total doubleValue];
+NSLog(@"access %f", val);   // 81.000000
+```
+
+ - `- (NSDecimalNumber *)decimalNumberByMultiplyingByPowerOf10:(short)power`：返回当前的`NSDecimalNumber`的值乘以`10^power`，即10的`power`次方。例如：
+
+```c
+NSDecimalNumber *decimal = [[NSDecimalNumber alloc] initWithString: @"3.0s"];
+NSDecimalNumber *total = [decimal decimalNumberByMultiplyingByPowerOf10: 4];
+double val = [total doubleValue];
+NSLog(@"access %f", val);   // 30000.000000
+```
+
+### NSString
+ 
+ 
   [1]: https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html#//apple_ref/doc/uid/TP40004265
   [2]: https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/classes/NSValue_Class/Reference/Reference.html#//apple_ref/occ/cl/NSValue
   [3]: https://developer.apple.com/library/mac/documentation/cocoa/reference/foundation/Miscellaneous/Foundation_Constants/Reference/reference.html#//apple_ref/doc/c_ref/NSComparisonResult

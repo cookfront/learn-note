@@ -66,6 +66,12 @@
 
 ![enter image description here][3]
 
+还可以通过`stroke-opacity`来设置`stroke`颜色的透明度：
+
+```c
+<rect x="20" y="20" width="100" height="100" style="stroke: #009900; stroke-width: 20; stroke-opacity: 0.5; stroke-dasharray: 10 5; fill: none;" />
+```
+
 ## 矩形的fill
 
 可以利用`fill`来为矩形设置填充颜色，透明度等。如果不需要填充，则可以设置`fill: none`：

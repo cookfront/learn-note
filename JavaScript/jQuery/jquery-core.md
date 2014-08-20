@@ -29,7 +29,7 @@ jQuery.fn = {
 jQuery.fn.init.prototype = jQuery.fn;
 ```
 
-`init`是一个构造函数，当你使用`$()`的时候就会`new jQuery.fn.init()`，然后又将`jQuery.prototype`赋给了`init.prototype`。通过这种方式在`jQuery.prototype`上定义的方法也就属于`init.prototype`了。
+`init`其实是一个构造函数，当你使用`$()`的时候就会`new jQuery.fn.init()`，然后又将`jQuery.prototype`赋给了`init.prototype`。通过这种方式在`jQuery.prototype`上定义的方法也就属于`init.prototype`了。
 
 当你在使用`$()`的时候返回了`init`构造函数的一个实例，因为`init.prototype`等于`jQuery.prototype`，从而在`jQuery.prototype`上定义的所有方法只需通过`$().someMethod()`去调用，然后又因为`someMethod()`返回了`this`，所以也就实现了`jQuery`的链式调用了。
 
@@ -165,7 +165,122 @@ jQuery.someMethod = function () {
 ```
 
 
-还有个好处：如注释所说，这段定义了一个`jQuery`的局部变量，最后会通过`window.jQuery = window.$ = jQuery;`导出`jQuery`，这样你就可以在全局使用`$`或者`jQuery`来获取元素了。
+还有好处：
+
+ - 如注释所说，这段定义了一个`jQuery`的局部变量，最后会通过`window.jQuery = window.$ = jQuery;`导出`jQuery`，这样你就可以在全局使用`$`或者`jQuery`来获取元素了。
+ - 你只需简单的使用`$()`就可以进行`DOM`操作了，而不是每次都需要去`new`一个`jQuery`对象。
+
+下面再看看这一段代码：
+
+```c
+jQuery.fn = jQuery.prototype = {
+	// The current version of jQuery being used
+	jquery: version,
+
+    // 因为$其实返回的是`init`的构造函数，这里将`constructor`更正到`jQuery`，没了这句就是返回`init`了哦
+	constructor: jQuery,
+
+	// Start with an empty selector
+	// 默认选择器为空
+	selector: "",
+
+	// The default length of a jQuery object is 0
+	// 默认长度为0
+	length: 0,
+
+    /**
+	 * 返回一个所有节点的数组，也即对象中的`this[0]`等
+	 *
+	 * 使用实例：
+	 * $(selector).toArray() 
+	 *
+	 * @return {Array}
+	 */
+	toArray: function() {
+		return slice.call( this );
+	},
+
+	// Get the Nth element in the matched element set OR
+	// Get the whole matched element set as a clean array
+	/**
+	 * 如果传入了参数num，则返回指定位置的元素，否则返回全部的元素
+	 *
+	 * 使用实例：
+	 * $('.some').get(1); 或取第2个有`.some` class的元素
+	 * 注意是以0开始的哟
+	 * 
+	 * @param {number} num 需要获取元素的位置
+	 * @return {Array} 返回一个数组
+	 */
+	get: function( num ) {
+		return num != null ?
+
+			// Return just the one element from the set
+			( num < 0 ? this[ num + this.length ] : this[ num ] ) :
+
+			// Return all the elements in a clean array
+			slice.call( this );
+	},
+
+	// Take an array of elements and push it onto the stack
+	// (returning the new matched element set)
+	pushStack: function( elems ) {
+
+		// Build a new jQuery matched element set
+		var ret = jQuery.merge( this.constructor(), elems );
+
+		// Add the old object onto the stack (as a reference)
+		ret.prevObject = this;
+		ret.context = this.context;
+
+		// Return the newly-formed element set
+		return ret;
+	},
+
+	// Execute a callback for every element in the matched set.
+	// (You can seed the arguments with an array of args, but this is
+	// only used internally.)
+	each: function( callback, args ) {
+		return jQuery.each( this, callback, args );
+	},
+
+	map: function( callback ) {
+		return this.pushStack( jQuery.map(this, function( elem, i ) {
+			return callback.call( elem, i, elem );
+		}));
+	},
+
+	slice: function() {
+		return this.pushStack( slice.apply( this, arguments ) );
+	},
+
+	first: function() {
+		return this.eq( 0 );
+	},
+
+	last: function() {
+		return this.eq( -1 );
+	},
+
+	eq: function( i ) {
+		var len = this.length,
+			j = +i + ( i < 0 ? len : 0 );
+		return this.pushStack( j >= 0 && j < len ? [ this[j] ] : [] );
+	},
+
+	end: function() {
+		return this.prevObject || this.constructor(null);
+	},
+
+	// For internal use only.
+	// Behaves like an Array's method, not like a jQuery method.
+	push: push,
+	sort: arr.sort,
+	splice: arr.splice
+};
+```
+ 
+
 
  
 

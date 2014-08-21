@@ -1,3 +1,6 @@
+----------
+
+
 ## 标准标签
 
 ### a
@@ -233,7 +236,7 @@ HTML的`<address>`元素可以让作者为它最近的`<article>`或者`<body>`�
 
 #### 属性
 
-这个元素只有[全局属性][7]。
+这个元素只有[全局属性][16]。
 
 #### 实例
 
@@ -307,7 +310,7 @@ HTML的`<address>`元素可以让作者为它最近的`<article>`或者`<body>`�
  
 #### 属性
 
-这个元素包含[全局属性][7]。
+这个元素包含[全局属性][17]。
 
 ##### cite
 
@@ -327,7 +330,7 @@ HTML的`<address>`元素可以让作者为它最近的`<article>`或者`<body>`�
 
 #### 属性
 
-这个元素包含[全局属性][7]。
+这个元素包含[全局属性][18]。
 
 ##### onafterprint `HTML5`
 
@@ -403,7 +406,7 @@ Function to call when the user has moved backward in undo transaction history.
 
 #### 属性
 
-这个元素包含[全局属性][7]。
+这个元素包含[全局属性][19]。
 
 ##### autofocus `HTML5`
 
@@ -479,7 +482,417 @@ Function to call when the user has moved backward in undo transaction history.
 
 `HTML`的`caption`元素代表了`table`的标题。尽管它总是作为`<table>`元素的第一个后代，然而可以使用`CSS`将它放在任何地方，相对于`table`。
 
-这个元素拥有[全局属性][7]。
+这个元素拥有[全局属性][20]。
+
+### cite
+
+`HTML`的`<cite>`元素包含了一个作品的标题，例如一本书、一首歌、一部电影等。
+
+这个元素只有[全局属性][21]。
+
+```c
+More information can be found in <cite>[ISO-0000]</cite>
+```
+
+### code
+
+`HTML`的`<code>`元素代表了一段计算机代码片段。默认情况下，它会在浏览器中显示默认等宽字体。
+
+
+这个元素只有[全局属性][22]。
+
+```c
+<p>Regular text. <code>This is code.</code> Regular text.</p>
+```
+
+### dl, dt, dd
+
+这三个元素一般是联合起来使用的。
+
+`dl`的全称是`Definition List`，中文是`定义列表`。一个定义列表由一个或多个`dt`与`dd`组合而成。
+
+`dt`的全称是`Definition Term`，中文是`定义项目`。
+`dd`的全称是`Definition Description`，中文是`定义描述`。
+
+可以看看这篇文章：[`HTML <dl/>, <dt/> 與 <dd/> 的誤用`][23]。
+
+这几个元素只有[全局属性][22]。
+
+```c
+<dl>
+  <dt>Firefox</dt>
+  <dd>A free, open source, cross-platform, graphical web browser developed by the Mozilla Corporation and hundreds of volunteers.</dd>
+
+  <!-- other terms and definitions -->
+</dl>
+```
+
+### del
+
+`HTML`的`<del>`元素代表了一段已经从文档中删除的文本。这个元素中的文本通常会渲染成带有一条删除线，但不是必须。
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+##### cite
+
+这个属性是一个`URL`，解释了文档的改变。
+
+##### datetime
+
+这个属性表明了文档改变的时间。
+
+#### 实例
+
+```c
+<p><del>This text has been deleted</del></p
+```
+
+### dfn
+
+`HTML`的`<dfn>`元素用于标记特殊的术语或者短语。
+
+> HTML5 使用注意：
+> 1. `<dfn>`用于标记被定义的术语，术语的定义应该在`<p>, <section>`元素中或者是在定义列表中（dt, dd）。
+> 2. 该术语的准确值定义由以下规则确定：
+  > 如果`<dfn>`元素由一个`title`属性，则术语的为这个属性的值
+  > 如果只有一个`<abbr>`元素包含了一个`title`属性，则术语为这个`title`属性值
+  > 否则术语为`<dfn>`元素中的值
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+在`HTML5`中`title`含有特殊的意义，就如上面所说。
+
+#### 实例
+
+```c
+<p><dfn id="def-internet">The Internet</dfn> is a global system of interconnected networks that use the Internet Protocol Suite (TCP/IP) to serve billions of users worldwide.</p>
+
+
+<dl>
+  <!-- Define "World-Wide Web" and reference definition for "the Internet" -->
+  <dt>
+    <dfn>
+      <abbr title="World-Wide Web">WWW</abbr>
+    </dfn>
+  </dt>
+  <dd>The World-Wide Web (WWW) is a system of interlinked hypertext documents accessed on <a href="#def-internet">the Internet</a>.</dd>
+</dl>
+```
+
+### div
+
+`HTML`中的`<div>`元素应该是最常见的元素了，它通常是流内容的一个容器，这本身并没有代表什么。它通常用于将元素组合起来然后定义样式的目的（使用`class`或`id`）。只有当没有其他合适的语义化元素（例如：`<article>`或`<nav>`）时才使用`<div>`。
+
+这个元素包含[全局属性][22]。
+
+```c
+<div>
+  <p>Any kind of content here. Such as &lt;p&gt;, &lt;table&gt;. You name it!</p>
+</div> 
+```
+
+### em
+
+`HTML`的`<em>`元素用于标记那些需要强调的文本。`<em>`元素可以被嵌套，嵌套的每个级别显示更大程度的强调。
+
+> 使用注意：
+> 通常这个元素被显示为斜体的，它不应该简单的应用斜体样式，应该使用`CSS`样式来达到这个目的。使用`<cite>`元素代表作品的标题（书籍、音乐等），通常也是被显示为斜体，但是`<cite>`具有不同的含义。使用`<strong>`元素来标记那些更重要的文本。
+
+这个元素只有[全局属性][22]。
+
+```c
+<p>
+  In HTML 5, what was previously called <em>block-level</em> content is now called <em>flow</em> content.
+</p>
+```
+
+#### `<i>` vs. `<em>`
+
+对于新手开发者，通常会有困惑：为什么有这么多元素用于在文本上表达强调。`<i>`和`<em>`应该是最普遍的了。那么为什么使用`<em>`和`<i>`呢？它们产生相同的结果，对不对？
+
+这个是不完全正确的。视觉上的结果是，默认情况下，这两个标签都会将它们的内容渲染成斜体。但是语义化的含义却是不一样的。`<em>`元素代表了在文本上的强调，然而`<i>`元素代表了从正常散文出发的文本，例如电影或书籍的名字，或者说文本代表了一个词的定义，而不是其语义含义。
+
+`<em>`的例子："Just *do* it already!"或"We *had* to do something about it"，人们朗读时可能会对其中的斜体字添加一个强调。
+
+`<i>`的例子："The *Queen Mary* sailed last night"。这里没有为单词"Queen Mary"添加强调或者重要性，它只是表示对象中的问题不是一个叫做`Marry`的女王，而是一条船叫做`Queen Mary`。
+
+### fieldset
+
+`HTML`的`<fieldset>`元素用于将一些控制组合起来，同样也包括了`web`表单中的`<label>`。
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+##### disabled `HTML5`
+
+如果设置了这个布尔值属性，它后代中的表单控制将会被禁用，除了可选的第一个后代元素`<legend>`。它们不能编辑，也不能接受任何的浏览器事件。
+
+##### form `HTML5`
+
+该属性指定该元素关联的`form`元素。且它的属性值必须是相同文档中`<form>`元素的`id`属性值。如果该属性没有指定，则`<button>`元素必须是`form`元素的后代。这个属性可以让你将`button`放置在任何地方，而不一定要作为`form`元素的后代。
+
+##### name `HTML5`
+
+组关联的名字，将会在提交的时候随着表单数据一起发送。
+
+#### 实例
+
+
+```c
+<form action="test.php" method="post">
+  <fieldset>
+    <legend>Title</legend>
+    <input type="radio" name="radio" id="radio"> <label for="radio">Click me</label>
+  </fieldset>
+</form>
+```
+
+另一个更详细的：
+
+```c
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Editable [pseudo]select</title>
+<style type="text/css">
+
+/* Generic form fields */
+
+fieldset.elist, input[type="text"], textarea, select, option, fieldset.elist ul, fieldset.elist > legend, fieldset.elist input[type="text"], fieldset.elist > legend:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  padding: 0 20px;
+}
+
+textarea {
+  width: 500px;
+  height: 200px;
+  padding: 20px;
+}
+
+textarea, input[type="text"], fieldset.elist ul, select, fieldset.elist > legend {
+  border: 2px #cccccc solid;
+  border-radius: 10px;
+}
+
+input[type="text"], fieldset.elist, select, fieldset.elist > legend {
+  height: 32px;
+  font-family: Tahoma;
+  font-size: 14px;
+}
+
+input[type="text"]:hover, textarea:hover, select:hover, fieldset.elist:hover > legend {
+  background-color: #ddddff;
+}
+
+select {
+  padding: 4px 20px;
+}
+
+option {
+  height: 30px;
+  padding: 5px 4px;
+}
+
+option:not(:checked), textarea:focus {
+  background-color: #ffcccc;
+}
+
+fieldset.elist > legend:after, fieldset.elist label {
+  height: 28px;
+}
+
+input[type="text"], fieldset.elist {
+  width: 316px;
+}
+
+input[type="text"]:focus {
+  background: #ffcccc url("data:image/gif;base64,R0lGODlhEAAQANU5APnoxuvr6+uxPdvb2+rq6ri4uO7qxunp6dPT06SHV+/rx8vLy+nezLO0sbe3t9Ksas+qaaCEV8rKyp2dnf39/QAAAK6ursifZHFxcc/Qzu3mxYyMjExCJnV1dc6maO7u7o+Pj2tXNoaGhtfDpKCDVu3lxM+tcaKEV9bW1qOFVWNjY8KrisTExNra2nBbObGxsby8vO/mu7Kyso9ZAuzs7MSgAIiKhf///8zMzP///wAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADkALAAAAAAQABAAAAaXwJxwSCwOYzWkMpkkZmoAqDQaJdpqAqw2m53NRjlboAarFczomcE0C99o8DgNMVM8Tm3bbYDr9x11DwkzDG5yc2oQJIRCenx/MxoeETM2Q3pxATMlF4MYlo17OAsdLispMyAioIY0BzMcITMTKBasjgssFTMqGxItMjYUoTQBBAQHxgE0wZcfMtDRMi/QrA022NnaNg1CQQA7") no-repeat 2px center !important;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus, fieldset.elist > legend {
+  border: 2px #ccaaaa solid;
+}
+
+fieldset {
+  border: 2px #af3333 solid;
+  border-radius: 10px;
+}
+
+/* Editable [pseudo]select (i.e. fieldsets with [class=elist]) */
+
+fieldset.elist {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+fieldset.elist ul {
+  position: absolute;
+  width: 100%;
+  max-height: 320px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+fieldset.elist:hover ul {
+  background-color: #ffffff;
+  border: 2px #af3333 solid;
+  left: 2px;
+  overflow: auto;
+}
+
+fieldset.elist ul > li {
+  list-style-type: none;
+  background-color: transparent;
+}
+
+fieldset.elist label {
+  display: none;
+  width: 100%;
+}
+
+fieldset.elist input[type="text"] {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  border: none;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+fieldset.elist > legend {
+  display: block;
+  margin: 0;
+  padding: 0 0 0 5px;
+  position: absolute;
+  width: 100%;
+  cursor: default;
+  background-color: #ccffcc;
+  line-height: 30px;
+  font-style: italic;
+}
+
+fieldset.elist:hover > legend {
+  position: relative;
+  overflow: hidden;
+}
+
+fieldset.elist > legend:after {
+  width: 20px;
+  content: "\2335";
+  float: right;
+  text-align: center;
+  border-left: 2px #cccccc solid;
+  font-style: normal;
+  cursor: default;
+}
+
+fieldset.elist:hover > legend:after {
+  background-color: #99ff99;
+}
+
+fieldset.elist ul input[type="radio"] {
+  display: none;
+}
+
+fieldset.elist input[type="radio"]:checked ~ label {
+  display: block;
+  width: 292px;
+  background-color: #ffffff;
+}
+
+fieldset.elist:hover input[type="radio"]:checked ~ label {
+  width: 100%;
+}
+
+fieldset.elist:hover label {
+  display: block;
+  height: 100%;
+}
+
+fieldset.elist label:hover {
+  background-color: #3333ff !important;
+}
+
+fieldset.elist:hover input[type="radio"]:checked ~ label {
+  background-color: #aaaaaa;
+}
+
+</style>
+
+</head>
+<body>
+
+<form name="tshirt" method="get" action="test.php">
+
+<fieldset>
+    <legend>Order a T-Shirt</legend>
+    <p>Write your name (simple textbox): <input type="text" name="myname" /></p>
+    <p>Choose your size (simple select):
+    <select name="size">
+        <option value="s">Small</option>
+        <option value="m">Medium</option>
+        <option value="l">Large</option>
+        <option value="xl">Extra Large</option>
+    </select></p>
+    <div>What address do you want to use? (editable pseudoselect)
+    <fieldset class="elist">
+        <legend>Address&hellip;</legend>
+        <ul>
+            <li><input type="radio" name="address-chosen" value="1" id="address-switch_1" checked /><label for="address-switch_1"><input type="text" name="address-item_1" value="19 Quaker Ridge Rd. Bethel CT 06801" /></label></li>
+            <li><input type="radio" name="address-chosen" value="2" id="address-switch_2" /><label for="address-switch_2"><input type="text" name="address-item_2" value="1000 Coney Island Ave. Brooklyn NY 11230" /></label></li>
+            <li><input type="radio" name="address-chosen" value="3" id="address-switch_3" /><label for="address-switch_3"><input type="text" name="address-item_3" value="2962 Dunedin Cv. Germantown TN 38138" /></label></li>
+            <li><input type="radio" name="address-chosen" value="4" id="address-switch_4" /><label for="address-switch_4"><input type="text" name="address-item_4" value="915 E 7th St. Apt 6L. Brooklyn NY 11230" /></label></li>
+        </ul>
+    </fieldset>
+    </div>
+    <p>Write a comment:<br />
+    <textarea name="comment"></textarea></p>
+    <p><input type="reset" value="Reset" /> <input type="submit" value="Send!" /></p>
+</fieldset>
+
+</form>
+
+</body>
+</html>
+```
+
+### form
+
+`HTML`的`<form>`元素能够包含各种`input`等，可以使用户能将信息提交到服务器。
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+
+
+
+
+
+
+
+
+
+
+
 
  
  
@@ -494,6 +907,7 @@ Function to call when the user has moved backward in undo transaction history.
 参考文献：
 
  1. [New HTML5 Attributes for Hyperlinks: download, media, and ping][16]
+
 
 
   [1]: https://developer.mozilla.org/en-US/docs/Web/API/URL.createObjectURL
@@ -511,4 +925,11 @@ Function to call when the user has moved backward in undo transaction history.
   [13]: http://devdocs.io/html/strong
   [14]: http://devdocs.io/html/em
   [15]: http://devdocs.io/html/mark
-  [16]: http://www.sitepoint.com/new-html5-attributes-hyperlinks-download-media-ping/       q`1
+  [16]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [17]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [18]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [19]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [20]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [21]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [22]: https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes
+  [23]: http://josephjiang.com/entry.php?id=340

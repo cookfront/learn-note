@@ -230,3 +230,109 @@ var access = jQuery.access = function( elems, fn, key, value, chainable, emptyGe
 ```
 
 如注释所说，这个方法时一个多功能的方法，可以用来设置值，也可以用来获取值，还可以处理`value`为函数的情况，还有就是可以通过对象直接量来设置多个`key-value`。
+
+下面再来看`./attributes/prop.js`，这个主要设置元素的属性的。其实懂了上面的代码之后，看下面的代码就很容易了：
+
+```c
+// 可以获取焦点的元素
+var rfocusable = /^(?:input|select|textarea|button)$/i;
+
+jQuery.fn.extend({
+	// 通过access调用jQuery.prop
+	prop: function( name, value ) {
+		return access( this, jQuery.prop, name, value, arguments.length > 1 );
+	},
+
+	removeProp: function( name ) {
+		return this.each(function() {
+			delete this[ jQuery.propFix[ name ] || name ];
+		});
+	}
+});
+
+jQuery.extend({
+	// 属性修正
+	propFix: {
+		"for": "htmlFor",
+		"class": "className"
+	},
+
+	prop: function( elem, name, value ) {
+		var ret, hooks, notxml,
+			nType = elem.nodeType;
+
+		// Don't get/set properties on text, comment and attribute nodes
+		// 不要在text、comment和attributes节点上设置特性
+		if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
+			return;
+		}
+
+		notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
+
+		if ( notxml ) {
+			// Fix name and attach hooks
+			name = jQuery.propFix[ name ] || name;
+			hooks = jQuery.propHooks[ name ];
+		}
+
+		// 如果value不为undefined，则表明是设置属性
+		// 如果在propHooks存在对应set的钩子，则通过钩子设置
+		// 否则通过elem[name] = value直接设置
+		if ( value !== undefined ) {
+			return hooks && "set" in hooks && (ret = hooks.set( elem, value, name )) !== undefined ?
+				ret :
+				( elem[ name ] = value );
+
+		// 如果propHooks存在对应的get钩子，则通过钩子设置
+		// 否则直接获取
+		} else {
+			return hooks && "get" in hooks && (ret = hooks.get( elem, name )) !== null ?
+				ret :
+				elem[ name ];
+		}
+	},
+
+	// propHooks
+	propHooks: {
+		tabIndex: {
+			get: function( elem ) {
+				return elem.hasAttribute( "tabindex" ) ||
+					rfocusable.test( elem.nodeName ) || elem.href ?
+						elem.tabIndex :
+						-1;
+			}
+		}
+	}
+});
+
+if ( !support.optSelected ) {
+	jQuery.propHooks.selected = {
+		get: function( elem ) {
+			var parent = elem.parentNode;
+			if ( parent && parent.parentNode ) {
+				parent.parentNode.selectedIndex;
+			}
+			return null;
+		}
+	};
+}
+
+// propFix 属性修正
+jQuery.each([
+	"tabIndex",
+	"readOnly",
+	"maxLength",
+	"cellSpacing",
+	"cellPadding",
+	"rowSpan",
+	"colSpan",
+	"useMap",
+	"frameBorder",
+	"contentEditable"
+], function() {
+	jQuery.propFix[ this.toLowerCase() ] = this;
+});
+```
+
+不知道上面的代码看懂了没有，下面我们继续看`./attribues/classes.js`。这个文件主要是`addClass`，`removeClass`，`toggleClass`和`hasClass`方法。
+

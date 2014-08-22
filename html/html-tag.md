@@ -882,17 +882,150 @@ fieldset.elist:hover input[type="radio"]:checked ~ label {
 
 这个元素包含[全局属性][22]。
 
+##### accept
 
+这个属性指定了服务器接受的内容类型，是一个逗号分隔的内容类型列表。
 
+> 注意：该属性在`HTML5`中已经被移除，且不会再使用。作为代替，使用指定`<input>`元素上的`accept`属性。
 
+##### accept-charset
 
+一个字符串编码列表指定服务器接受的编码类型。
 
+##### action
 
+一个`URL`指定向何处发送表单数据。这个属性会被`<input>`或`<button>`的`formaction`属性所覆盖。
 
+##### autocomplete `HTML5`
 
+表明表单控件是否会被浏览器默认的自动完成。这个设置会被属于`form`的子元素的`autocomplete`属性所覆盖。可能的值有：
 
+ - off：用户必须明确的在每个字段中输入一个值，或者说文档提供了它自己的自动完成方法。
+ - on：浏览器会根据用户之前在该表单输入的值进行自动完成。
 
+> 注：如果你在表单上设置了`autocomplete`为`off`，但是因为文档提供了自己的`auto-complete`，因此你应该在表单的每一个`input`元素上设置`autocomplete`为`off`。
 
+##### enctype
+
+如果`method`属性为`post`时，这个属性时内容的[MIME type](http://en.wikipedia.org/wiki/Mime_type)，用于将表单提交到服务器。可能的值有：
+
+ - application/x-www-form-urlencoded：默认值（如果该属性没有被设置）
+ - multipart/form-data：如果你有`<input>`类型为`file`的元素，使用该值
+ - text/plain
+
+> 注意：这个值会被`<input>`和`<button>`元素的`formenctype`属性所覆盖
+
+##### method
+
+浏览器用于提交表单的的`HTTP method`。可能的值有：
+
+ - post
+ - get
+
+> 注意：这个值会被`<input>`和`<button>`元素的`formmethod`属性所覆盖
+
+##### name
+
+表单的名字。在`HTML4`中使用会被反对。必须在文档中具有唯一性，且在`HTML5`中不能是空值。
+
+##### novalidate `HTML5`
+
+这个布尔属性指定了在表单提交时将不需要被验证。这个值会被`<input>`和`<button>`元素的`formnovalidate`属性所覆盖。
+
+##### target
+
+该属性指定了当表单被提交后在哪里显示返回的响应。可能的值有：
+
+ - _self
+ - _parent
+ - _top
+ - _blank
+
+#### 实例
+
+```c
+<!-- Simple form which will send a GET request -->
+<form action="">
+  <label for="GET-name">Name:</label>
+  <input id="GET-name" type="text" name="name">
+  <input type="submit" value="Save">
+</form>
+
+<!-- Simple form which will send a POST request -->
+<form action="" method="post">
+  <label for="POST-name">Name:</label>
+  <input id="POST-name" type="text" name="name">
+  <input type="submit" value="Save">
+</form>
+
+<!-- Form with fieldset, legend, and label -->
+<form action="" method="post">
+  <fieldset>
+    <legend>Title</legend>
+    <input type="radio" name="radio" id="radio"> <label for="radio">Click me</label>
+  </fieldset>
+</form>
+```
+
+### h1, h2, h3, h4, h5, h6
+
+这几个都是标题元素，其中`h1`具有最重要，`h6`排最后。标题元素简要介绍了某部分的主题。标题元素可能会被用户代理使用，例如，自动为文档建立一个表内容（construct a table of contents for a document automatically）。
+
+这几个元素包含[全局属性][22]。
+
+```c
+<h1>Heading level 1</h1>
+<h2>Heading level 2</h2>
+<h3>Heading level 3</h3>
+<h4>Heading level 4</h4>
+<h5>Heading level 5</h5>
+<h6>Heading level 6</h6>
+```
+
+> 注意：
+>  1. 不要为了降低字体大小而使用低级别的标题，使用`font-size`代替
+>  2. 避免跳过标题层级，永远开始于`h1`，然后使用`h2`，等等。永远尝试只有一个第一层级在页面上
+>  3. 在`HTML5`中使用`<section>`元素来定义文档大纲。标题元素为`section`或子`section`提供了标题。
+
+### head
+
+`HTML`的`<head>`元素代表了文档的元数据，并且包含了定义的脚本或样式表等。
+
+### html
+
+`HTML`的`<html>`元素代表了`HTML`或`XHTML`文档的根。所有的元素都应该是该元素的后代。
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+##### manifest `HTML5`
+
+用于`HTML5`中离线缓存的属性。指定一个`URI`，这个`URI`指定了哪些资源应该被缓存。
+
+### i
+
+`HTML`的`<i>`元素代表了一段文本因为某些原因不同于正常的文本，例如：科技术语、外文短语或虚构人物的想法。它通常显示为斜体。
+
+这个元素只有[全局属性][22]。
+
+```c
+<p>The Latin phrase <i>Veni, vidi, vici</i> is often mentioned in music, art, and literature</p>
+```
+
+#### 使用注意
+
+在早期版本的HTML规范中，`<i>`标签只是用来显示斜体文本表象的元素，就像在`<b>`标签来显示粗体文本。这不再是正确的，因为这些标签现在定义了语义，而不是为了排版显示。`<i>`标签应该代表一部分文本具有不同的语义，其典型的排版为斜体。这意味着浏览器将通常仍然显示其斜体字的内容，但是，根据定义，不再需要。
+
+使用这个元素，只有当还没有一个更合适的语义元素。例如：
+
+ - `<em>`：表明强调
+ - `<strong>`：表明重要性
+ - `<mark>`：表明相关性
+ - `<cite>`：标记一个作品的名字
+ - `<dfn>`：标记一个术语的实例
+
+通常最好在该元素上使用`class`表明为什么使用该元素。
 
  
  

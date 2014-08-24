@@ -340,24 +340,34 @@ jQuery.each([
 var rclass = /[\t\r\n\f]/g;
 
 jQuery.fn.extend({
+	/**
+	 * 支持两种方式：
+	 * 1. .addClass(value) 为每个匹配元素所要增加的一个或多个class名。
+	 * 2. .addClass(function (index, currentClass)) 这个函数返回一个或更多用空格隔开的要增加的class名
+	 */
 	addClass: function( value ) {
 		var classes, elem, cur, clazz, j, finalValue,
 			proceed = typeof value === "string" && value,
 			i = 0,
 			len = this.length;
 
+		// 如果value为函数，则遍历各元素添加被函数调用后的class名
 		if ( jQuery.isFunction( value ) ) {
 			return this.each(function( j ) {
 				jQuery( this ).addClass( value.call( this, j, this.className ) );
 			});
 		}
 
+		// 如果value为string，且value不为空
 		if ( proceed ) {
 			// The disjunction here is for better compressibility (see removeClass)
+			// 利用rnotwhite 即/\S+/g将value分离成一个数组的多个class名
 			classes = ( value || "" ).match( rnotwhite ) || [];
 
+			// 遍历各元素，添加class
 			for ( ; i < len; i++ ) {
 				elem = this[ i ];
+				// 获取当前className，并替换掉\t\r\n\f，且在首尾添加" "
 				cur = elem.nodeType === 1 && ( elem.className ?
 					( " " + elem.className + " " ).replace( rclass, " " ) :
 					" "
@@ -365,6 +375,7 @@ jQuery.fn.extend({
 
 				if ( cur ) {
 					j = 0;
+					// 遍历classes添加class（如果在cur中存在的话）
 					while ( (clazz = classes[j++]) ) {
 						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {
 							cur += clazz + " ";
@@ -372,6 +383,7 @@ jQuery.fn.extend({
 					}
 
 					// only assign if different to avoid unneeded rendering.
+					// 去掉cur两端的空白
 					finalValue = jQuery.trim( cur );
 					if ( elem.className !== finalValue ) {
 						elem.className = finalValue;
@@ -388,18 +400,24 @@ jQuery.fn.extend({
 			proceed = arguments.length === 0 || typeof value === "string" && value,
 			i = 0,
 			len = this.length;
-
+		
+		// 如果value为函数，则遍历各元素移除被函数调用后的class名
 		if ( jQuery.isFunction( value ) ) {
 			return this.each(function( j ) {
 				jQuery( this ).removeClass( value.call( this, j, this.className ) );
 			});
 		}
+
+		// value为字符串，且不为空
 		if ( proceed ) {
+			// 利用rnotwhite 即/\S+/g将value分离成一个数组的多个class名
 			classes = ( value || "" ).match( rnotwhite ) || [];
 
+			// 遍历各元素移除class
 			for ( ; i < len; i++ ) {
 				elem = this[ i ];
 				// This expression is here for better compressibility (see addClass)
+				// 获取当前className，并替换掉\t\r\n\f，且在首尾添加" "
 				cur = elem.nodeType === 1 && ( elem.className ?
 					( " " + elem.className + " " ).replace( rclass, " " ) :
 					""
@@ -407,6 +425,7 @@ jQuery.fn.extend({
 
 				if ( cur ) {
 					j = 0;
+					// 遍历classes，如果当前class中有则移除某个class
 					while ( (clazz = classes[j++]) ) {
 						// Remove *all* instances
 						while ( cur.indexOf( " " + clazz + " " ) >= 0 ) {
@@ -415,6 +434,7 @@ jQuery.fn.extend({
 					}
 
 					// Only assign if different to avoid unneeded rendering.
+					// 移除两端空白
 					finalValue = value ? jQuery.trim( cur ) : "";
 					if ( elem.className !== finalValue ) {
 						elem.className = finalValue;
@@ -429,10 +449,13 @@ jQuery.fn.extend({
 	toggleClass: function( value, stateVal ) {
 		var type = typeof value;
 
+		// .toggleClass(value, stateVal) 调用方式
+		// stateVal为true则添加class，否则移除class
 		if ( typeof stateVal === "boolean" && type === "string" ) {
 			return stateVal ? this.addClass( value ) : this.removeClass( value );
 		}
 
+		// .toggleClass(function (index, class, switch), switch) 调用方式
 		if ( jQuery.isFunction( value ) ) {
 			return this.each(function( i ) {
 				jQuery( this ).toggleClass(
@@ -449,6 +472,7 @@ jQuery.fn.extend({
 					self = jQuery( this ),
 					classNames = value.match( rnotwhite ) || [];
 
+				// 遍历classNames如果元素有某个className则移除，否则添加
 				while ( (className = classNames[ i++ ]) ) {
 					// Check each className given, space separated list
 					if ( self.hasClass( className ) ) {
@@ -459,7 +483,10 @@ jQuery.fn.extend({
 				}
 
 			// Toggle whole class name
+			// 切换所有的class名
+			// 如果type为typeof undefined或type为boolean时移除所有的class
 			} else if ( type === strundefined || type === "boolean" ) {
+				// 如果存在className，则将其保存在元素上
 				if ( this.className ) {
 					// store className if set
 					dataPriv.set( this, "__className__", this.className );
@@ -469,6 +496,7 @@ jQuery.fn.extend({
 				// then remove the whole classname (if there was one, the above saved it).
 				// Otherwise bring back whatever was previously saved (if anything),
 				// falling back to the empty string if nothing was stored.
+				// 如果value为false，则将className设为空，否则设为保存的className
 				this.className = this.className || value === false ?
 					"" :
 					dataPriv.get( this, "__className__" ) || "";

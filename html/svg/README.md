@@ -11,6 +11,8 @@ learn note
  6. [polyilne][6]
  7. [polygon][7]
  8. [path][8]
+ 9. [marker][9]
+
 
 
 
@@ -22,4 +24,5 @@ learn note
   [6]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-polyline-element.md
   [7]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-polygon-element.md
   [8]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-path-element.md
+  [9]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-marker-element.md
 

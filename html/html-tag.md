@@ -1027,7 +1027,162 @@ fieldset.elist:hover input[type="radio"]:checked ~ label {
 
 通常最好在该元素上使用`class`表明为什么使用该元素。
 
- 
+### iframe
+
+[看这里](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe)
+
+### img
+
+`HTML`的`<img>`元素用于代表文档的一张图片。
+
+> 使用注意：
+  > 浏览器并不总是显示由该元素所引用的图像。可能的原因是非图形化浏览器，或者用户选择不显示图像，或者是浏览器无法显示的图像，因为可能是无效的或者不支持的图片类型。因此，在这种情况下，浏览器会用该元素的`alt`属性来替换图片。
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+##### alt
+
+这个属性定义了描述图片的可替换文本。当图片的`URL`错误或者图片为不支持的格式或者图片正在下载时，用户将会看到替换文本会显示。
+
+##### crossorigin `HTML5`
+
+这个枚举属性表明图像的获取是否必须使用`CORS`或者不使用。可能的值有：
+
+ - anonymous：
+ - use-credentials：
+
+##### height
+
+图像的高度。在`HTML5`中是`CSS`像素，在`HTML4`中是像素或者百分比。
+
+##### ismap
+
+该布尔属性表明该图像是否为服务端地图（server-side map）的一部分。如果是，点击时精确坐标将被发送到服务器。
+
+> 使用注意：
+> 这个属性只有在`<img>`元素为`<a>`元素的后代时才能使用，并且`<a>`元素有一个有效的`href`。
+
+##### src
+
+图像的`URL`，这个属性是`<img>`元素必须强制使用的一个属性。
+
+##### width
+
+图像的宽度，使用百分比或像素。
+
+##### usemap
+
+关联该元素的一个[image map](https://developer.mozilla.org/en-US/docs/HTML/Element/map)的片段`URL`（以#开始）。
+
+> 使用注意：
+> 这个属性只有在`<img>`元素为`<a>`或`<button>`元素的后代时才能使用。
+
+#### 支持的图片格式
+
+ - JPEG
+ - GIF
+ - PNG
+ - APNG
+ - SVG
+ - BMP
+ - BMP ICO
+ - PNG ICO
+
+#### 实例
+
+```c
+<img src="https://developer.cdn.mozilla.net/media/img/mdn-logo-sm.png" alt="MD Logo" />
+```
+
+### input
+
+### ins
+
+`HTML`的`<ins>`元素代表了一些被添加到文档的文本。
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+##### cite
+
+这个属性定义了一个`URL`以解释变化。
+
+##### datetime
+
+该属性表明变化的时间，且必须是一个有效的时间。
+
+#### 实例
+
+```c
+<ins>This text has been inserted</ins>
+```
+
+### kbd
+
+`HTML`的`<kbd>`元素代表用户的输入，并产生了浏览器的默认`monotype `字体显示一个内联元素。
+
+这个元素只有[全局属性][22]。
+
+```c
+<p>Type the following in the Run dialog: <kbd>cmd</kbd><br />Then click the OK button.</p>
+
+<p>Save the document by pressing <kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd></p>
+```
+
+### label
+
+`HTML`的`<label>`元素代表了在用户界面中一个项目的标题。它可以通过`for`属性来管理一个控件，或者说将控件定义在该元素内。
+
+#### 属性
+
+这个元素包含[全局属性][22]。
+
+##### accesskey `HTML4` `HTML5`
+
+从键盘访问此元素的快捷键。
+
+##### for
+
+在同一个文档中的一个`labelable`表单关联的元素的`id`。在文档中第一个元素的`ID`匹配`for`属性的值时，该`label`将对这个元素有`labeled control`。
+
+##### form `HTML5`
+
+`label`元素关联的`form`元素。该属性值必须是在同一个文档中一个`<form>`元素的`ID`，如果该属性没有指定，`<label>`必须是`<form>`元素的后代。这个属性可以让你在文档的任何地方放置`<label>`元素，而不是仅仅在`<form>`元素内。
+
+#### 实例
+
+```c
+<!-- Simple label example with for attribute -->
+<label for="Name">Click me</label>
+<input type="text" id="Name" name="Name" />
+
+<!-- or more simply -->
+<label>Click me <input type="text" id="Name" name="Name" /></label>
+```
+
+### li
+
+`HTML`的列表项元素（`<li>`）被用于代表一个列表。它应该包含在一个`<ol>`、`<ul>`或`<menu>`元素中，在列表中它（li）代表了一个实体。在`<ul>`和`<menu>`列表中，列表项通常显示为一个圆点。而在`<ol>`列表中，它们通常显示为一个递增的计数器，例如数字或字母。
+
+这个元素包含[全局属性][22]。
+
+```c
+<ol>
+    <li>first item</li>
+    <li>second item</li>
+    <li>third item</li>
+</ol> 
+```
+
+### link
+
+
+
+
+
  
  
   

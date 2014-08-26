@@ -19,6 +19,8 @@ learn note
  14. [image][14]
  15. [a][15]
  16. [defs][16]
+ 17. [SVG animate][17]
+
 
 
 
@@ -39,4 +41,5 @@ learn note
   [14]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-image-element.md
   [15]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-a-element.md
   [16]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-defs-element.md
+  [17]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-animate.md
 

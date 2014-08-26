@@ -14,6 +14,7 @@ learn note
  9. [marker][9]
  10. [text][10]
  11. [tref][11]
+ 12. [switch][12]
 
 
 
@@ -29,4 +30,5 @@ learn note
   [9]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-marker-element.md
   [10]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-text-element.md
   [11]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-tref-element.md
+  [12]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-switch-element.md
 

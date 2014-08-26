@@ -16,6 +16,9 @@ learn note
  11. [tref][11]
  12. [switch][12]
  13. [textpath][13]
+ 14. [image][14]
+ 15. [a][15]
+ 16. [defs][16]
 
 
 
@@ -33,4 +36,7 @@ learn note
   [11]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-tref-element.md
   [12]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-switch-element.md
   [13]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-textpath-element.md
+  [14]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-image-element.md
+  [15]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-a-element.md
+  [16]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-defs-element.md
 

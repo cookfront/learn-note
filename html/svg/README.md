@@ -12,7 +12,7 @@ learn note
  7. [polygon][7]
  8. [path][8]
  9. [marker][9]
- 10. [text][9]
+ 10. [text][10]
 
 
 

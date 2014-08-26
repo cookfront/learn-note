@@ -15,6 +15,7 @@ learn note
  10. [text][10]
  11. [tref][11]
  12. [switch][12]
+ 13. [textpath][13]
 
 
 
@@ -31,4 +32,5 @@ learn note
   [10]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-text-element.md
   [11]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-tref-element.md
   [12]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-switch-element.md
+  [13]: https://github.com/cookfront/learn-note/blob/master/html/svg/svg-textpath-element.md
 

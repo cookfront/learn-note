@@ -27,10 +27,10 @@ var collAttributes = elementNodeReference.attributes;
 
 var p = document.getElementById('p1');
 if (p.hasAttributes()) {
-	var attrs = p.attributes;
-	console.log(attrs);
+  var attrs = p.attributes;
+  console.log(attrs);
     for(var i = 0; i < attrs.length; i++) {
-    	console.log(attrs[i].name + "->" + attrs[i].value);
+      console.log(attrs[i].name + "->" + attrs[i].value);
     }
 }
 ```
@@ -353,7 +353,7 @@ var p_prime = p.cloneNode(true);
 
 ```c
 node.contains( otherNode )
-``
+```
 
 如果`otherNode`为`node`的后代，则返回`true`，否则返回`false`。
 
@@ -443,7 +443,11 @@ alert( targetElm.isEqualNode(firstDiv) );
 
 语法：
 
+```c
+element.normalize();
+```
 
+实例：
 
 ```c
 var wrapper = document.createElement("div");
@@ -460,6 +464,80 @@ wrapper.normalize();
 // Now, wrapper.childNodes.length === 1
 // wrapper.childNodes[0].textContent === "Part 1 Part 2 "
 ```
+
+### removeChild()
+
+removeChild() 方法用于从父节点移除一个子节点。并返回移除的节点。
+
+语法：
+
+```c
+var oldChild = element.removeChild(child); element.removeChild(child);
+```
+
+此时移除的节点仍然还存在于内存中，但已经不是`DOM`的一部分了，在后面的代码中你可以重用这个节点，通过`oldChild`来引用。
+
+如果移除的节点不是`element`的儿子时，将会抛出一个异常。
+
+实例：
+
+```c
+<!--Sample HTML code-->
+
+<div id="top" align="center">
+  <div id="nested"></div>
+</div>
+
+// Removing a specified element when knowing its parent node
+var d = document.getElementById("top");
+var d_nested = document.getElementById("nested");
+var throwawayNode = d.removeChild(d_nested);
+```
+
+### replaceChild()
+
+`replaceChild()`方法用于将一个新的节点，替换父节点的某一个子节点。它接受两个参数，第一个参数是用来替换的新节点，第二个参数将要被替换走的子节点。
+
+语法： 
+
+```c
+replacedNode = parentNode.replaceChild(newChild, oldChild);
+```
+
+实例：
+
+```c
+// <div>
+//  <span id="childSpan">foo bar</span>
+// </div>
+
+// create an empty element node
+// without an ID, any attributes, or any content
+var sp1 = document.createElement("span");
+
+// give it an id attribute called 'newSpan'
+sp1.setAttribute("id", "newSpan");
+
+// create some content for the new element.
+var sp1_content = document.createTextNode("new replacement span element.");
+
+// apply that content to the new element
+sp1.appendChild(sp1_content);
+
+// build a reference to the existing node to be replaced
+var sp2 = document.getElementById("childSpan");
+var parentDiv = sp2.parentNode;
+
+// replace existing node sp2 with the new span element sp1
+parentDiv.replaceChild(sp1, sp2);
+
+// result:
+// <div>
+//   <span id="newSpan">new replacement span element.</span>
+// </div>
+```
+
+
 
 
 

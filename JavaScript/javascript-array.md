@@ -419,7 +419,341 @@ if (!Array.prototype.lastIndexOf) {
 }
 ```
 
+### map()
+ 
+ 该方法返回一个新的数组，这个数组是当前数组所有元素调用给定函数的结果。
 
+语法：
 
+```c
+array.map(callback[, thisArg])
+```
 
+调用`map()`方法时，对于数组中的任何一个元素都会被调用一次提供的函数，并构造出一个新数组并返回。`callback`只对数组中赋值的元素进行调用，对于那些删除的元素或者是没有被赋值的元素将不会调用`callback`。
 
+调用`callback`时会传入三个参数：元素值，元素索引，被遍历的数组。
+
+注意：`map`不会修改数组中的元素。
+
+实例：
+
+```c
+function fuzzyPlural(single) {
+  var result = single.replace(/o/g, 'e');  
+  if( single === 'kangaroo'){
+    result += 'se';
+  }
+  return result; 
+}
+
+var words = ["foot", "goose", "moose", "kangaroo"];
+console.log(words.map(fuzzyPlural));
+
+// ["feet", "geese", "meese", "kangareese"]
+```
+
+兼容性：
+
+```c
+// Production steps of ECMA-262, Edition 5, 15.4.4.19
+// Reference: http://es5.github.com/#x15.4.4.19
+if (!Array.prototype.map) {
+  Array.prototype.map = function(callback, thisArg) {
+
+    var T, A, k;
+
+    if (this == null) {
+      throw new TypeError(" this is null or not defined");
+    }
+
+    // 1. Let O be the result of calling ToObject passing the |this| value as the argument.
+    var O = Object(this);
+
+    // 2. Let lenValue be the result of calling the Get internal method of O with the argument "length".
+    // 3. Let len be ToUint32(lenValue).
+    var len = O.length >>> 0;
+
+    // 4. If IsCallable(callback) is false, throw a TypeError exception.
+    // See: http://es5.github.com/#x9.11
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
+    }
+
+    // 5. If thisArg was supplied, let T be thisArg; else let T be undefined.
+    if (arguments.length > 1) {
+      T = thisArg;
+    }
+
+    // 6. Let A be a new array created as if by the expression new Array(len) where Array is
+    // the standard built-in constructor with that name and len is the value of len.
+    A = new Array(len);
+
+    // 7. Let k be 0
+    k = 0;
+
+    // 8. Repeat, while k < len
+    while(k < len) {
+
+      var kValue, mappedValue;
+
+      // a. Let Pk be ToString(k).
+      //   This is implicit for LHS operands of the in operator
+      // b. Let kPresent be the result of calling the HasProperty internal method of O with argument Pk.
+      //   This step can be combined with c
+      // c. If kPresent is true, then
+      if (k in O) {
+
+        // i. Let kValue be the result of calling the Get internal method of O with argument Pk.
+        kValue = O[ k ];
+
+        // ii. Let mappedValue be the result of calling the Call internal method of callback
+        // with T as the this value and argument list containing kValue, k, and O.
+        mappedValue = callback.call(T, kValue, k, O);
+
+        // iii. Call the DefineOwnProperty internal method of A with arguments
+        // Pk, Property Descriptor {Value: mappedValue, : true, Enumerable: true, Configurable: true},
+        // and false.
+
+        // In browsers that support Object.defineProperty, use the following:
+        // Object.defineProperty(A, Pk, { value: mappedValue, writable: true, enumerable: true, configurable: true });
+
+        // For best browser support, use the following:
+        A[ k ] = mappedValue;
+      }
+      // d. Increase k by 1.
+      k++;
+    }
+
+    // 9. return A
+    return A;
+  };      
+}
+```
+
+### pop()
+
+该方法移除数组尾部的一个元素，并返回该元素。
+
+实例：
+
+```c
+var myFish = ["angel", "clown", "mandarin", "surgeon"];
+
+console.log("myFish before: " + myFish);
+
+var popped = myFish.pop();
+
+console.log("myFish after: " + myFish);
+console.log("Removed this element: " + popped);
+```
+
+### push()
+
+该方法向数组尾部插入一个或多个元素，并返回插入后数组的长度。
+
+语法：
+
+```c
+arr.push(element1, ..., elementN)
+```
+
+实例：
+
+```c
+var sports = ["soccer", "baseball"];
+var push = sports.push("football", "swimming");
+
+console.log(sports); // ["soccer", "baseball", "football", "swimming"]
+console.log(push);   // 4
+```
+
+### reduce()
+
+该方法依次处理数组的每个元素，最终累计为一个值。
+
+语法：
+
+```c
+array.reduce(callback,[initialValue])
+```
+
+上面的`callback`需要接受4个参数：
+
+ 1. 最后一次累加的值或者为`initialValue`
+ 2. 当前处理的元素
+ 3. 当前元素索引
+ 4. 处理的数组
+
+实例：
+
+```c
+var total = [0, 1, 2, 3].reduce(function(a, b) {
+    return a + b;
+});
+```
+
+兼容性：
+
+```c
+if ('function' !== typeof Array.prototype.reduce) {
+	Array.prototype.reduce = function (callback, initValue) {
+		'use strict';
+		if (null ===  this || 'undefined' === typeof this) {
+			throw new TypeError('Array.prototype.reduce called on null or undefined');
+		}
+		if ('function' !== typeof callback) {
+			throw new TypeError(callback + ' is not a function');
+		}
+		var index, value,
+			length = length >>> 0,
+			isValueSet = false;
+
+		if (1 < argumengs.length) {
+			value = initValue;
+			isValueSet = true;
+		}
+		for (index = 0; index < length; index++) {
+			if (this.hasOwnProperty(index)) {
+				if (isValueSet) {
+					value = callback(value, this[index], index, this);
+				} else {
+					isValueSet = true;
+					value = this[index];
+				}
+			}
+		}
+		if (!isValueSet) {
+			throw new TypeError('Reduce of empty array with no initial value');
+		}
+		return value;
+	}
+}
+```
+
+### reduceRight()
+
+`reduceRight()`和`reduce`正好相反，它是从右到左累计一个值。
+
+语法：
+
+```c
+array.reduceRight(callback[, initialValue])
+```
+
+实例：
+
+```c
+[0, 1, 2, 3, 4].reduceRight(function(previousValue, currentValue, index, array) {
+    return previousValue + currentValue;
+});
+
+// First call
+previousValue = 4, currentValue = 3, index = 3
+
+// Second call
+previousValue = 7, currentValue = 2, index = 2
+
+// Third call
+previousValue = 9, currentValue = 1, index = 1
+
+// Fourth call
+previousValue = 10, currentValue = 0, index = 0
+
+// array is always the object [0,1,2,3,4] upon which reduceRight was called
+
+// Return Value: 10
+```
+
+兼容性：
+
+```c
+if ('function' !== typeof Array.prototype.reduceRight) {
+  Array.prototype.reduceRight = function(callback, opt_initialValue) {
+    'use strict';
+    if (null === this || 'undefined' === typeof this) {
+      // At the moment all modern browsers, that support strict mode, have
+      // native implementation of Array.prototype.reduceRight. For instance,
+      // IE8 does not support strict mode, so this check is actually useless.
+      throw new TypeError(
+          'Array.prototype.reduceRight called on null or undefined');
+    }
+    if ('function' !== typeof callback) {
+      throw new TypeError(callback + ' is not a function');
+    }
+    var index, value,
+        length = this.length >>> 0,
+        isValueSet = false;
+    if (1 < arguments.length) {
+      value = opt_initialValue;
+      isValueSet = true;
+    }
+    for (index = length - 1; -1 < index; --index) {
+      if (this.hasOwnProperty(index)) {
+        if (isValueSet) {
+          value = callback(value, this[index], index, this);
+        }
+        else {
+          value = this[index];
+          isValueSet = true;
+        }
+      }
+    }
+    if (!isValueSet) {
+      throw new TypeError('Reduce of empty array with no initial value');
+    }
+    return value;
+  };
+}
+```
+
+### reverse()
+
+reverse方法用于颠倒数组中元素的顺序，使用这个方法以后，返回改变后的原数组。
+
+实例：
+
+```c
+var myArray = ["one", "two", "three"];
+myArray.reverse(); 
+
+console.log(myArray) // ["three", "two", "one"]
+```
+
+### shift()
+
+该方法移除数组第一个元素，并返回这个移除的元素。该方法会改变数组的长度。
+
+实例：
+
+```c
+var myFish = ["angel", "clown", "mandarin", "surgeon"];
+
+console.log("myFish before: " + myFish);
+
+var shifted = myFish.shift();
+
+console.log("myFish after: " + myFish);
+console.log("Removed this element: " + shifted);
+```
+
+### slice()
+
+slice方法返回指定位置的数组成员组成的新数组，原数组不变。它的第一个参数为起始位置（从0开始），第二个参数为终止位置（但该位置的元素本身不包括在内）。如果省略第二个参数，则一直返回到原数组的最后一个成员。
+
+语法：
+
+```c
+arr.slice(begin[, end])
+```
+
+如果`begin`为负数，则表明从数组尾部算起的第多少个元素。例如为－2，则表明是数组的倒数第二个为`begin`。
+
+实例：
+
+```c
+// Our good friend the citrus from fruits example
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1, 3);
+
+// puts --> ["Orange","Lemon"]
+```

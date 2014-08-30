@@ -348,5 +348,78 @@ var myVar2 = a.join(", ");  // assigns "Wind, Rain, Fire" to myVar2
 var myVar3 = a.join(" + "); // assigns "Wind + Rain + Fire" to myVar3
 ```
 
+### lastIndexOf()
+
+该方法返回一个给定元素在数组中最后的一个索引，和`indexOf()`正好相反，如果在数组中不存在给定元素，则返回`-1`。该方法从后开始搜索，并且从`fromIndex`开始搜索。
+
+语法：
+
+```c
+array.lastIndexOf(searchElement, [fromIndex])
+```
+
+这里`searchElement`就是需要搜索的元素，`fromIndex`是开始搜索的索引，默认是数组的长度。
+
+实例：
+
+```c
+var array = [2, 5, 9, 2];
+var index = array.lastIndexOf(2);
+// index is 3
+index = array.lastIndexOf(7);
+// index is -1
+index = array.lastIndexOf(2, 3);
+// index is 3
+index = array.lastIndexOf(2, 2);
+// index is 0
+index = array.lastIndexOf(2, -2);
+// index is 0
+index = array.lastIndexOf(2, -1);
+// index is 3
+```
+
+`lastIndexOf`是在`ECMA-5`中被添加进来的，所以在部分旧浏览器不被支持，下面提供解决方案：
+
+```c
+if (!Array.prototype.lastIndexOf) {
+  Array.prototype.lastIndexOf = function(searchElement /*, fromIndex*/) {
+    'use strict';
+
+    if (this == null) {
+      throw new TypeError();
+    }
+
+    var n, k,
+        t = Object(this),
+        len = t.length >>> 0;
+    if (len === 0) {
+      return -1;
+    }
+
+    n = len;
+    if (arguments.length > 1) {
+      n = Number(arguments[1]);
+      if (n != n) {
+        n = 0;
+      }
+      else if (n != 0 && n != (1 / 0) && n != -(1 / 0)) {
+        n = (n > 0 || -1) * Math.floor(Math.abs(n));
+      }
+    }
+
+    for (k = n >= 0
+          ? Math.min(n, len - 1)
+          : len - Math.abs(n); k >= 0; k--) {
+      if (k in t && t[k] === searchElement) {
+        return k;
+      }
+    }
+    return -1;
+  };
+}
+```
+
+
+
 
 

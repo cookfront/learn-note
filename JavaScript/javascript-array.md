@@ -134,29 +134,29 @@ passed = [12, 54, 18, 130, 44].every(isBigEnough);
 
 ```c
 if (!Array.prototype.every) {
-	Array.prototype.every = function (callback /*, thisObject*/) {
-		var arr, len, i, thisObject;
+  Array.prototype.every = function (callback /*, thisObject*/) {
+    var arr, len, i, thisObject;
 
-		if (this == null) {
-			throw new TypeError();
-		}
+    if (this == null) {
+      throw new TypeError();
+    }
 
-		arr = Object(this);
-		len = arr.length >>> 0;
+    arr = Object(this);
+    len = arr.length >>> 0;
 
-		if (typeof callback !== 'function') {
-			throw new TypeError();
-		}
+    if (typeof callback !== 'function') {
+      throw new TypeError();
+    }
 
-		thisObject = arguments[1];
-		for (i = 0; i < len; i++) {
-			if (i in arr && !callback(thisObject, arr[i], i, arr)) {
-				return false;
-			}
-		}
+    thisObject = arguments[1];
+    for (i = 0; i < len; i++) {
+      if (i in arr && !callback(thisObject, arr[i], i, arr)) {
+        return false;
+      }
+    }
 
-		return true;
-	}
+    return true;
+  }
 }
 ```
 
@@ -186,32 +186,32 @@ var filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
 
 ```c
 if (!Array.prototype.filter) {
-	Array.prototype.filter = function (callback /* thisObject */) {
-		var arr, len, thisObject, i;
+  Array.prototype.filter = function (callback /* thisObject */) {
+    var arr, len, thisObject, i;
 
-		if (this == null) {
-			throw new TypeError();
-		}
+    if (this == null) {
+      throw new TypeError();
+    }
 
-		arr = Object(this);
-		len = arr.length >>> 0;
-		if (typeof callback !== 'function') {
-			throw new TypeError();
-		}
+    arr = Object(this);
+    len = arr.length >>> 0;
+    if (typeof callback !== 'function') {
+      throw new TypeError();
+    }
 
-		thisObject = arguments[1];
-		var ret = [];
-		for (i = 0; i < len; i++) {
-			if (i in arr) {
-				var val = t[i]; // in case fun mutates this
-				if (callback.call(thisObject, arr[i], i, arr)) {
-					ret.push(arr[i]);
-				}
-			}
-		}
+    thisObject = arguments[1];
+    var ret = [];
+    for (i = 0; i < len; i++) {
+      if (i in arr) {
+        var val = t[i]; // in case fun mutates this
+        if (callback.call(thisObject, arr[i], i, arr)) {
+          ret.push(arr[i]);
+        }
+      }
+    }
 
-		return ret;
-	}
+    return ret;
+  }
 }
 ```
 
@@ -236,14 +236,14 @@ function logArrayElements(element, index, array) {
 
 ```c
 if (!Array.prototype.forEach) {
-	Array.prototype.forEach = function (fn, scope) {
-		var i, len = this.length;
-		for (i = 0; i < len; i++) {
-			if (i in this) {
-				fn.call(scope, this[i], i, this);
-			}
-		}
-	};
+  Array.prototype.forEach = function (fn, scope) {
+    var i, len = this.length;
+    for (i = 0; i < len; i++) {
+      if (i in this) {
+        fn.call(scope, this[i], i, this);
+      }
+    }
+  };
 }
 ```
 
@@ -267,30 +267,30 @@ index = array.indexOf(7); // index is assigned -1
 
 ```c
 if (!Array.prototype.indexOf) {
-	Array.prototype.indexOf = function (searchElement, fromIndex) {
-		var i,
-			pivot = formIndex ? formIndex : 0,
-			len;
+  Array.prototype.indexOf = function (searchElement, fromIndex) {
+    var i,
+      pivot = formIndex ? formIndex : 0,
+      len;
 
-		if (!this) {
-			throw new TypeError();
-		}
-		len = this.length;
+    if (!this) {
+      throw new TypeError();
+    }
+    len = this.length;
 
-		if (len === 0 || pivot >= len) {
-			return -1;
-		}
+    if (len === 0 || pivot >= len) {
+      return -1;
+    }
 
-		if (pivot < 0) {
-			pivot = len - Math.abs(pivot);
-		}
-		for (i = pivot; i < len; i++) {
-			if (this[i] === searchElement) {
-				return i;
-			}
-		}
-		return -1;
-	};
+    if (pivot < 0) {
+      pivot = len - Math.abs(pivot);
+    }
+    for (i = pivot; i < len; i++) {
+      if (this[i] === searchElement) {
+        return i;
+      }
+    }
+    return -1;
+  };
 }
 ```
 
@@ -596,37 +596,37 @@ var total = [0, 1, 2, 3].reduce(function(a, b) {
 
 ```c
 if ('function' !== typeof Array.prototype.reduce) {
-	Array.prototype.reduce = function (callback, initValue) {
-		'use strict';
-		if (null ===  this || 'undefined' === typeof this) {
-			throw new TypeError('Array.prototype.reduce called on null or undefined');
-		}
-		if ('function' !== typeof callback) {
-			throw new TypeError(callback + ' is not a function');
-		}
-		var index, value,
-			length = length >>> 0,
-			isValueSet = false;
+  Array.prototype.reduce = function (callback, initValue) {
+    'use strict';
+    if (null ===  this || 'undefined' === typeof this) {
+      throw new TypeError('Array.prototype.reduce called on null or undefined');
+    }
+    if ('function' !== typeof callback) {
+      throw new TypeError(callback + ' is not a function');
+    }
+    var index, value,
+      length = length >>> 0,
+      isValueSet = false;
 
-		if (1 < argumengs.length) {
-			value = initValue;
-			isValueSet = true;
-		}
-		for (index = 0; index < length; index++) {
-			if (this.hasOwnProperty(index)) {
-				if (isValueSet) {
-					value = callback(value, this[index], index, this);
-				} else {
-					isValueSet = true;
-					value = this[index];
-				}
-			}
-		}
-		if (!isValueSet) {
-			throw new TypeError('Reduce of empty array with no initial value');
-		}
-		return value;
-	}
+    if (1 < argumengs.length) {
+      value = initValue;
+      isValueSet = true;
+    }
+    for (index = 0; index < length; index++) {
+      if (this.hasOwnProperty(index)) {
+        if (isValueSet) {
+          value = callback(value, this[index], index, this);
+        } else {
+          isValueSet = true;
+          value = this[index];
+        }
+      }
+    }
+    if (!isValueSet) {
+      throw new TypeError('Reduce of empty array with no initial value');
+    }
+    return value;
+  }
 }
 ```
 
@@ -756,4 +756,175 @@ var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
 var citrus = fruits.slice(1, 3);
 
 // puts --> ["Orange","Lemon"]
+```
+
+### some()
+
+该方法判断数组中是否有一些元素在提供的函数中返回`true`。
+
+语法：
+
+```c
+array.some(callback[, thisObject])
+```
+
+`some()`方法会对数组中的每一个元素调用`callback`，如果发现有一个元素在`callback`中返回`true`，该 方法会立即返回`true`。`callback`只对数组中赋值的元素进行调用，对于那些删除的元素或者是没有被赋值的元素将不会调用`callback`。
+
+调用`callback`时会传入三个参数：元素值，元素索引，被遍历的数组。
+
+`some()`方法不会修改数组中的元素。
+
+实例：
+
+```c
+function isBigEnough(element, index, array) {
+  return (element >= 10);
+}
+var passed = [2, 5, 8, 1, 4].some(isBigEnough);
+// passed is false
+passed = [12, 5, 8, 1, 4].some(isBigEnough);
+// passed is true
+```
+
+兼容性：
+
+```c
+if (!Array.prototype.some) {
+  Array.prototype.some = function (fun /*, thisp */) {
+    'use strict';
+
+    if (this == null) {
+      throw new TypeError();
+    }
+
+    var thisp, i,
+      t = Object(this),
+      len = t.length >>> 0;
+
+    if (typeof fun !== 'function') {
+      throw new TypeError();
+    }
+    thisp = arguments[1];
+    for (i = 0; i < len; i++) {
+      if (i in t && fun.call(thisp, t[i], i, t)) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+}
+```
+
+### sort()
+
+该方法会将数组排序，并返回数组。
+
+语法：
+
+```c
+arr.sort([compareFunction])
+```
+
+如果`compareFunction`没有提供，会将元素转换为字符串后按照字典顺序排序（字典或电话本）。例如，80会在9前面。
+
+如果`compareFunction`提供了，则元素顺序通过比较函数的返回值来排序。以比较a和b为例：
+
+ - 如果`compareFunction(a, b)`小于0，则a在b前面
+ - 如果`compareFunction(a, b)`等于0，则a和b的位置不变
+ - 如果`compareFunction(a, b)`大于0，则a在b后面
+
+比较函数示范：
+
+```c
+function compare(a, b) {
+  if (a is less than b by some ordering criterion)
+     return -1;
+  if (a is greater than b by the ordering criterion)
+     return 1;
+  // a must be equal to b
+  return 0;
+}
+```
+
+实例：
+
+```c
+var numbers = [4, 2, 5, 1, 3];
+numbers.sort(function(a, b) {
+    return a - b;
+});
+console.log(numbers);
+```
+
+### splice()
+
+该方法会改变数组的内容，删除或添加数组元素。
+
+语法：
+
+```c
+array.splice(index , howMany[, element1[, ...[, elementN]]])
+```
+
+这里`index`是开始改变数组的索引。如果大于数组的长度，数组中的元素不会被移除。如果为负数，就会从数组末尾算起。
+`howMany`表明多少个元素将从`index`位置删除。如果`howMany`为0，则不会删除任何元素。如果没有指定`howMany`，则从索引位置后的所有元素都将被删除。
+后面的参数是将要添加到数组中的一个或多个元素。
+
+该方法会返回一个移除元素的数组。例如如果从数组中移除了一个元素，则包含这一个元素的数组将被返回，如果没有移除元素，则返回一个空数组。
+
+实例：
+
+```c
+var myFish = ["angel", "clown", "mandarin", "surgeon"];
+
+//removes 0 elements from index 2, and inserts "drum"
+var removed = myFish.splice(2, 0, "drum");
+//myFish is ["angel", "clown", "drum", "mandarin", "surgeon"]
+//removed is [], no elements removed
+
+//removes 1 element from index 3
+removed = myFish.splice(3, 1);
+//myFish is ["angel", "clown", "drum", "surgeon"]
+//removed is ["mandarin"]
+
+//removes 1 element from index 2, and inserts "trumpet"
+removed = myFish.splice(2, 1, "trumpet");
+//myFish is ["angel", "clown", "trumpet", "surgeon"]
+//removed is ["drum"]
+
+//removes 2 elements from index 0, and inserts "parrot", "anemone" and "blue"
+removed = myFish.splice(0, 2, "parrot", "anemone", "blue");
+//myFish is ["parrot", "anemone", "blue", "trumpet", "surgeon"]
+//removed is ["angel", "clown"]
+
+//removes 2 elements from index 3
+removed = myFish.splice(3, Number.MAX_VALUE);
+//myFish is ["parrot", "anemone", "blue"]
+//removed is ["trumpet", "surgeon"]
+```
+
+### unshift()
+
+该方法会添加一个或多个元素到数组的头部，并返回新数组的长度。
+
+语法：
+
+```c
+arr.unshift(element1, ..., elementN) 
+```
+
+实例：
+
+```c
+var arr = [1, 2];
+
+arr.unshift(0); //r esult of call is 3, the new array length
+// arr is [0, 1, 2]
+
+arr.unshift(-2, -1); // = 5
+// arr is [-2, -1, 0, 1, 2]
+
+arr.unshift( [-3] );
+// arr is [[-3], -2, -1, 0, 1, 2]
 ```

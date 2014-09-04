@@ -5,13 +5,13 @@ Backbone Collections 要点笔记
 
 ```c
 var Todo = Backbone.Model.extend({
-	defaults: {
-		title: 'empty',
-		completed: false
-	}
+  defaults: {
+    title: 'empty',
+    completed: false
+  }
 });
 var Todos = Backbone.Collections.extend({
-	model: Todo
+  model: Todo
 });
 ```
 
@@ -223,6 +223,49 @@ todos.fetch();
 
 var todo2 = todos.get(2);
 todo2.destroy(); // sends HTTP DELETE to /todos/2 and removes from collection
+```
+
+## 监听事件
+
+`Collections`代表了一些项的集合，当向`Collections`中添加`model`时，我们可以为其添加`add`和`remove`事件，例如：
+
+```c
+var TodosCollection = new Backbone.Collection();
+
+TodosCollection.on("add", function(todo) {
+  console.log("I should " + todo.get("title") + ". Have I done it before? "  + (todo.get("completed") ? 'Yeah!': 'No.' ));
+});
+
+TodosCollection.add([
+  { title: 'go to Jamaica', completed: false },
+  { title: 'go to China', completed: false },
+  { title: 'go to Disneyland', completed: true }
+]);
+
+// The above logs:
+// I should go to Jamaica. Have I done it before? No.
+// I should go to China. Have I done it before? No.
+// I should go to Disneyland. Have I done it before? Yeah!
+```
+
+我们同样可以为`Collections`添加`change`事件，当集合中的任何一个模型改变时。例如：
+
+```c
+var TodosCollection = new Backbone.Collection();
+
+// log a message if a model in the collection changes
+TodosCollection.on("change:title", function(model) {
+    console.log("Changed my mind! I should " + model.get('title'));
+});
+
+TodosCollection.add([
+  { title: 'go to Jamaica.', completed: false, id: 3 },
+]);
+
+var myTodo = TodosCollection.get(3);
+
+myTodo.set('title', 'go fishing');
+// Logs: Changed my mind! I should go fishing
 ```
 
 

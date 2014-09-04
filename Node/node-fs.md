@@ -105,6 +105,242 @@ fs.truncate('./test.txt', 2, function (err) {
 
 ## fs.lstat(path, callback)
 
+回调函数`callback`接收两个参数：`(err, stats)`其中`stats`是一个[fs.Stats](http://nodejs.org/api/fs.html#fs_class_fs_stats)对象。 `lstat()`与 `stat()`相同，区别在于： 若`path`是一个符号链接时（symbolic link）,读取的是该符号链接本身，而不是它所链接到的文件。
+
+## fs.lstatSync(path)
+
+`fs.lstat()`的同步版本。
+
+## fs.fstat(fd, callback)
+
+这个方法和`stat()`作用相同，但是传入的第一个参数是文件描述符（file descriptor）。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.open('./test.txt', 'r+', function (err, fd) {
+	if (err) {
+		throw new Error('file open error');
+	}
+	fs.fstat(fd, function (err, stats) {
+		if (err) {
+			throw new Error('fstat error');
+		}
+		console.log(stats);
+	});
+});
+```
+
+## fs.fstatSync(fd)
+
+`fs.fstat()`的同步版本。
+
+## fs.link(srcpath, dstpath, callback)
+
+该方法是为`srcpath`创建一个`dstpath`的硬连接，回调函数`callback`只接受一个参数：可能出现的异常信息。
+
+关于硬连接和软连接还请移步：[理解 Linux 的硬链接与软链接](http://www.ibm.com/developerworks/cn/linux/l-cn-hardandsymb-links/)
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.link('test.txt', 'test.txt.link', function (err) {
+	if (err) {
+		throw new Error('link error');
+	}
+});
+```
+
+## fs.linkSync(srcpath, dstpath)
+
+`fs.link()`的同步版本。
+
+## fs.symlink(srcpath, dstpath, [type], callback)
+
+该方法是为`srcpath`创建一个`dstpath`的软连接，回调函数`callback`只接受一个参数：可能出现的异常信息。
+
+`type`可以是 `dir`， `file`, 或者`junction` (默认是 `file`)，此参数仅用于 Windows 系统（其他系统平台会被忽略）。 注意： Windows 系统要求目标路径（译者注：即`dstpath`参数）必须是一个绝对路径，当使用`junction`时，`dstpath`参数会自动转换为绝对路径。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.symlink('test.txt', 'test.txt.link', function (err) {
+	if (err) {
+		throw new Error('link error');
+	}
+});
+```
+
+## fs.symlinkSync(srcpath, dstpath, [type])
+
+`fs.symlink()`的同步版本。
+
+## fs.readlink(path, callback)
+
+该方法用于读取`path`（path为一个`symbolic link`）所链接的文件。只能用于软连接的文件。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.readlink('test.txt.link', function (err, linkString) {
+	if (err) {
+		throw new Error('read link error');
+	}
+	console.log(linkString);	// test.txt
+});
+```
+
+## fs.readlinkSync(path)
+
+同步版的`fs.readlink()`。
+
+## fs.realpath(path, [cache], callback)
+
+该方法是将相对地址的`path`转换为绝对地址。`callback`接受两个参数：`err`-错误消息、`resolvePath`-解析出的绝对路径。
+
+`cache`是一个对象直接量，是各个相对地址到绝对地址的映射。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.realpath('../Node', function (err, resolvePath) {
+	if (err) {
+		throw new Error('resolve path error');
+	}
+	console.log(resolvePath);
+});
+```
+
+## fs.realpathSync(path, [cache])
+
+同步版的`fs.realpath()`。
+
+## fs.unlink(path, callback)
+
+该方法用于删除一个文件。`callback`接受一个参数：可能的异常信息。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.unlink('./test.txt', function (err) {
+	if (err) {
+		throw new Error('resolve path error');
+	}
+});
+```
+
+## fs.unlinkSync(path)
+
+同步版的`fs.unlink()`。
+
+## fs.rmdir(path, callback)
+
+该方法用于删除一个路径，`callback`接受一个参数：可能的异常信息。
+
+> 注意：这个方法只能删除一个空目录。也就是说如果目录中包含文件，调用这个方法时将抛出异常。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.rmdir('./test', function (err) {
+	if (err) {
+		throw new Error('rmdir error');
+	}
+});
+```
+
+## fs.rmdirSync(path)
+
+同步版的`fs.rmdir()`。
+
+## fs.mkdir(path, [mode], callback)
+
+该方法用于创建一个目录，`callback`接受一个参数：可能的异常信息。文件`mode`默认为`0777`。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.mkdir('./test', '0755', function (err) {
+	if (err) {
+		throw new Error('mkdir error');
+	}
+});
+```
+
+## fs.mkdirSync(path, [mode])
+
+同步版的`fs.mkdir()`。
+
+## fs.readdir(path, callback)
+
+该方法用于读取一个目录。`callback`接受两个参数：`(err, files)`其中`files`是一个存储目录中所包含的文件名称的数组，数组中不包括 `.` 和 `..`。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.readdir('./test', function (err, files) {
+	if (err) {
+		throw new Error('mkdir error');
+	}
+	files.forEach(function (file, i) {
+		console.log(file);
+	});
+});
+```
+
+## fs.readdirSync(path)
+
+同步版的`fs.readdir()`。
+
+## fs.close(fd, callback)
+
+该方法用于关闭一个文件描述符，完成时的回调函数(callback)只接受一个参数:可能出现的异常信息。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.open('./test.txt', 'r+', function (err, fd) {
+	if (err) {
+		throw new Error('open file error');
+	}
+	fs.close(fd, function (err) {
+		if (err) {
+			throw new Error('close file error');
+		}
+		console.log('close complete');
+	});
+})
+```
+
+## fs.closeSync(fd)
+
+同步版的`fs.close()`。
+
+## fs.open(path, flags, [mode], callback)
+
+
+
+
 
 
 

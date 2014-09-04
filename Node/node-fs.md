@@ -338,6 +338,56 @@ fs.open('./test.txt', 'r+', function (err, fd) {
 
 ## fs.open(path, flags, [mode], callback)
 
+该方法用于打开一个文件，`path`为文件路径，`flags`为打开的标识。具体可以看官网的：[fs.open()](http://nodejs.org/documentation/api/)。
+
+参数`mode`用于设置文件模式 (permission and sticky bits), 不过前提是这个文件是已存在的. 默认情况下是`0666`, 有可读和可写权限.
+
+该`callback`接收两个参数`(err, fd)`。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.open('./test.txt', 'r+', function (err, fd) {
+	if (err) {
+		throw new Error('open file error');
+	}
+	console.log('open complete');
+});
+```
+
+## fs.openSync(path, flags, [mode])
+
+同步版的`fs.open()`。
+
+## fs.utimes(path, atime, mtime, callback)/fs.utimesSync(path, atime, mtime)
+
+更改 path 所指向的文件的时间戳。
+
+关于上面的`atime`和`mtime`看这里：[linux中ctime,mtime,atime的区别](http://jianjian.blog.51cto.com/35031/103231)
+
+## fs.futimes(fd, atime, mtime, callback)/fs.futimesSync(fd, atime, mtime)
+
+更改文件描述符 (file discriptor) 所指向的文件的时间戳。
+
+## fs.fsync(fd, callback)
+
+该方法写入所有与特定文件描述符相关的缓冲区数据。
+
+关于[unix sync](http://zh.wikipedia.org/wiki/Sync_%28Unix%29)
+
+## fs.fsyncSync(fd)
+
+同步版的`fs.fsync()`。
+
+## fs.write(fd, buffer, offset, length[, position], callback)
+
+
+
+
+
+
 
 
 

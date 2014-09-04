@@ -1,6 +1,8 @@
 width
 =======
 
+## width
+
 `width`指定一个元素内容区域的宽度。内容区域是在元素的`padding`、`border`和`margin`里面。
 
 对于`width`属性有几点需要注意的：
@@ -99,4 +101,30 @@ figure {
  - fit-content：以下两种情况下的较大值：
 	 - 固有的最小宽度（min-content）
 	 - 固有首选宽度（max-content）和可用宽度（available）的较小值
+
+## min-width
+
+`min-width`设置一个给定元素的最小宽度，它可以阻止`width`属性的应用值小于`min-width`的值。
+
+如果`min-width`属性的值大于`max-width`属性的值，`max-width`将会自动以`min-width`的值作为自己的值。
+
+语法：
+
+```c
+min-width: <length> | <percentage> | max-content | min-content | fit-content | fill-available
+```
+
+## max-width
+
+`max-width`设置一个给定元素的最大宽度，它可以阻止`width`属性的应用值大于`max-width`的值。
+
+如果`max-width`属性的值小于`min-width`属性的值，`max-width`将会自动以`min-width`的值作为自己的值。
+
+语法：
+
+```c
+max-width: <length> | <percentage> | max-content | min-content | fit-content | fill-available
+```
+
+
 

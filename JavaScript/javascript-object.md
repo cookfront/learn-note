@@ -62,3 +62,61 @@ Object.create(proto [, propertiesObject ])
 
  - proto：一个对象，作为新创建对象的原型。
  - propertiesObject：一个对象值，可以包含若干个属性，属性名为新建对象的属性名，属性值为那个属性的属性描述符对象。
+
+实例：
+
+```c
+// Shape - superclass
+function Shape() {
+  this.x = 0;
+  this.y = 0;
+}
+
+// superclass method
+Shape.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+    console.info("Shape moved.");
+};
+
+// Rectangle - subclass
+function Rectangle() {
+  Shape.call(this); // call super constructor.
+}
+
+// subclass extends superclass
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+
+var rect = new Rectangle();
+
+rect instanceof Rectangle // true.
+rect instanceof Shape // true.
+
+rect.move(1, 1); // Outputs, "Shape moved."
+```
+
+兼容性：
+
+```c
+if (typeof Object.create != 'function') {
+    (function () {
+        var F = function () {};
+        Object.create = function (o) {
+            if (arguments.length > 1) {
+              throw Error('Second argument not supported');
+            }
+            if (o === null) {
+              throw Error('Cannot set a null [[Prototype]]');
+            }
+            if (typeof o != 'object') {
+              throw TypeError('Argument must be an object');
+            }
+            F.prototype = o;
+            return new F();
+        };
+	})();
+}
+```
+
+### Object.defineProperty()

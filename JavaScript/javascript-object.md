@@ -29,8 +29,8 @@ var arr = new Array();
 
 ```c
 var obj = Object.create({
-	x: 1,
-	y: 2
+  x: 1,
+  y: 2
 });
 ```
 
@@ -115,8 +115,25 @@ if (typeof Object.create != 'function') {
             F.prototype = o;
             return new F();
         };
-	})();
+  })();
 }
 ```
 
 ### Object.defineProperty()
+
+`Object.defineProperty()`在对象上定义一个新的属性，或者修改对象中已经存在的属性，最后返回这个对象。
+
+语法：
+
+```c
+Object.defineProperty(obj, prop, descriptor)
+```
+
+`obj`就是我们要定义或修改属性的对象。
+`prop`则为定义或修改的属性名。
+`descriptor`要定义或修改属性的描述。这个后面会详细讲到。
+
+上面的`descriptor`主要分为下面几个选项：
+
+ - configurable：可配置性（configurable）决定了是否可以删除（delete）某个属性，以及是否可以更改该属性attributes对象中除了value以外的性质。默认为`false`。
+ - 

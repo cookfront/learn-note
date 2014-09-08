@@ -136,4 +136,86 @@ Object.defineProperty(obj, prop, descriptor)
 上面的`descriptor`主要分为下面几个选项：
 
  - configurable：可配置性（configurable）决定了是否可以删除（delete）某个属性，以及是否可以更改该属性attributes对象中除了value以外的性质。默认为`false`。
- - 
+ - enumerable：可枚举性（enumerable）与两个操作有关：for...in和Object.keys。如果某个属性的可枚举性为true，则这两个操作过程都会包括该属性；如果为false，就不包括。总体上，设计可枚举性的目的就是，告诉for...in循环，哪些属性应该被忽视。默认为`false`
+ - value：属性关联的值。
+ - writable：可写性（writable）决定了属性的值（value）是否可以被改变。
+ - get：取值函数
+ - set：设置值函数
+
+在上面的可枚举性还有一个需要注意的函数：`Object.getOwnPropertyNames()`，这个函数不管属性是否可枚举，会返回定义在对象上全部属性的名称。
+
+实例：
+
+属性`configurable`：
+
+```c
+var o = {};
+Object.defineProperty(o, "a", { get : function(){return 1;}, 
+                                configurable : false } );
+
+Object.defineProperty(o, "a", {configurable : true}); // throws a TypeError
+Object.defineProperty(o, "a", {enumerable : true}); // throws a TypeError
+Object.defineProperty(o, "a", {set : function(){}}); // throws a TypeError (set was undefined previously)
+Object.defineProperty(o, "a", {get : function(){return 1;}}); // throws a TypeError (even though the new get does exactly the same thing)
+Object.defineProperty(o, "a", {value : 12}); // throws a TypeError
+
+console.log(o.a); // logs 1
+delete o.a; // Nothing happens
+console.log(o.a); // logs 1
+```
+
+属性`enumerable`：
+
+```c
+var o = {};
+Object.defineProperty(o, "a", { value : 1, enumerable:true });
+Object.defineProperty(o, "b", { value : 2, enumerable:false });
+Object.defineProperty(o, "c", { value : 3 }); // enumerable defaults to false
+o.d = 4; // enumerable defaults to true when creating a property by setting it
+
+for (var i in o) {    
+  console.log(i);  
+}
+// logs 'a' and 'd' (in undefined order)
+
+console.log(Object.keys(o)); // ["a", "d"]
+console.log(Object.getOwnPropertyNames(o)); // ["a", "b", "c", "d"]
+
+o.propertyIsEnumerable('a'); // true
+o.propertyIsEnumerable('b'); // false
+o.propertyIsEnumerable('c'); // false
+```
+
+属性`writable`：
+
+```c
+var o = {}; // Creates a new object
+
+Object.defineProperty(o, "a", { value : 37,
+                                writable : false });
+
+console.log(o.a); // logs 37
+o.a = 25; // No error thrown (it would throw in strict mode, even if the value had been the same)
+console.log(o.a); // logs 37. The assignment didn't work.
+```
+
+属性存取：
+
+```c
+var o = {
+
+    get p() {
+        return "getter";
+    },
+
+    set p(value) {
+        console.log("setter: "+value);
+    }
+}
+
+o.p
+// getter
+
+o.p = 123;
+// setter: 123
+```

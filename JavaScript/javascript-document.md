@@ -320,7 +320,7 @@ alert(document.title); // displays "Goodbye World!"
 mode = document.compatMode;
 ```
 
-上面的`mode`如果是在怪癖模式下则返回`BackCompat`，在严格模式下则返回`BackCompat`。
+上面的`mode`如果是在怪癖模式下则返回`BackCompat`，在严格模式下则返回`CSS1Compat`。
 
 ### document.currentScript
 

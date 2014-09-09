@@ -93,3 +93,77 @@ require('load-grunt-tasks')(grunt);
 
 是不是觉得高大上呀。还有一个`grunt`插件是：[load-grunt-config](https://github.com/firstandthird/load-grunt-config)。这个插件可以让你编写模块化的`grunt`，啥叫模块化的`grunt`呢，上面的`Gruntfile.js`是将所有的任务写在一个文件中，有了`load-grunt-config`你就可以将不同的任务写在不同的文件中，增强了可维护性。
 
+`grunt/concat.js`：
+
+```c
+module.exports = {
+	js: {
+		src: ['js/**/*.js'],
+		dest: 'build/js/common.js'
+	},
+	css: {
+		src: ['css/**/*.css'],
+		dest: 'build/css/common.css'
+	}
+};
+```
+
+`grunt/cssmin.js`：
+
+```c
+module.exports = {
+	dist: {
+		src: 'build/css/common.css',
+		dest: 'build/css/common.min.css'
+	}
+};
+```
+
+`grunt/jshint.js`：
+
+```c
+module.exports = {
+	options: {
+		'jshintsrc': true
+	},
+	src: ['js/**/*.js']
+};
+```
+
+`grunt/uglify.js`：
+
+```c
+module.exports = {
+	dist: {
+		src: 'build/js/common.js',
+		dest: 'build/js/common.min.js'
+	}
+};
+```
+
+现在来看看我们的`Gruntfile.js`：
+
+```c
+/**
+ * Gruntfile.js
+ *
+ * @author cookfront@gmail.com
+ * @date 2014-09-09
+ */
+module.exports = function (grunt) {
+
+	var path = require('path');
+
+	require('load-grunt-config')(grunt, {
+		configPath: path.join(process.cwd(), 'grunt'),
+		init: true
+	});
+
+	require('load-grunt-tasks')(grunt);
+
+	grunt.registerTask('test', ['jshint']);
+	grunt.registerTask('default', ['concat', 'cssmin', 'uglify']);
+};
+```
+
+它就剩下这么几行代码了。

@@ -219,3 +219,359 @@ o.p
 o.p = 123;
 // setter: 123
 ```
+
+### Object.defineProperties()
+
+这个方法和上面的`Object.defineProperty()`很相似，只是一次设置多个属性。
+
+语法：
+  
+```c
+Object.defineProperties(obj, props)
+```
+
+实例：
+
+```c
+Object.defineProperties(obj, {
+  "property1": {
+    value: true,
+    writable: true
+  },
+  "property2": {
+    value: "Hello",
+    writable: false
+  }
+  // etc. etc.
+});
+```
+
+### Object.freeze()
+
+`Object.freeze()`方法使得一个对象无法添加新的属性，也无法删除旧属性，也无法修改现有属性的`configurable`、`enumerable`和`writable`，使得这个对象实际上变成了常量。
+
+语法：
+
+```c
+Object.freeze(o)
+```
+
+这里的`o`就是需要`freeze`的对象。
+
+实例：
+
+```c
+var o = {
+  name: 'cookfront'
+};
+Object.freeze(o);
+o.name = 'zhangmin';
+console.log(o.name);  // 'cookfront'
+// add property
+Object.defineProperty(o, 'age', {
+  writable: true,
+  configurable: true,
+  enumerable: true,
+  value: 23
+});
+console.log(o.age);
+remove property
+delete o.name;
+console.log(o.name);
+```
+
+### Object.isFrozen()
+
+`Object.isFrozen`方法用于检查一个对象是否使用了`Object.freeze()`方法。
+
+语法：
+
+```c
+Object.isFrozen(o);
+```
+
+实例：
+
+```c
+var o = {
+  name: 'cookfront'
+};
+Object.freeze(o);
+console.log(Object.isFrozen(o));
+```
+
+### Object.getOwnPropertyDescriptor()
+
+该方法返回一个给定对象的某个属性的描述。
+
+语法：
+
+```c
+Object.getOwnPropertyDescriptor(obj, prop);
+```
+
+上面的`obj`是需要寻找属性的对象。而`prop`是需要检索描述的属性名。
+
+实例：
+
+```c
+var o = {
+  name: 'cookfront'
+};
+console.log(Object.getOwnPropertyDescriptor(o, 'name'));
+
+var d = {
+  get name () {
+    return 'cookfront';
+  },
+  set name (val) {
+    console.log(val);
+  }
+};
+console.log(Object.getOwnPropertyDescriptor(d, 'name'));
+```
+
+### Object.getOwnPropertyNames()
+
+该方法返回直接定义在某个对象上面的全部属性的名称，返回的是一个数组。需要注意的是它与`Object.keys()`和`for in`的区别：不管该属性是否可枚举，都会返回。
+
+语法：
+
+```c
+Object.getOwnPropertyNames(obj)
+```
+
+实例：
+
+```c
+var arr = ["a", "b", "c"];
+print(Object.getOwnPropertyNames(arr).sort()); // prints "0,1,2,length"
+
+// Array-like object
+var obj = { 0: "a", 1: "b", 2: "c"};
+print(Object.getOwnPropertyNames(obj).sort()); // prints "0,1,2"
+```
+
+### Object.getPrototypeOf()
+
+该方法获取指定对象的`prototype`对象。
+
+语法：
+
+```c
+Object.getPrototypeOf(obj);
+```
+
+实例：
+
+```c
+var prop = {};
+var o = Object.create(prop);
+console.log(Object.getPrototypeOf(o) === prop);
+```
+
+### Object.hasOwnProperty()
+
+该方法判断某个属性是否为当前对象自身的属性，还是继承自原型对象的属性。
+
+语法：
+
+```c
+obj.hasOwnProperty(prop);
+```
+
+实例：
+
+```c
+var prop = {
+  'type': 'fe'
+};
+
+var o = Object.create(prop);
+o.name = 'cookfront';
+for (var i in o) {
+  console.log(o[i]);
+}
+
+console.log('hasOwnProperty:');
+
+for (var i in o) {
+  if (o.hasOwnProperty(i)) {
+    console.log(o[i]);
+  }
+}
+```
+
+### Object.preventExtensible()
+
+该方法使得一个对象无法再添加新的属性。
+
+语法：
+
+```c
+Object.preventExtensions(obj);
+```
+
+实例：
+
+```c
+var obj = {
+  name: 'zhangmin'
+};
+Object.preventExtensions(obj);
+obj.age = 23;
+console.log(obj); // {name: "zhangmin"}
+```
+
+### Object.isExtensible()
+
+该方法判断一个对象是否可以扩展。也即是否调用了`Object.preventExtensions()`，如果调用了`Object.preventExtensions()`则返回`false`。
+
+语法：
+
+```c
+Object.isExtensible(obj)
+```
+
+实例：
+
+```c
+// New objects are extensible.
+var empty = {};
+assert(Object.isExtensible(empty) === true);
+
+// ...but that can be changed.
+Object.preventExtensions(empty);
+assert(Object.isExtensible(empty) === false);
+```
+
+### Object.isPrototypeOf()
+
+该方法判断当前对象是否为另一个对象的原型。
+
+语法：
+
+```c
+prototypeObj.isPrototypeOf(obj);
+```
+
+实例：
+
+```c
+var prop = {
+  type: 'fe'
+};
+
+var obj = Object.create(prop);
+console.log(prop.isPrototypeOf(obj));
+```
+
+### Object.seal()
+
+`Object.seal`方法使得一个对象既无法添加新属性，也无法删除旧属性。并且它还会把现有属性的`attributes`对象的`configurable`属性设为`false`，这使得`attributes`不能再改变。但是，出于历史原因，这时依然可以将writable从true变成false，即可以对现有属性重新赋值。
+
+语法：
+
+```c
+Object.seal(obj)
+```
+
+实例：
+
+```c
+var obj = {
+  name: 'cookfront'
+};
+
+Object.seal(obj);
+console.log(Object.isSealed(obj));
+
+// test writable
+obj.name = 'zhangmin';
+console.log(obj.name);
+
+// {value: "zhangmin", writable: true, enumerable: true, configurable: false}
+console.log(Object.getOwnPropertyDescriptor(obj, 'name'));
+
+Object.defineProperty(obj, 'name', {
+  writable: false
+});
+
+obj.name = 'aaa';
+console.log(obj.name);
+
+// test change enumerable
+// throw error
+Object.defineProperty(obj, 'name', {
+  enumerable: false
+});
+```
+
+### Object.isSealed()
+
+判断对象是否调用了`Object.seal()`，调用了则返回`true`。
+
+语法：
+
+```c
+Object.isSealed(obj);
+```
+
+实例：
+
+```c
+var obj = {
+  name: 'cookfront'
+};
+
+Object.seal(obj);
+console.log(Object.isSealed(obj));
+```
+
+### Object.keys()
+
+该方法返回对象的可枚举属性组成的一个数组。它和`for in`的区别是，`for in`会去判断原型链中的属性。
+
+语法：
+
+```c
+Object.keys(obj)
+```
+
+实例：
+
+```c
+var arr = ["a", "b", "c"];
+console.log(Object.keys(arr)); // console: ["0", "1", "2"]
+
+// array like object
+var obj = { 0 : "a", 1 : "b", 2 : "c"};
+console.log(Object.keys(obj)); // console: ["0", "1", "2"]
+
+// array like object with random key ordering
+var an_obj = { 100: "a", 2: "b", 7: "c"};
+console.log(Object.keys(an_obj)); // console: ["2", "7", "100"]
+```
+
+### Object.propertyIsEnumerable()
+
+该方法返回一个布尔值，判断给定的某属性是否可枚举。
+
+语法：
+
+```c
+obj.propertyIsEnumerable(prop);
+```
+
+实例：
+
+```c
+var o = {};
+var a = [];
+o.prop = 'is enumerable';
+a[0] = 'is enumerable';
+
+o.propertyIsEnumerable('prop');   // returns true
+a.propertyIsEnumerable(0);        // returns true
+```
+

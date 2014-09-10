@@ -99,6 +99,16 @@ fs.truncate('./test.txt', 2, function (err) {
   ctime: Wed Sep 03 2014 21:30:12 GMT+0800 (CST) }
 ```
 
+`fs.Stats`对象上还有一些方法：
+
+ - stats.isFile()
+ - stats.isDirectory()
+ - stats.isBlockDevice()
+ - stats.isCharacterDevice()
+ - stats.isSymbolicLink() (仅在与 fs.lstat()一起使用时合法)
+ - stats.isFIFO()
+ - stats.isSocket()
+
 ## fs.statSync(path)
 
 该方法是`fs.stat()`的同步版本。
@@ -383,14 +393,214 @@ fs.open('./test.txt', 'r+', function (err, fd) {
 
 ## fs.write(fd, buffer, offset, length[, position], callback)
 
+通过文件描述符`fd`，向指定的文件中写入`buffer`。
 
+`offset`和`length`可以确定从哪个位置开始写入`buffer`，写入多少`buffer`。
 
+`position`是参考当前文档光标的位置，然后从该处写入数据。如果typeof position !== 'number'，那么数据会从当前文档位置写入，请看pwrite(2)。
 
+`callback`接受三个参数：`(err, written, buffer)`，第一个参数为错误信息，`written`为从`buffer`写入的字节数。
 
+实例：
 
+```c
+var fs = require('fs');
 
+var buffer = new Buffer('something');
 
+fs.open('./test.txt', 'r+', function (err, fd) {
+	if (err) {
+		throw new TypeError();
+	}
+	fs.write(fd, buffer, 2, 5, 2, function (err, written, buffer) {
+		if (err) {
+			throw new TypeError();
+		}
+		console.log(written);
+		console.log(buffer.toString());
+	})
+});
+```
 
+## fs.write(fd, data[, position[, encoding]], callback)
 
+这个其实和上面的差不多，只是参数略有不同，这里的`data`如果不是一个`buffer`对象，则会强制转换成一个字符串。`position`是参考当前文档光标的位置，然后从该处写入数据。`encoding`是预期得到一个字符串编码。回调函数的参数还是和上面一样。
 
+实例：
+
+```c
+var fs = require('fs');
+
+fs.open('./test.txt', 'r+', function (err, fd) {
+	if (err) {
+		throw new TypeError();
+	}
+	fs.write(fd, 'something', 2, 'utf8', function (err, written, buffer) {
+		if (err) {
+			throw new TypeError();
+		}
+		console.log(written);
+		console.log(buffer.toString());
+	})
+});
+```
+
+## fs.writeSync(fd, buffer, offset, length[, position])/fs.writeSync(fd, data[, position[, encoding]])
+
+这两个方法为上面`fs.write()`的同步版本。
+
+## fs.read(fd, buffer, offset, length, position, callback)
+
+该方法从指定的文件描述符读取文件数据。`buffer`是缓冲区，数据将会写入到这里。`offset`是向缓冲区写入数据时的偏移量。`length`是一个整形值，指定了读取的字节数。`position`是一个整形值，指定了从哪里开始读取文件，如果`position`为`null`，将会从文件当前的位置读取数据。`callback`给定了三个参数：`(err, bytesRead, buffer)`分别是错误消息、读取的字节数和缓冲区。
+
+实例：
+
+```c
+var fs = require('fs');
+
+var buf = new Buffer(4);
+
+fs.open('./test.txt', 'r+', function (err, fd) {
+	if (err) {
+		throw new TypeError();
+	}
+	fs.read(fd, buf, 0, 4, 0, function (err, bytesRead, buf) {
+		console.log(bytesRead, buf.toString());
+	});
+});
+```
+
+## fs.readSync(fd, buffer, offset, length, position)
+
+`fs.read()`的同步版本。
+
+## fs.readFile(filename, [options], callback)
+
+该方法用于读取文件，和上面`fs.read()`不同的是只要传入一个文件名即可。`filename`即为读取的文件名。`options`支持以下参数：
+
+ - encoding：读取的编码
+ - flag：读取的标识，默认为`r`。
+
+回调函数`callback`给定了两个参数：`(err, data)`，其中`data`为读取文件的内容，如果未指定编码，则会返回原生的`buffer`。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.readFile('./test.txt', {encoding: 'utf8'}, function (err, data) {
+	if (err) {
+		throw new TypeError();
+	}
+	console.log(data);
+});
+```
+
+如果这里没有传入`{encoding: 'utf8'}`可以看看控制台输出的数据：
+
+```c
+<Buffer 61 62 63 20 64 65 67 68 69 20 6a 6b>
+```
+
+这个就是返回的原生`buffer`数据啦。
+
+## fs.readFileSync(filename, [options])
+
+`fs.readFile()`的同步版本。
+
+## fs.writeFile(filename, data, [options], callback)
+
+该方法向文件中写入数据。如果文件原先存在的话，会被替换。
+
+参数解析：
+
+ - filename：写入数据的文件名
+ - data：写入的数据
+ - [options]：可选参数，
+	 - encoding：编码
+	 - mode：默认为`438`
+	 - flag：默认为`w`
+ - callback：回调函数只接受一个参数`err`
+
+`data`可以是一个`string`，也可以是一个原生`buffer`。
+
+`encoding`选项会被忽视如果`data`不是`string`而是原生`buffer`。`encoding`缺省为`utf8`。
+
+实例：
+
+```c
+var fs = require('fs');
+
+var buf = new Buffer('something');
+
+fs.writeFile('./aa.txt', buf, function (err) {
+	if (err) {
+		throw new TypeError();
+	}
+	console.log('write file complete');
+});
+```
+
+## fs.writeFileSync(filename, data, [options])
+
+`fs.writeFile()`的同步版本。
+
+## fs.appendFile(filename, data, [options], callback)
+
+该方法用于将数据添加到一个文件的尾部。如果文件不存在，则会创建一个新的文件。
+
+参数解析：
+
+ - filename：添加数据的文件名
+ - data：添加的数据
+ - [options]：添加数据时的选项
+	 - encoding
+	 - mode
+	 - flag
+ - callback：回调函数也只需要给定一个参数`err`
+
+`data`可以是一个`string`，也可以是一个原生`buffer`。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.appendFile('./test.txt', 'data to be appended', function (err) {
+	if (err) {
+		throw new TypeError();
+	}
+	console.log('append complete');
+});
+```
+
+## fs.appendFileSync(filename, data, [options])
+
+`fs.appendFile()`的同步版本。
+
+## fs.exists(path, callback)
+
+检查指定路径的文件或者目录是否存在。接着通过 callback 传入的参数指明存在 (true) 或者不存在 (false)。
+
+实例：
+
+```c
+var fs = require('fs');
+
+fs.exists('./test.txt', function (exists) {
+	console.log(exists);
+});
+```
+
+## fs.existsSync(path)
+
+`fs.exists()`的同步版本。
+
+## fs.createReadStream(path, [options])
+
+返回一个新的 ReadStream 对象。
+
+## fs.createWriteStream(path, [options])
+
+返回一个新的 WriteStream 对象。
 

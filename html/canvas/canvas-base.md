@@ -307,6 +307,90 @@ context.fillRect(0, 0, 150, 100);
 
 从这个例子中我们可以看到，绘制的绿色填充色的矩形从`0, 0`点到`50, 20`没有显示，因为被`clip()`限制了从`50, 20`的大小为`200, 120`的矩形区域。
 
+## Compositing(组合)
 
+### globalAlpha
 
+这是一个全局属性，用于设置或返回绘图的当前透明值。它的值必须是介于 0.0（完全透明） 与 1.0（不透明） 之间的数字。
+
+### globalCompositeOperation
+
+Composite(组合)，就是对你在绘图中，后绘制的图形与先绘制的图形之间的组合显示效果。
+
+该属性拥有的全部属性值可以看这里：[组合](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/Canvas_tutorial/Compositing)
+
+实例：
+
+```c
+var context = document.getElementById('print').getContext('2d');
+context.fillStyle = 'blue';
+context.fillRect(10, 10, 100, 100);
+context.fillStyle = "red";
+context.globalCompositeOperation = 'destination-over';
+context.fillRect(80, 80, 60, 60);
+```
+
+你可以把每个属性值试一试看看什么效果。
+
+## canvas变换
+
+### rotate 和 translate
+
+要进行旋转可以使用`context.rotate()`。`rotate()`是接受弧度值，所以需要进行转换才行。例如：我们需要对一个矩形旋转`45`度
+
+```c
+var context = document.getElementById('canvas').getContext('2d');
+
+context.fillStyle = 'red';
+context.fillRect(10, 10, 50, 50);
+```
+
+可以看看在浏览器中的效果：
+
+未旋转前：
+
+![enter image description here](http://cookfront.qiniudn.com/9CE95FCC-5AF0-4DE2-A733-E733D8EE15FE.png)
+
+现在将代码改为下面的：
+
+```c
+var context = document.getElementById('canvas').getContext('2d');
+
+context.rotate(45 * Math.PI / 180);
+context.fillStyle = 'red';
+context.fillRect(10, 10, 50, 50);
+```
+
+可以看看旋转后的效果：
+
+![enter image description here](http://cookfront.qiniudn.com/386061AE-CD16-4A58-BB03-342C60A2F5E0.png)
+
+是不是觉得旋转的不是你所想呀，哈哈！下面就旋转成你所想像的那样。
+
+因为这里旋转的起点是`(0, 0)`，我们要做的一件事就是需要将旋转的起点设置为矩形的中心，那样的旋转就是你所想了哟。那样怎么实现呢？
+
+我们需要通过`context.translate()`将旋转的起点设置为矩形的中心。那矩形的中心是多少呢？是`(x + 0.5 * width, y + 0.5 * height)`。现在我们先将旋转的起点设置为矩形的中心，然后再进行旋转，看看效果：
+
+```c
+var context = document.getElementById('print').getContext('2d');
+
+var x = 100;
+var y = 100;
+var width = 50;
+var height = 50;
+
+context.fillStyle = 'blue';
+context.fillRect(x, y, width, height);
+
+context.fillStyle = 'red';
+context.translate(x + .5 * width, y + .5 * height);
+context.rotate(45 * Math.PI / 180);
+context.fillRect(-0.5 * width, - 0.5 * height, width, height);
+```
+
+这里的`translate`和`rotate`的次序一定不能改变。
+
+## 渐变
+
+### 线性渐变
 

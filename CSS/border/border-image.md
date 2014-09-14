@@ -122,10 +122,42 @@ border-image-repeat: [ stretch | repeat | round ]{1,2}
 
 ## border-image-outset
 
+`border-image-outset`属性指定了边框图像（border image）区域超过边框盒（border box）的量。
 
+语法：
 
+```c
+border-image-outset: [ <length> | <number> ]{1,4}
+```
 
+ - length：一个指定的扩展长度，例如：27px。负值是不允许的。
+ - number：代表对应`border-width`的倍数，例如：`border-width`设置了27时，`border-image-outset`设置为1，这时和`border-image-outset`设置为`27px`是一样的。
 
+`border-image-outset`也可以设置1到4个值，这个就不一一阐述了。
 
+实例：
 
+```c
+.demo {
+	margin: 0 auto;
+	width: 200px;
+	height: 100px;
+	border: 27px solid #ccc;
+	border-image-source: url(http://www.w3.org/TR/css3-background/border.png);
+	border-image-slice: 27;
+	border-image-repeat: stretch;
+}
+.demo1 {
+	border-image-outset: 0 0 0 1;
+}
+.demo2 {
+	border-image-outset: 0;
+}
 
+<div class="demo demo1">
+</div>
+<div class="demo demo2">
+</div>
+```
+
+至此，`border-image`相关属性就介绍完毕了。

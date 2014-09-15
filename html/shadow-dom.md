@@ -1,5 +1,5 @@
- shadow dom
- ========
+shadow dom
+========
 
  1. [shadow dom](http://javascript.ruanyifeng.com/htmlapi/webcomponents.html#toc4)
  2. [Shadow DOM 101](http://www.html5rocks.com/zh/tutorials/webcomponents/shadowdom/)

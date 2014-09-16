@@ -91,8 +91,8 @@ background-position: <position> [ , <position> ]*
 
 属性值的意义：
 
- - <length>：用长度来指定背景图片的位置。允许负值
- - <percentage>：用百分比来指定背景图片的位置。上面已经介绍了百分比是相对于`background position - background image size`的。负值是允许的。
+ - `<length>`：用长度来指定背景图片的位置。允许负值
+ - `<percentage>`：用百分比来指定背景图片的位置。上面已经介绍了百分比是相对于`background position - background image size`的。负值是允许的。
  - top：垂直方向上的0%
  - right：水平方向上的100%
  - bottom：垂直方向上的100%
@@ -105,12 +105,12 @@ background-position: <position> [ , <position> ]*
 
 ```c
 background-position: left 10px top 15px;   /* 10px, 15px */
- background-position: left      top     ;   /*  0px,  0px */
- background-position:      10px     15px;   /* 10px, 15px */
- background-position: left          15px;   /*  0px, 15px */
- background-position:      10px top     ;   /* 10px,  0px */
- background-position: left      top 15px;   /*  0px, 15px */
- background-position: left 10px top     ;   /* 10px,  0px */
+background-position: left      top     ;   /*  0px,  0px */
+background-position:      10px     15px;   /* 10px, 15px */
+background-position: left          15px;   /*  0px, 15px */
+background-position:      10px top     ;   /* 10px,  0px */
+background-position: left      top 15px;   /*  0px, 15px */
+background-position: left 10px top     ;   /* 10px,  0px */
 ```
 
 ## background-color

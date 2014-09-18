@@ -24,6 +24,10 @@ z-index 接受的属性值为：关键字auto和整数，整数可以是负值�
 
 这里还有一篇介绍`z-index`的文章：[KB013: 分层的显示( Layered presentation )](http://w3help.org/zh-cn/kb/013/)
 
+2014.9.18补充：
+
+mdn中关于层叠上下文的介绍：[Stacking context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context)
+
 
 
 

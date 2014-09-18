@@ -35,5 +35,15 @@ box-shadow: 10px 10px 20px -5px red, 5px 5px 20px -2px blue;
 box-shadow: inset 10px 10px 20px red;
 ```
 
+2014.9.18补充：
+
+今天培训的时候讲到`box-shadow`的位置问题，不清楚，于是看了下标准：
+
+> An outer box-shadow casts a shadow as if the border-box of the element were opaque. Assuming a spread distance of zero, its perimeter has the exact same size and shape as the border box. The shadow is drawn outside the border edge only: it is clipped inside the border-box of the element.
+
+> An inner box-shadow casts a shadow as if everything outside the padding edge were opaque. Assuming a spread distance of zero, its perimeter has the exact same size and shape as the padding box. The shadow is drawn inside the padding edge only: it is clipped outside the padding box of the element.
+
+可以看到在标准中很清楚的说到外阴影是相对于元素的`border box`来偏移的，而且它的大小也是元素的`border box`的大小，而内阴影是相对于元素的`padding box`。
+
 
 更多请看标准：[box-shadow](http://www.w3.org/TR/css3-background/#the-box-shadow)

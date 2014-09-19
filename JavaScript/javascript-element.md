@@ -163,9 +163,142 @@ if (elm.className === "fixed") {
 var h = element.clientHeight;
 ```
 
+实例：
 
+```c
+<style>
+#demo {
+  width: 100px;
+  overflow: scroll;
+  border: 1px solid #ccc;
+  height: 50px;
+  padding: 10px;
+}
+</style>
 
+<div id="demo">
+  <p>somefasddddddddddddddddddddddddddsadddddddddd</p>
+</div>
 
+<script>
+alert(document.getElementById('demo').clientHeight);
+</script>
+```
 
+可以看到上面`#demo`加上`padding`总共是`70px`，但是`alert`的只有53，因为减去了水平滚动条的高度。（在Windows 7下Chrome测试）
+
+### element.clientLeft
+
+元素左边框的宽度，单位为`px`。如果垂直滚动条渲染出来，并且它的位置在左边时，`clientLeft`的值为左边框的值加上滚动条的宽度。怎样才会有左边的滚动条呢，当文本方向是`right-to-left`时，并且导致了滚动条的渲染。
+
+语法：
+
+```c
+var left = element.clientLeft;
+```
+
+实例：
+
+```c
+<style>
+.examDiv {
+    margin:15px;
+    border:2px solid red;
+    padding:20px;
+}
+</style>
+
+<div id="myDiv" class="examDiv">
+    This element has the following style settings:<br />
+    margin:15px; border:2px solid red; padding:20px;
+</div>
+<button onclick="GetClientLeft ();">Test clientLeft property!</button>
+
+<script>
+var div = document.getElementById ("myDiv");
+alert ("The width of the left border (with scrollbar): " + div.clientLeft + "px");
+</script>
+```
+
+渲染出左滚动条实例：
+
+```c
+<style>
+.examDiv {
+    margin:15px;
+    border:2px solid red;
+    padding:20px;
+    direction: rtl;
+    overflow:scroll;
+}
+</style>
+
+<div id="myDiv" class="examDiv">
+    This element has the following style settings:<br />
+    margin:15px; border:2px solid red; padding:20px;
+</div>
+<button onclick="GetClientLeft ();">Test clientLeft property!</button>
+
+<script>
+var div = document.getElementById ("myDiv");
+alert ("The width of the left border (with scrollbar): " + div.clientLeft + "px");
+</script>
+```
+
+### element.clientTop
+
+返回元素顶部边框的宽度。它不包含顶部的`margin`和`padding`。且`clientTop`为只读。
+
+语法：
+
+```c
+var top = element.clientTop;
+```
+
+实例：
+
+```c
+<style>
+#demo {
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ccc;
+}
+</style>
+
+<div id="demo"></div>
+
+<script>
+var demo = document.getElementById('demo');
+alert(demo.clientTop);
+</script>
+```
+
+### element.clientWidth
+
+该属性返回元素的内部宽度，单位为`px`。它包含`padding`，但是不包含垂直的滚动条（当它渲染出的时候），以及不包含`margin`和`border`。
+
+语法：
+
+```c
+var intElemClientWidth = element.clientWidth;
+```
+
+### element.contentEditable
+
+`contentEditable`属性表明元素是否可以被编辑。这是一个枚举属性，它具有以下属性值：
+
+ - true
+ - false
+ - inherit
+
+语法：
+
+```c
+editable = element.contentEditable
+element.contentEditable = "true"
+```
+
+### element.dataset
 
 

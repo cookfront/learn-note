@@ -429,6 +429,88 @@ console.log(d.outerHTML);
 // the string '<div id="d"><p>Content</p><p>Further Elaborated</p></div>'
 ```
 
+### element.scrollHeight
+
+`scrollHeight`是一个只读属性，它是元素内容的一种度量，包含了在屏幕中不可见的内容。`scrollHeight`的值是在不产生垂直滚动条的情况下，能容纳元素所有内容时的最小`clientHeight`。
+
+![enter image description here](https://developer.mozilla.org/@api/deki/files/840/=ScrollHeight.png)
+
+语法：
+
+```c
+var intElemScrollHeight = document.getElementById(id_attribute_value).scrollHeight;
+```
+
+### element.scrollLeft
+
+`scrollLeft`属性获取或设置元素向左滚动的值（像素）。
+
+> 当元素的`direction: rtl`时，此时的`scrollLeft`为0时滚动条是在最右边的位置，如果你想向左移动滚动条需要设置为负值。
+
+语法：
+
+```c
+var sLeft = element.scrollLeft;
+```
+
+实例：
+
+```c
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #container {
+            border: 1px solid #ccc; height: 100px; overflow: scroll; width: 100px;
+        }
+        #content {
+            background-color: #ccc; width: 250px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {   
+            var button = document.getElementById('slide');
+            button.onclick = function () {
+                document.getElementById('container').scrollLeft += 20;
+            };
+        }, false);
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="content">Lorem ipsum dolor sit amet.</div>
+    </div>
+    <button id="slide" type="button">Slide</button>
+</body>
+</html> 
+```
+
+### element.scrollTop
+
+`scrollTop`获取或设置元素垂直滚动的距离。当一个元素的内容没有生成垂直滚动条时，`scrollTop`默认为0。
+
+![enter image description here](https://developer.mozilla.org/@api/deki/files/842/=ScrollTop.png)
+
+语法：
+
+```c
+// Get the number of pixels scrolled
+var  intElemScrollTop = element.scrollTop;
+```
+
+### element.scrollWidth
+
+和`scrollHeight`类似，表示整个内容区域的宽度，包括隐藏的部分。当没有水平滚动条产生，则它的值等于`clientWidth`。
+
+语法：
+
+```c
+var xScrollWidth = element.scrollWidth;
+```
+
+### element.style
+
 
 
 
@@ -705,6 +787,85 @@ removedAttr = element.removeAttributeNode(attributeNode)
 ```
 
 ### element.requestFullScreen()
+
+`requestFullscreen()`方法使得浏览器全屏。
+
+语法：
+
+```c
+element.requestFullScreen();
+```
+
+由于该方法还是实验性的方法，使用时需要判断浏览器支持性：
+
+```c
+function launchFullscreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.msRequestFullscreen){ 
+    element.msRequestFullscreen();  
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullScreen();
+  }
+}
+```
+
+实例：
+
+```c
+<button id="demo">click me to request full screen</button>
+
+<script>
+var demo = document.getElementById('demo');
+demo.onclick = function (e) {
+    launchFullscreen(demo);
+}
+</script>
+```
+
+### element.requestPointerLock()
+
+可以看这里[Pointer Lock](https://developer.mozilla.org/zh-CN/docs/API/Pointer_Lock_API)
+
+### element.scrollIntoView()
+
+### element.setAttribute()
+
+设置当前元素的指定特性。
+
+语法：
+
+```c
+element.setAttribute(name, value);
+```
+
+> 1. `setAttribute`设置特性时会将`name`小写
+> 2. 如果设置特性时，指定的特性已经存在，则`value`会替换当前特性的值，如果不存在该特性，则会创建它
+
+### element.setAttributeNode()
+
+`setAttributeNode()`是将一个属性节点设置到指定元素。
+
+语法：
+
+```c
+var replacedAttr = element.setAttributeNode(attribute);
+```
+
+实例：
+
+```c
+// <div id="one" align="left">one</div> 
+// <div id="two">two</div> 
+var d1 = document.getElementById("one"); 
+var d2 = document.getElementById("two"); 
+var a = d1.getAttributeNode("align"); 
+d2.setAttributeNode(a.cloneNode(true)); 
+alert(d2.attributes[1].value) 
+// returns: `left'
+```
 
 
 

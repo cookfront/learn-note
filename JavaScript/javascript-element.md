@@ -879,6 +879,16 @@ demo.onclick = function (e) {
 
 ### element.scrollIntoView()
 
+`scrollIntoView()`正如它的名字，它滚动元素到视野中。
+
+语法：
+
+```c
+element.scrollIntoView(alignWithTop);
+```
+
+这里有一个`alignWithTop`，当它为`true`时，滚动的元素与滚动区域的顶部对齐，为`false`时与底部对齐。
+
 ### element.setAttribute()
 
 设置当前元素的指定特性。
@@ -917,12 +927,5 @@ alert(d2.attributes[1].value)
 
 ### element.setCapture()
 
-### element.supports()
-
-
-
-
-
-
-
+使用当前元素捕获发生在浏览器窗口的鼠标事件。
 

@@ -301,4 +301,415 @@ element.contentEditable = "true"
 
 ### element.dataset
 
+`dataset`属性用于操作HTML标签元素的`data-*`属性。
+
+语法：
+
+```c
+string = element.dataset.camelCasedName;
+element.dataset.camelCasedName = string;
+```
+
+实例：
+
+```c
+<div id="user" data-id="1234567890" data-user="johndoe" data-date-of-birth>John Doe
+</div>
+
+var el = document.querySelector('#user');
+
+// el.id == 'user'
+// el.dataset.id === '1234567890'
+// el.dataset.user === 'johndoe'
+// el.dataset.dateOfBirth === ''
+
+el.dataset.dateOfBirth = '1960-10-03'; // set the DOB.
+
+// 'someDataAttr' in el.dataset === false
+
+el.dataset.someDataAttr = 'mydata';
+// 'someDataAttr' in el.dataset === true
+```
+
+### element.id
+
+返回或设置元素的`id`。
+
+### element.innerHTML
+
+`innerHTML`用来读取或设置某个节点内的HTML代码，也就是元素的后代。
+
+### element.length
+
+返回`NodeList`的长度。
+
+### element.name
+
+获取或设置元素的`name`属性。
+
+### element.nextElementSibling
+
+`nextElementSibling`返回元素的立即的兄弟元素节点。
+
+### element.offsetHeight
+
+`offsetHeight`属性是一个只读属性，它返回的是元素的高度加上垂直的`padding`和`border`，单位为像素，且是整数。
+
+![enter image description here](https://developer.mozilla.org/@api/deki/files/788/=OffsetHeight.png)
+
+语法：
+
+```c
+var intElemOffsetHeight = document.getElementById(id_attribute_value).offsetHeight;
+```
+
+### element.offsetLeft
+
+`offsetLeft`是一个只读属性，它是相对于它的[HTMLElement.offsetParent](http://devdocs.io/dom/htmlelement.offsetparent)的左偏移值，这里的`offsetParent`当前元素中距离它最近的一个定位元素（CSS position 属性被设置为 relative、absolute 或 fixed 的元素），或者这个元素不是定位元素时`table cell`或根元素。
+
+要注意的是，`offsetLeft`是元素的`border box`相对于`offsetParent`的值。
+
+当元素为行内元素时（例如：span），因为它可以有多行，`offsetLeft`和`offsetTop`是第一个`border box`相对于`offsetParent`的对应值，
+
+语法：
+
+```c
+left = element.offsetLeft;
+```
+
+### element.offsetParent
+
+`offsetParnet`是只读属性，它返回距离元素最近的定位元素对象的引用（CSS position 属性被设置为 relative、absolute 或 fixed 的元素）。如果这个元素不是定位元素，则为最近的`table cell`或者根元素（标准模式为`html`，怪癖模式为`body`）。`offsetLeft`和`offsetTop`属性都是相对于`offsetParent`的`padding`边界。
+
+语法：
+
+```c
+parentObj = element.offsetParent;
+```
+
+### element.offsetTop
+
+`offsetTop`是相对于`offsetParent`的顶部的距离。
+
+语法：
+
+```c
+topPos = element.offsetTop;
+```
+
+### element.offsetWidth
+
+`offsetWidth`是一个只读属性，它返回的是元素的宽度＋水平的padding＋水平的border＋垂直滚动条宽度（如果有的话）。
+
+语法：
+
+```c
+var offsetWidth =element.offsetWidth;
+```
+
+### element.outerHTML
+
+`outerHTML`属性用来读取或设置HTML代码时，会把节点本身包括在内。
+
+语法：
+
+```c
+var content = element.outerHTML;
+```
+
+实例：
+
+```c
+// HTML:
+// <div id="d"><p>Content</p><p>Further Elaborated</p></div>
+
+d = document.getElementById("d");
+console.log(d.outerHTML);
+
+// the string '<div id="d"><p>Content</p><p>Further Elaborated</p></div>'
+```
+
+
+
+
+
+
+
+
+## 方法
+
+### element.blur()
+
+`HTMLElement.blur()`方法移除当前元素的焦点。
+
+语法：
+
+```c
+element.blur()
+```
+
+### element.focus()
+
+`HTMLElement.focus()`方法使指定元素获取焦点，如果该元素能获取焦点的情况。
+
+语法：
+
+```c
+element.focus()
+```
+
+### element.getAttribute()
+
+`getAttribute()`方法返回元素的指定属性的属性值。如果给定的属性在元素上不存在时，属性值可能是`null`或空字符串。
+
+语法：
+
+```c
+var attribute = element.getAttribute(attributeName);
+```
+
+### element.getAttributeNode()
+
+`getAttributeNode()`返回指定元素的指定属性，返回的是一个`Attr`节点。
+
+语法：
+
+```c
+var attrNode = element.getAttribteNode()
+```
+
+实例：
+
+```c
+// html: <div id="top" /> 
+var t = document.getElementById("top"); 
+var idAttr = t.getAttributeNode("id"); 
+alert(idAttr.value == "top")
+```
+
+### element.geteBoundingRect()
+
+`Element.getBoundingClientRect()`方法返回一个文本矩形对象。
+
+返回值是一个[TextRectangle](https://developer.mozilla.org/en-US/docs/XPCOM_Interface_Reference/nsIDOMClientRect)对象，而`getClientRects()`返回的是一组矩形对象。返回的`TextRectangle`对象包含了几个只读的属性：`left`、`top`、`right`和`bottom`。那这几个属性是相对于哪里呢？`top`和`left`相对于视口的`top-left`（左上角）。而`right`和`bottom`则有点类似于`CSS的clip: rect()`，看个图就明白了。
+
+![enter image description here](http://cookfront.qiniudn.com/CB08A69C-6785-4BD0-B04F-2A2B7C767D05.png)
+
+图虽然粗糙了点，但就是这么个意思。他们都是相对于视口的。
+
+> 在`Gecko 1.9.1`中为`TextRectangle`对象添加了`width`和`height`属性。
+
+除了上面的还有两点需要注意：
+
+ - `left`等6个属性是相对于元素的`border box`的
+ - 当需要滚动时才能看见元素，`left`和`top`是相对于视口，也就是没有滚动时浏览器的左上角
+
+下面用实例看下这两点：
+
+实例一：border box
+
+```c
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+#demo {
+    width: 200px;
+    position: relative;
+    left: 100px;
+    top: 100px;
+    height: 100px;
+    background: #ccc;
+    padding: 10px;
+    border: 5px solid #ccc;
+}
+</style>
+
+<div id="demo"></div>
+
+<script>
+var demo = document.getElementById('demo');
+console.log(demo.getBoundingClientRect());
+</script>
+```
+
+实例二：出现滚动条
+
+```c
+body {
+    margin: 0;
+    padding: 0;
+}
+#scroll {
+    height: 1000px;
+}
+#demo {
+    width: 200px;
+    position: relative;
+    left: 100px;
+    top: 100px;
+    height: 100px;
+    background: #ccc;
+    padding: 10px;
+    border: 5px solid #ccc;
+}
+</style>
+
+<div id="demo"></div>
+
+<script>
+var demo = document.getElementById('demo');
+console.log(demo.getBoundingClientRect());
+</script>
+```
+
+### element.getClientRects()
+
+`Element.getClientRects()`是返回一组矩形表明了每一个盒子的矩形。
+
+它返回的矩形对象和`getBoundingClientRect()`一样，就不再介绍。
+
+对于行内元素`getClientRects()`对于每一个行框返回一个`TextRectangle`对象：
+
+```c
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+#demo {
+    width: 400px;
+    background: #ccc;
+    padding: 10px;
+    border: 5px solid #ccc;
+}
+</style>
+
+<div id="demo">
+    <span id="span">8点1氪：阿里巴巴IPO首日收盘价93.89美元，较发行价暴涨38.07% | 今日8点1氪内容包括： 戴尔发布业界首款5K屏显示器；Youtube再投数百位美元支持原创视频；打车软件重创出租车，洛杉矶出租车载客量跌幅达60%；微软关闭硅谷研究实验室。</span>
+</div>
+
+<script>
+var span = document.getElementById('span');
+console.log(span.getClientRects());
+</script>
+```
+
+### element.getElementsByClassName()
+
+和[document.getElementsByClassName()](https://github.com/cookfront/learn-note/blob/master/JavaScript/javascript-document.md)一样，此时只会在element的子元素中寻找有对应`class`的元素。
+
+### element.getElementsByTagName()
+
+类似[document.getElementsByTagName()](https://github.com/cookfront/learn-note/blob/master/JavaScript/javascript-document.md)，此时只会在element的子元素中寻找有对应`tag name`的元素。需要注意的是，返回值是动态更新的，意味着你不用每次在`DOM`中插入元素后去调用一次`getElementsByTagName()`。
+
+### element.hasAttribute()
+
+`hasAttribute()`返回一个布尔值，表明元素是否有指定的属性。
+
+语法：
+
+```c
+var result = element.hasAttribute(attrName)
+```
+
+### element.insertAdjacentHTML()
+
+`insertAdjacentHTMl()`方法将指定的文本解析为`HTML`或`XML`，然后插入到`DOM树`中的指定位置。它不会去重新解析将用到的`element`，因此它不会腐败（corrupt）现有元素中内部存在的元素。从而避免了额外的序列化，使得它比`innerHTML`速度更快。
+
+语法：
+
+```c
+element.insertAdjacentHTML(position, text);
+```
+
+`position`是相对于`element`的位置，它有以下4个值：
+
+ - beforebegin
+ - afterbegin
+ - beforeend
+ - afterend
+
+看看这个就一目了然的知道了他们的位置了：
+
+```c
+<!-- beforebegin -->
+<p>
+<!-- afterbegin -->
+foo
+<!-- beforeend -->
+</p>
+<!-- afterend -->
+```
+
+实例：
+
+```c
+// <div id="one">one</div> 
+var d1 = document.getElementById('one'); 
+d1.insertAdjacentHTML('afterend', '<div id="two">two</div>');
+
+// At this point, the new structure is:
+// <div id="one">one</div><div id="two">two</div>
+```
+
+### element.match()
+
+这还是一个实验性的方法。
+
+如果`element`符合`match()`中传入的指定的选择器字符串时，返回`true`。
+
+语法：
+
+```c
+result = element.matches(selectorString) 
+```
+
+实例：
+
+```c
+<div id="foo">This is the element!</div>
+<script type="text/javascript">
+    var el = document.getElementById("foo");
+    if (el.matches("div")) {
+      alert("Match!");
+    }
+</script>
+```
+
+### element.querySelector()
+
+### element.querySelectorAll()
+
+上面这两个方法和`Document`中一样，只是会在`element`的后代中寻找，而不是整个文档。
+
+### element.removeAttribute()
+
+移除当前元素指定的特性。
+
+语法：
+
+```c
+element.removeAttribute(attrName); 
+```
+
+### element.removeAttributeNode()
+
+移除当前元素的指定特性，和`removeAttribute()`不同的是它有一个返回值，返回一个属性节点。
+
+语法：
+
+```c
+removedAttr = element.removeAttributeNode(attributeNode)
+```
+
+### element.requestFullScreen()
+
+
+
+
+
+
+
 

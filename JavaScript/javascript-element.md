@@ -511,12 +511,60 @@ var xScrollWidth = element.scrollWidth;
 
 ### element.style
 
+`style`返回一个[CSSStyleDeclaration](http://devdocs.io/dom/cssstyledeclaration)对象。
 
+设置样式：
 
+`style`属性和元素中的行内样式具有相同的优先级，它在设置单个指定元素的样式时非常有用。
 
+使用`style`属性通常比`elem.setAttribute('style', '')`更好，因为`style`属性不会覆盖掉没有指定的属性，而`elem.setAttribute('style', '')`会直接将`style`设置成指定的值。
 
+```c
+elt.style.color = "blue";  // Directly
 
+var st = elt.style;
+st.color = "blue";  // Indirectly
+```
 
+获取样式：
+
+`style`属性不能真实的代表元素的样式，它只会返回设置在元素的行内样式，而不会包含其他的样式，例如：样式表中，`<head>`中的`<style>`等。要获取元素的所有`CSS`属性需要通过[window.getComputedStyle()](http://devdocs.io/dom/window.getcomputedstyle)方法。
+
+实例：
+
+```c
+var div = document.getElementById("div1");
+div.style.marginTop = ".25in";
+```
+
+```c
+var elt = document.getElementById("elementIdHere");
+var out = "";
+var st = elt.style;
+var cs = window.getComputedStyle(elt, null);
+for (x in st) {
+  out += "  " + x + " = '" + st[x] + "' > '" + cs[x] + "'\n";
+}
+```
+
+### element.tagName
+
+`tagName`属性返回元素的标签名。
+
+语法：
+
+```c
+var tagName = element.tagName;
+```
+
+实例：
+
+```c
+<span id="born">When I was born...</span>
+
+var span = document.getElementById("born");
+alert(span.tagName);
+```
 
 ## 方法
 
@@ -866,6 +914,10 @@ d2.setAttributeNode(a.cloneNode(true));
 alert(d2.attributes[1].value) 
 // returns: `left'
 ```
+
+### element.setCapture()
+
+### element.supports()
 
 
 

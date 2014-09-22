@@ -1,11 +1,27 @@
-node http
+HTTP
 ========
 
-## http.status_code
+## http.createServer([requestListener])
 
-全部标准HTTP响应状态码的集合和简短描述。例如`http.STATUS_CODES[404] === 'Not Found'`。
+该方法返回一个新的服务器对象。
 
-## http.createServer([requestSListener])
+参数`requestListener`是一个函数,它将会自动加入到 `request`事件的监听队列。
 
-返回一个新的web服务器对象。
+实例：
+
+```c
+var http = require('http');
+
+var server = http.createServer(function (req, res) {
+	res.writeHead(200);
+	res.end('Hello World');
+});
+
+server.listen(8080);
+```
+
+## Class http.server
+
+这是一个包含下列事件的EventEmitter：
+
 

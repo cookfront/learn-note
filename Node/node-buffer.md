@@ -43,8 +43,6 @@ console.log(Buffer.byteLength(str));
 
 ### buf.write(string, [offset], [length], [encoding])
 
-参数的意义：
-
  - string：String类型 - 将要被写入 buffer 的数据
  - offset：Number类型, 可选参数，写入时的偏移量，默认: 0
  - length：Number类型, 可选参数，默认: buffer.length - offset
@@ -53,4 +51,59 @@ console.log(Buffer.byteLength(str));
 根据参数`offset`偏移量和指定的`encoding`编码方式，将参数`string`数据写入`buffer`。 `offset`偏移量 默认是 0, `encoding`编码方式默认是 'utf8'。 length长度是将要写入的字符串的bytes大小。 返回number类型，表示多少8位字节流被写入了。如果buffer 没有足够的空间来放入整个string，它将只会写入部分的字符串。 `length`默认是 `buffer.length - offset`。 这个方法不会出现写入部分字符。
 
 ### buf.toString([encoding], [start], [end])
+
+ - encoding String类型, 可选参数, 默认: 'utf8'
+ - start Number类型, 可选参数, 默认: 0
+ - end Number类型, 可选参数, 默认: buffer.length
+
+根据`encoding`参数（默认是 'utf8'）返回一个解码的 string 类型。还会根据传入的参数 start (默认是0) 和 end (默认是`buffer.length`)作为取值范围。
+
+### buf.toJSON()
+
+返回一个JSON表示的Buffer实例。JSON.stringify将会默认调用来字符串序列化这个Buffer实例。
+
+### buf[index]
+
+获取或者设置在指定index索引位置的8位字节。这个值是指单个字节，所以这个值必须在合法的范围，16进制的0x00 到0xFF，或者0 到255。
+
+### buf.copy(targetBuffer, [targetStart], [sourceStart], [sourceEnd])
+
+ - targetBuffer Buffer 类型对象 - 将要进行拷贝的Buffer
+ - targetStart Number类型, 可选参数, 默认: 0
+ - sourceStart Number类型, 可选参数, 默认: 0
+ - sourceEnd Number类型, 可选参数, 默认: buffer.length
+
+进行buffer的拷贝，源和目标可以是重叠的。`targetStart`目标开始偏移和`sourceStart`源开始偏移 默认都是 0。` sourceEnd`源结束位置偏移默认是源的长度 `buffer.length`。
+
+如果传递的值是`undefined/NaN`或者是`out of bounds`超越边界的，就将设置为他们的默认值。
+
+### buf.slice([start], [end])
+
+ - start Number类型, 可选参数, 默认: 0
+ - end Number类型, 可选参数, 默认: buffer.length
+
+返回一个新的buffer，这个buffer将会和老的buffer引用相同的内存地址，只是根据 start (默认是 0) 和end (默认是`buffer.length`) 偏移和裁剪了索引。 负的索引是从buffer尾部开始计算的。
+
+> 注：修改这个新的buffer实例slice切片，也会改变原来的buffer
+
+## Buffer内存分配
+
+不得不说的8kb。
+
+## Buffer转换
+
+### 字符串转Buffer
+
+通过`new Buffer(str, [encoding])`的方式就可以将字符串转换为Buffer。
+
+### Buffer转字符串
+
+```c
+buf.toString([encoding], [start], [end])
+```
+
+## Buffer拼接
+
+
+
 

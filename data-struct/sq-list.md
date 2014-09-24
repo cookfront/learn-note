@@ -64,7 +64,7 @@ int listLength (SqList list)
 
 Status getElem (SqList list, int i, ElementType *e)
 {
-    if (i < 0 || i > list.length - 1)
+    if (i < 0 || i > list.length)
         return 0;
     *e = *(list.elem + i - 1);
     return 1;
@@ -121,7 +121,7 @@ Status listInsert (SqList *list, int i, ElementType e)
 Status listDelete (SqList *list, int i, ElementType *e)
 {
     ElementType *p;
-    if (i < 0 || i > list->length - 1)
+    if (i < 0 || i > list->length)
         return 0;
     p = list->elem + i - 1;
     *e = *(list->elem + i - 1);
@@ -153,7 +153,7 @@ int main (int argc, char *argv[])
     printf("locate elem:\n");
     printf("%d\n", a);
     ElementType get;
-    getElem(list, 8, &get);
+    getElem(list, 10, &get);
     printf("get elem:\n");
     printf("%d\n", get);
     priorElem(list, 8, &get);
@@ -168,4 +168,5 @@ int main (int argc, char *argv[])
     printf("list length:\n");
     printf("%d\n", list.length);
 }
+
 ```

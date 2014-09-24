@@ -32,7 +32,7 @@ typedef struct
 
 void initList (SqList *list)
 {
-    list->elem = (ElementType *)malloc(LIST_INIT_SIZE * sizeof(ElementType));
+    list->elem = (ElementType*)malloc(LIST_INIT_SIZE * sizeof(ElementType));
     if (!list->elem)
         exit(-2);
     list->length = 0;
@@ -72,11 +72,11 @@ Status getElem (SqList list, int i, ElementType *e)
 
 int locateElem (SqList list, ElementType e)
 {
-    int i = 0;
+    int i = 1;
     ElementType *p = list.elem;
     while (i < list.length && *p++ != e)
         i++;
-    return 1;
+    return i;
 }
 
 Status priorElem (SqList list, ElementType cur_e, ElementType *pre_e)
@@ -100,7 +100,7 @@ Status nextElem (SqList list, ElementType cur_e, ElementType *next_e)
 Status listInsert (SqList *list, int i, ElementType e)
 {
     ElementType *newbase, *q, *p;
-    if (i < 0 || i > list->length - 1)
+    if (i < 0 || i > list->length + 1)
         return 0;
     if (list->length == list->size)
     {
@@ -137,15 +137,35 @@ void listTraverse(SqList list)
     int i;
     p = list.elem;
     for (i = 0; i < list.length; i++)
-        printf("%d", *(p++));
+        printf("%d\t", *(p++));
     printf("\n");
 }
 
 int main (int argc, char *argv[])
 {
-    SqList *list;
-    initList(list);
-    listInsert(list, 1, 1);
-    listTraverse(*list);
+    SqList list;
+    initList(&list);
+    for (int i = 1; i <= 10; i++)
+        listInsert(&list, i, i);
+    printf("list traverse:\n");
+    listTraverse(list);
+    int a = locateElem(list, 8);
+    printf("locate elem:\n");
+    printf("%d\n", a);
+    ElementType get;
+    getElem(list, 8, &get);
+    printf("get elem:\n");
+    printf("%d\n", get);
+    priorElem(list, 8, &get);
+    printf("prior elem:\n");
+    printf("%d\n", get);
+    nextElem(list, 8, &get);
+    printf("next elem:\n");
+    printf("%d\n", get);
+    listDelete(&list, 8, &get);
+    printf("delete elem:\n");
+    printf("%d\n", get);
+    printf("list length:\n");
+    printf("%d\n", list.length);
 }
 ```

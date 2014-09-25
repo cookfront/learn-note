@@ -160,7 +160,7 @@ jQuery.Callbacks = function( options ) {
 					// With memory, if we're not firing then
 					// we should call right away
 					// 当memory为true时，当首次调用fire后，之后每次add都会立即触发
-					// 所以，保存firingStart后，触发回调
+					// firingStart为下次add时开始fire的位置
 					} else if ( memory ) {
 						firingStart = start;
 						fire( memory );

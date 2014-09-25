@@ -118,7 +118,7 @@ jQuery.Callbacks = function( options ) {
 					if ( stack.length ) {
 						fire( stack.shift() );
 					}
-				// 如果memory为true时，将list置为空
+				// "once memory"时
 				} else if ( memory ) {
 					list = [];
 				} else {

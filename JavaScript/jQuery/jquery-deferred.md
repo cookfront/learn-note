@@ -1,3 +1,6 @@
+jQuery Deferred
+========
+
 本文主要介绍`jQuery`的`Deferred`。`Deferred`用法还请看[阮一峰老师写的关于Deferred的介绍](http://www.ruanyifeng.com/blog/2011/08/a_detailed_explanation_of_jquery_deferred_object.html)。
 
 还有这里一篇介绍了部分源代码[点这里](http://www.cnblogs.com/sojuker/archive/2013/04/21/3003230.html)。
@@ -221,4 +224,74 @@ promise: function( obj ) {
 ![enter image description here](http://cookfront.qiniudn.com/77CBDBF0-DE7B-4FBB-8DF5-A223E0F704DF.png)
 
 从上图中可以看到`deferred`对象和`promise`对象的不同了吧。
+
+还有一个方法`when`，它主要分为两种情况
+
+ 1. 传入一个对象的回调函数：这时其实和`$.Deferred()`一样，在函数内部也是这样直接返回`deferred.promise()`，这样不用在内部再去创建一个`Deferred`对象了，性能上肯定更好
+ 2. 传入多个对象的回调函数：此时就不能直接使用了，首先需要获取到回调函数的个数保存在`remaining`中，这个变量是剩余的没有完成的回调个数，然后在内部会新建一个`Deferred`对象，每次回调函数完成就会去调用`updateFunc()`去更新`remaining`，当`remaining`为0时，就内部创建`Deferred`对象的`resolve`方法，后续的`done()`和`fail()`就会执行了
+
+```c
+// Deferred helper
+when: function( subordinate /* , ..., subordinateN */ ) {
+	var i = 0,
+		resolveValues = slice.call( arguments ),
+		length = resolveValues.length,
+
+		// the count of uncompleted subordinates
+		// 当length不为1时，使用length
+		// 或者当subordinate存在且是一个deferred时
+		remaining = length !== 1 ||
+			( subordinate && jQuery.isFunction( subordinate.promise ) ) ? length : 0,
+
+		// the master Deferred.
+		// If resolveValues consist of only a single Deferred, just use that.
+		// 可以从注释中看的出来，如果是单个`Deferred`则直接使用，而不用去创建一个Deferred对象
+		deferred = remaining === 1 ? subordinate : jQuery.Deferred(),
+
+		// Update function for both resolve and progress values
+		// 更新函数：它返回一个函数，后面会通过各自回调函数的`done()`将这个函数的返回值添加到回调函数列表
+		// 当回调函数完成就会调用这个函数的返回值，它会保存contexts，values，以及更新remaining
+		// 当remaining为0时就会resolve
+		updateFunc = function( i, contexts, values ) {
+			return function( value ) {
+				// 保存contexts
+				contexts[ i ] = this;
+				// 保存values，这个是各个对象resolve时传入的
+				values[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
+				if ( values === progressValues ) {
+					deferred.notifyWith( contexts, values );
+				} else if ( !( --remaining ) ) {
+					deferred.resolveWith( contexts, values );
+				}
+			};
+		},
+
+		progressValues, progressContexts, resolveContexts;
+
+	// Add listeners to Deferred subordinates; treat others as resolved
+	if ( length > 1 ) {
+		progressValues = new Array( length );
+		progressContexts = new Array( length );
+		resolveContexts = new Array( length );
+		// 便利各个多个对象，为他们添加响应的updateFunc
+		for ( ; i < length; i++ ) {
+			if ( resolveValues[ i ] && jQuery.isFunction( resolveValues[ i ].promise ) ) {
+				resolveValues[ i ].promise()
+					.done( updateFunc( i, resolveContexts, resolveValues ) )
+					.fail( deferred.reject )
+					.progress( updateFunc( i, progressContexts, progressValues ) );
+			} else {
+				--remaining;
+			}
+		}
+	}
+
+	// If we're not waiting on anything, resolve the master
+	if ( !remaining ) {
+		deferred.resolveWith( resolveContexts, resolveValues );
+	}
+
+	return deferred.promise();
+}
+```
 

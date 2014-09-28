@@ -115,36 +115,38 @@ int locateElem (DoubleLinkList list, ElemType e)
 
 Status priorElem (DoubleLinkList list, ElemType cur_e, ElemType *pre_e)
 {
-    DoubleLinkList p;
-    p = list->next;
-    while (p->next)
+    DoubleLinkList p = list->next->next;
+    while (p != list)
     {
-        if (p->next->elem == cur_e)
-            *pre_e = p->elem;
+        if (p->elem == cur_e)
+        {
+            *pre_e = p->prev->elem;
+            return TRUE;
+        }
+        p = p->next;
     }
-    return INFEASIBLE;
+    return FALSE;
 }
 
 Status nextElem (DoubleLinkList list, ElemType cur_e, ElemType *next_e)
 {
-    DoubleLinkList p;
-    p = list->next;
-    while (p->next)
+    DoubleLinkList p = list->next->next;
+    while (p != list)
     {
-        if (p->elem == cur_e)
+        if (p->prev->elem == cur_e)
         {
-            *next_e = p->next->elem;
-            return OK;
+            *next_e = p->elem;
+            return TRUE;
         }
         p = p->next;
     }
-    return INFEASIBLE;
+    return FALSE;
 }
 
 Status listInsert (DoubleLinkList list, int i, ElemType e)
 {
     DoubleLinkList p, newnode;
-    int j = 0;
+    int j = 1;
     p = list;
     // 找到第i-1个节点
     while (p && j < i)
@@ -158,10 +160,18 @@ Status listInsert (DoubleLinkList list, int i, ElemType e)
     if (!newnode)
         exit(OVERFLOW);
     newnode->elem = e;
-    newnode->prev = p->prev;
-    p->prev->next = newnode;
-    newnode->next = p->next;
-    p->next->prev = newnode;
+    if (p->next == NULL)
+    {
+        p->next = newnode;
+        newnode->prev = p;
+    }
+    else
+    {
+        newnode->prev = p;
+        newnode->next = p->next;
+        p->next->prev = newnode;
+        p->next = newnode;
+    }
     return OK;
 }
 
@@ -202,15 +212,19 @@ int main (int argc, char *argv[])
     initList(&list);
     for (int i = 1; i <= 10; i++)
         listInsert(list, i, i);
+    // traverse
     printf("list traverse:\n");
     listTraverse(list);
+    // locate elem
     int a = locateElem(list, 8);
     printf("locate elem:\n");
     printf("%d\n", a);
+    // get elem
     ElemType get;
     getElem(list, 10, &get);
     printf("get elem:\n");
     printf("%d\n", get);
+    // prior elem
     priorElem(list, 8, &get);
     printf("prior elem:\n");
     printf("%d\n", get);

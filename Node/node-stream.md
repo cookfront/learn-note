@@ -32,3 +32,28 @@ readable.on('readable', function () {
 
  - chunk `Buffer | String`：数据块
 
+当你监听了一个`data`事件后，此时会使得流转变为流动模式（flowing mode），并且数据会传递到回调函数中。
+
+如果你想从流中尽快取出所有数据，这是最好的方式。
+
+实例：
+
+```c
+var fs = require('fs');
+
+var readable = fs.createReadStream('./test.html');
+var chunks = [];
+
+readable.on('data', function (data) {
+	chunks.push(data);
+});
+
+readable.on('end', function () {
+	console.log(Buffer.concat(chunks).toString());
+});
+```
+
+#### end 事件
+
+
+

@@ -262,3 +262,184 @@ Buffer.prototype.write = function(string, offset, length, encoding) {
 };
 ```
 
+### buf.copy(targetBuffer, [targetStart], [sourceStart], [sourceEnd])
+
+这个方法是向`targetBuffer`中写入内容。
+
+ - targetBuffer：写入内容的Buffer对象
+ - targetStart：默认为0，向Buffer对象写入内容开始的位置
+ - sourceStart：默认为0
+ - sourceEnd：默认为buf.length
+
+实例：
+
+```c
+buf1 = new Buffer(26);
+buf2 = new Buffer(26);
+
+for (var i = 0 ; i < 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+  buf2[i] = 33; // ASCII !
+}
+
+buf1.copy(buf2, 8, 16, 20);
+console.log(buf2.toString('ascii', 0, 25));
+
+// !!!!!!!!qrst!!!!!!!!!!!!
+```
+
+### buf.slice([start], [end])
+
+返回一个新的`buffer`，这个`buffer`将会和老的`buffer`引用相同的内存地址，只是根据`start`(默认是 0)和`end`(默认是`buffer.length`) 偏移和裁剪了索引。 负的索引是从`buffer`尾部开始计算的。
+
+实例：
+
+```c
+var buf1 = new Buffer(26);
+
+for (var i = 0 ; i < 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+}
+
+var buf2 = buf1.slice(0, 3);
+console.log(buf2.toString('ascii', 0, buf2.length));
+buf1[0] = 33;
+console.log(buf2.toString('ascii', 0, buf2.length));
+```
+
+### buf.toJSON()
+
+返回一个`JSON`表示的`Buffer`实例。
+
+实例：
+
+```c
+var buf = new Buffer('test');
+console.log(buf.toJSON());
+```
+
+源代码：
+
+```c
+Buffer.prototype.toJSON = function() {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this, 0)
+  };
+};
+```
+
+### buf.toString([encoding], [start], [end])
+
+该方法根据`encoding`参数返回一个解码的`string`字符串，还会根据传入的参数`start`(默认是0)和`end`(默认是`buffer.length`)作为取值范围。
+
+实例：
+
+```c
+var buf = new Buffer('abcd');
+
+console.log(buf.toString('utf8', 2));
+```
+
+源代码：
+
+```c
+// toString(encoding, start=0, end=buffer.length)
+Buffer.prototype.toString = function(encoding, start, end) {
+  var loweredCase = false;
+
+  start = start >>> 0;
+  end = util.isUndefined(end) || end === Infinity ? this.length : end >>> 0;
+
+  if (!encoding) encoding = 'utf8';
+  if (start < 0) start = 0;
+  if (end > this.length) end = this.length;
+  if (end <= start) return '';
+
+  while (true) {
+    switch (encoding) {
+      case 'hex':
+        return this.hexSlice(start, end);
+
+      case 'utf8':
+      case 'utf-8':
+        return this.utf8Slice(start, end);
+
+      case 'ascii':
+        return this.asciiSlice(start, end);
+
+      case 'binary':
+        return this.binarySlice(start, end);
+
+      case 'base64':
+        return this.base64Slice(start, end);
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return this.ucs2Slice(start, end);
+
+      default:
+        if (loweredCase)
+          throw new TypeError('Unknown encoding: ' + encoding);
+        encoding = (encoding + '').toLowerCase();
+        loweredCase = true;
+    }
+  }
+};
+```
+
+## 类方法
+
+### Buffer.isEncoding(encoding)
+
+该方法判断指定的`encoding`是否有效。
+
+实例：
+
+```c
+// true
+console.log(Buffer.isEncoding('utf8'));
+```
+
+源代码：
+
+```c
+Buffer.isEncoding = function(encoding) {
+  switch ((encoding + '').toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'binary':
+    case 'base64':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+    case 'raw':
+      return true;
+
+    default:
+      return false;
+  }
+};
+```
+
+### Buffer.isBuffer(obj)
+
+该方法判断`obj`是否为一个`buffer`对象。
+
+```c
+var buf = new Buffer();
+
+// true
+console.log(Buffer.isBuffer(buf));
+```
+
+原理就是通过`obj instanceof Buffer`来判断的。
+
+### Buffer.byteLength(string, [encoding])
+
+### Buffer.concat(list, [totalLength])

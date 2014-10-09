@@ -520,4 +520,133 @@ ul li.last:after {
 }
 ```
 
+### text
 
+`text`主要包含了文本相关的`mixin`。
+
+#### ellipsis
+
+这个`mixin`主要用于文本省略时使用。
+
+实例：
+
+```c
+@import "compass/typography/text";
+
+p {
+  @include ellipsis();
+}
+```
+
+生成的`css`代码：
+
+```c
+p {
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+```
+
+#### nowrap
+
+这个`mixin`其实就是`white-space: nowrap`。
+
+实例：
+
+```c
+@import "compass/typography/text";
+
+p {
+  @include nowrap();
+}
+```
+
+生成的`css`代码：
+
+```c
+p {
+  white-space: nowrap;
+}
+```
+
+#### replace-text
+
+`replace-text`主要是用于文本替换（图片代替文本），它接受三个参数`$img, $x, $y`，`$img`为图片地址，`$x, $y`为背景图片位置。
+
+实例：
+
+```c
+@import "compass/typography/text";
+
+h2 {
+  @include replace-text("icons/close.png");
+}
+```
+
+生成的`css`代码：
+
+```c
+h2 {
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  text-transform: capitalize;
+  background-image: url('/img/icons/close.png?1409822321');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+```
+
+## Layout
+
+`Layout`主要是包含了布局相关的`mixin`。
+
+### stricky-footer
+
+`stricky-footer`是当你需要一个黏在底部的`footer`时使用，并且支持IE6，如果不需要支持IE6其实使用`position: fixed`就行了。
+
+这个`stricky-footer`用到了：[Make the Footer Stick to the Bottom of a Page](http://ryanfait.com/resources/footer-stick-to-bottom-of-page/)
+
+它接受四个参数：
+
+ - $footer-height：底部高度
+ - $root-selector：根选择器
+ - $root-footer-selector：根的footer选择器
+ - $footer-selector：footer选择器
+
+实例：
+
+```c
+@include sticky-footer(40px, "#content", "#footer", "#sticky-footer");
+```
+
+### stretch
+
+实例：
+
+```c
+@import "compass/layout";
+
+#demo {
+  @include stretch(5px, 5px);
+}
+```
+
+生成的`css`代码：
+
+```c
+#demo {
+  position: absolute;
+  top: 5px;
+  bottom: 0;
+  left: 0;
+  right: 5px;
+}
+```
+
+## CSS3
+
+### 

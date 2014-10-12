@@ -33,7 +33,7 @@ li:first-of-type + li {
  - [attr=value]：代表具有属性名`attr`且其值为`value`的元素
  - [attr~=value]：代表具有属性名`attr`且其值是一个空白分隔的值列表，并且在这个值列表中有一个`value`的值的元素
  - [attr|=value]：代表了具有属性名`attr`，且其值为`value`或以`value-`开头的元素
- - [attr|=value]：代表了具有属性名`attr`，且其值以`value`开头的元素
+ - [attr^=value]：代表了具有属性名`attr`，且其值以`value`开头的元素
  - [attr$=value]：代表了具有属性名`attr`，且其值以`value`结尾的元素
  - [attr*=value]：代表了具有属性名`attr`，且其值中包含`value`的元素
 

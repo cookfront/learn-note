@@ -106,10 +106,10 @@ button2.trigger('click'); // returns true
 
 ```c
 <script type="text/template" id="item-template">
-	<div>
-		<input id="todo_complete" type="checkbox" <%= completed ? 'checked="checked"' : '' %>>
-		<%= title %>
-	</div>
+  <div>
+    <input id="todo_complete" type="checkbox" <%= completed ? 'checked="checked"' : '' %>>
+    <%= title %>
+  </div>
 </script>
 ```
 
@@ -143,16 +143,16 @@ Backbone.js 能够监视数据对象的变化并为其注册事件及回调函�
 
 ```c
 var TodosView = Backbone.View.extend({
-	events: {
-		'click .toggle': toggleClick,
-		'dbclick .edit': edit
-	},
-	toggleClick: function () {
-		console.log('toggleClick');
-	},
-	edit: function () {
-		console.log('edit');
-	}
+  events: {
+    'click .toggle': toggleClick,
+    'dbclick .edit': edit
+  },
+  toggleClick: function () {
+    console.log('toggleClick');
+  },
+  edit: function () {
+    console.log('edit');
+  }
 });
 ```
 
@@ -174,4 +174,7 @@ var TodoView = Backbone.View.extend({
 });
 ```
 
+## remove()
+
+将该`view`从`DOM`中移除，并且调用`stopListening()`移除所有监听在该`view`上的事件。
 

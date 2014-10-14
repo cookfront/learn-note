@@ -1,0 +1,47 @@
+SOLID CSS
+========
+
+以下内容来自于：[Solid CSS](http://blog.millermedeiros.com/solid-css/)
+
+## SOLID
+
+`SOLID`是面向对象编程的五个原则的首字母缩写，通过这种设计可以使系统随着时间的推移更容易维护和扩展。
+
+ - Single Responsibility Principle（单一职责原则）
+ - Open/Closed Principle（开放/封闭原则）
+ - Liskov Substitution Principle（里氏替换原则）
+ - Interface Segregation Principle（接口隔离原则）
+ - Dependency Inversion Principle（依赖倒置原则）
+
+### Single Responsibility Principle（单一职责原则）
+
+该原则指出：一个对象应该只有一个责任，这个责任应该由对象完全封装。当应用到`CSS`上时，这意味着我们应该分离结构与表现，而不是创建一个类或元素来同时做这两件事情，我们应该将他们解耦，这样你就可以改变组件的皮肤而不影响结构。
+
+这样做的一种方法是将元素的尺寸委托给网格系统（添加多个class到元素，或者通过CSS预处理器来扩展），或者设置一个父元素的大小。
+
+CSS规则应具有较高的凝聚力，你不应该经常看到太多不同种类的组合在一起的规则。你不应该将文字样式+边框+颜色与尺寸和定位规则组合在一起。
+
+通过这些，我们可以在不同的容器中重用相同的模块，从而提高重用的机会。它同样提高了可维护性，你可以改变皮肤而不影响结构，或者你可以根据不同的上下文来改变可视化（例如，元素有着相同的结构，但是不同的颜色）。
+
+另一个好的提示就是将你的代码分割成多个文件——每个文件对应着每一个职责。这种方式可以更好的团队协作，并且你的代码更容易理解。
+
+### Open/Closed Principle（开放/封闭原则）
+
+> “software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification”
+
+上面这句话的意思大概是：“软件实体（类，模块，函数等）应该对扩展开放，对修改关闭”
+
+这意味着，你应该可以很容易地覆盖/扩展基本规则，但是应该避免修改的基类。你只能在有固定错误的时候来修改基类，并且永远不要增加新的行为，否则，你可能会引入冲突。这意味着在项目稳定后，你不应该改变你的`reset.css`或者编辑影响多个元素的多个规则。创建一个新的`class`来代替编辑多个规则。
+
+在很多项目中，我尽可能的避免在标签上设置基础样式，特别是在设计时没有遵循一个明确的语义化结构——比如当我们可能需要20多种字体样式和不同上下文中的相同的元素可能有不同的间距/颜色/字重。如果你减少了影响全局元素的规则，你同样减少了破坏开放/封闭原则的机会。
+
+没有基本样式的另一个主要优点是：你不需要经常覆盖默认值。
+
+### Liskov Substitution Principle（里氏替换原则）
+
+> “objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program”
+
+上面这段话的意思是：“在程序中的对象应该更换其子类型的实例，而不会改变该程序的正确性”
+
+
+

@@ -442,4 +442,32 @@ console.log(Buffer.isBuffer(buf));
 
 ### Buffer.byteLength(string, [encoding])
 
+参数：
+
+ - string
+ - [encoding]：可选的参数，默认为`utf8`
+
+该函数给出`string`字符串的真实字节长度。它不同于`String.prototype.length`是返回字符串中的字符个数。
+
+实例：
+
+```c
+str = '\u00bd + \u00bc = \u00be';
+
+// ½ + ¼ = ¾: 9 characters, 12 bytes
+console.log(str + ": " + str.length + " characters, " +
+  Buffer.byteLength(str, 'utf8') + " bytes");
+```
+
 ### Buffer.concat(list, [totalLength])
+
+参数：
+
+ - list：将被连接的buffer对象数组
+ - [totalLength]：可选参数，被连接后buffer的总长度
+
+该方法返回一个buffer对象，这个buffer对象是将list中所有buffer连接起来的结果。
+
+如果`list`中没有元素，或者`totalLength`为0。返回一个长度为0的buffer。
+如果`list`中只有一个元素，则返回这个元素。
+如果`list`中多余一个元素时，会创建一个新的buffer对象。

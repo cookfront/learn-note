@@ -93,6 +93,28 @@ app.run(function ($rootScope, $timeout) {
 
 ### ng-app
 
+把`ng-app`放在任何DOM元素中时，标记了`$rootScope`的开始。`$rootScope`是作用域链的开始，所有`HTML`中嵌套在`ng-app`下的任何指令都从`ng-app`继承。
+
+在你的`JavaScript`代码中，你可以利用`run()`方法来访问`$rootScope`：
+
+```c
+var app = angular.module('myApp', []);
+app.run(function ($rootScope) {
+	$rootScope.someProperty = "some-property";
+});
+```
+
+需要注意的是，使用`$rootScope`就像你在`JavaScript`中使用全局变量一样，所以不要使用它。还有需要注意的是，在每个`HTML`文档中只能有一个`ng-app`。
+
+### ng-controller
+
+使用`ng-controller`你可以为嵌套在该`ng-controller`元素中的子孙提供一个子作用域，
+
+`ng-controller`接受一个唯一的参数`expression`。
+
+### ng-include
+
+
 
 
 

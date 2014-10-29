@@ -539,7 +539,7 @@ angular.module('myApp', [])
 });
 ```
 
-### restrict
+### restrict (string)
 
 `restrict`是一个可选的参数。它告诉`Angular`我们的指令在`DOM`中使用哪种格式。默认情况下，`Angular`希望我们定义一个自定义指令时使用属性，也即`restrict`被设置为`A`。
 
@@ -548,5 +548,134 @@ angular.module('myApp', [])
  - C：class`<div class=”my-directive: expression;”></div>`
  - M：注释`<– directive: my-directive expression –>`
 
+### priority (number)
 
+该选项是被设置为一个数字。许多指令都没有这个选项，这种情况下它默认为0，然而，有一些情况设置高优先级是很有必要的。例如，`ngRepeat`设置了该选项为`1000`，所以在同一个元素中，`ngRepeat`总要先于其他指令执行。
+
+如果一个元素有两个指令，并且具有相同的优先级，则第一个指令先执行，然后是第二个。当我们设置了一个高优先级的指令时，则先执行这个指令，然后是低优先级的。
+
+### terminal (boolean)
+
+`terminal`是一个`boolean`选项，可以被设置为`true`或`false`。
+
+当`<div my-directive1></div>`和`<div my-directive2></div>`这样写时`priority`和`terminal`不会互相影响。当你`<div my-directive1 my-directive2></div>`就会互相影响了。
+
+`terminal`属性告诉`Angular`忽略后面具有低优先级的指令。
+
+可以看这里：[How to understand the `terminal` of directive?](http://stackoverflow.com/questions/15266840/how-to-understand-the-terminal-of-directive)
+
+### template (string | function)
+
+`template`是可选的，可以为`string`或`function`：
+
+ - string：`HTML`字符串
+ - function：接受两个参数：`tEelement`和`tAttrs`，并且返回一个字符串。
+
+### templateUrl (string | function)
+
+`templateUrl`是可选的，可以为：
+
+ - string：`HTML`文件的路径
+ - function：接受两个参数：`tEelement`和`tAttrs`，并返回`HTML`文件的路径
+
+### replace (boolean)
+
+`replace`是可选的，如果提供了必须设置为`true`，因为它默认为`false`。当为`false`时，表明指令的模板会插入到指令元素中，而当为`true`时则会替换指令元素。例如：
+
+```c
+<div my-directive></div>
+
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.directive('myDirective', function () {
+	return {
+		template: '<a href="#">Baidu</a>',
+		replace: true
+	};
+});
+</script>
+```
+
+### scope (boolean | object)
+
+`scope`是可选的，它可以被设置为`true`或一个对象，默认为`false`。
+
+如果`scope`设置为`true`，一个新的作用域将会被创建，并且继承自父作用域。
+
+当我们设置`scope`为一个对象时，我们就创建了一个隔离指令。例如我们可以指定一个空对象：`{}`
+
+### transclude
+
+`transclude`是可选的，如果提供，必须设置为`true`，默认为`false`。
+
+`Transclusion`通常用于创建可重用的组件。
+
+使用`Transclusion`必须设置`scope`为隔离作用域或`true`。
+
+```c
+<div sidebox title="Links">
+	<ul>
+		<li>First link</li>
+		<li>Second link</li>
+	</ul>
+</div>
+
+
+<script type="text/javascript">
+angular.module('myApp', []).directive('sidebox', function() {
+	return { 
+		restrict: 'EA',
+		scope: {
+			title: '@' 
+		},
+		transclude: true,
+		template: '<div class="sidebox">\
+		      <div class="content">\
+		        <h2 class="header">{{ title }}</h2>\
+		        <span class="content" ng-transclude>\
+		        </span>\
+		      </div>\
+		    </div>'
+	};
+});
+```
+
+### controller (string | function)
+
+`controller`可以为字符串或者函数。当设置为一个字符串时，字符串的名字将被用于寻找注册在你应用上的`controller`构造函数。
+
+例如：
+
+```c
+var app = angular.module('myApp', []);
+app.controller('MyController', function ($scope) {
+
+});
+app.directive('myDirective', function () {
+	return {
+		restrict: 'A',
+		controller: 'MyController'
+	}
+});
+```
+
+我们也可以定义`controller`为一个函数：
+
+```c
+app.directive('myDirective', function () {
+	return {
+		restrict: 'A',
+		controller: function ($scope, $element, $attrs, $transclude) {
+
+		}
+	};
+});
+```
+
+下面看看函数中各个参数的意义：
+
+ - $scope：指令元素当前关联的作用域
+ - $element：指令元素
+ - $attrs：当前元素属性对象
+ - $tranclude：
 

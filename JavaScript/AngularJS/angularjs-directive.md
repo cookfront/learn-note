@@ -642,40 +642,5 @@ angular.module('myApp', []).directive('sidebox', function() {
 
 ### controller (string | function)
 
-`controller`可以为字符串或者函数。当设置为一个字符串时，字符串的名字将被用于寻找注册在你应用上的`controller`构造函数。
 
-例如：
-
-```c
-var app = angular.module('myApp', []);
-app.controller('MyController', function ($scope) {
-
-});
-app.directive('myDirective', function () {
-	return {
-		restrict: 'A',
-		controller: 'MyController'
-	}
-});
-```
-
-我们也可以定义`controller`为一个函数：
-
-```c
-app.directive('myDirective', function () {
-	return {
-		restrict: 'A',
-		controller: function ($scope, $element, $attrs, $transclude) {
-
-		}
-	};
-});
-```
-
-下面看看函数中各个参数的意义：
-
- - $scope：指令元素当前关联的作用域
- - $element：指令元素
- - $attrs：当前元素属性对象
- - $tranclude：
 

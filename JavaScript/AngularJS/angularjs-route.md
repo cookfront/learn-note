@@ -161,7 +161,72 @@ $location.replace();
 $location.path('/home').replace();
 ```
 
+### hash()
+
+获取URL的哈希片段或者改变哈希片段。
+
+```c
+var hash = $location.hash();
+$location.hash('list');
+```
+
+### port()
+
+获取当前URL的端口号。
+
+```c
+var port = $location.port();
+```
+
+### protocol()
+
+获取当前URL的协议。
+
+```c
+var protocol = $location.protocol();
+```
+
+### search()
+
+获取当前URL的`search`部分，也可以传入一个字符串或者对象来改变当前的`search`。
+
+```c
+var search = $location.search();
+
+$location.search({name: 'Ari', username: 'auser'});
+$location.search('name=Ari&username=auser');
+```
+
+### url()
+
+获取当前的URL地址。
+
+```c
+$location.url();
+```
+
+也可以通过该方法来改变当前URL。它接受两个参数：
+
+ - url (optional string)：新的URL地址，但不包括基础前缀
+ - replace (optional string)：需要改变的路径
+
+例如：
+
+```c
+
+$location.url("/home?name=Ari#hashthing")
+```
+
 ### absUrl()
 
+这个方法返回完整的URL。
 
+```c
+// http://www.test.com/index.html#/list
 
+// return: /list
+$location.url();
+
+// return: http://www.test.com/index.html#/list
+$location.absUrl();
+```

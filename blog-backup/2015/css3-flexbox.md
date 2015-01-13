@@ -125,7 +125,7 @@ CSS Flexbox
 
 ### 4.1 绝对定位的`Flex`儿子
 
-一个伸缩容器的绝对定位的子元素不参与到`flex`布局中。然而，它会参与到[重新排序.org/TR/css-flexbox-1/#algo-flex-order)中（详细见：[order](http://www.w3.org/TR/css-flexbox-1/#propdef-order)），会对他们的绘制顺序有一个影响。
+一个伸缩容器的绝对定位的子元素不参与到`flex`布局中。然而，它会参与到[重新排序](http://www.w3.org/TR/css-flexbox-1/#algo-flex-order)中（详细见：[order](http://www.w3.org/TR/css-flexbox-1/#propdef-order)），会对他们的绘制顺序有一个影响。
 
 一个伸缩容器的绝对定位的子元素的[静态位置](http://www.w3.org/TR/CSS21/visudet.html#abs-non-replaced-width)被确定为使得子元素就好像是 伸缩容器的唯一伸缩项目那样去定位，这会假设子元素和伸缩容器的使用尺寸(used size)为固定大小的盒子。
 

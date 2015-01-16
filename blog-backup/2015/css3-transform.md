@@ -73,3 +73,35 @@ CSS3BG](http://www.w3.org/TR/css-transforms-1/#css3bg)中被定义。
 一个4*4的矩阵且不履行的2D矩阵的要求。
 
 **特性变换函数（identity transform function）**
+一个[变换函数](http://www.w3.org/TR/css-transforms-1/#transform-functions)其实等价于一个特性4*4矩阵（看这里：[Mathematical Description of Transform Functions](http://www.w3.org/TR/css-transforms-1/#mathematical-description)）。特性变换函数的例子有`translate(0)`、`translate3d(0, 0, 0)`、`translateX(0)`、`translateY(0)`、`translateZ(0)`、`scale(1)`、`scaleX(1)`、`scaleY(1)`、`scaleZ(1)`、`rotate(0)`、`rotate3d(1, 1, 1, 0)`、`rotateX(0)`、`rotateY(0)`、`rotateZ(0)`、`skew(0, 0)`、`skewX(0)`、`skewY(0)`、`matrix(1, 0, 0, 1, 0, 0)`和`matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)`。一种特别的情况是透视（perspective）：`perspective(infinity)`。`M34`的值变得无穷小，变换函数因此假定它等于单位矩阵。
+
+**3D渲染上下文（3D rendering context）**
+一个包含块层次结构的一个或多个水平，通过元素的[transform-style](http://www.w3.org/TR/css-transforms-1/#propdef-transform-style)属性的`preserve-3d`计算值实例化，其元素有一个共同的三维坐标系。
+
+## 5 二维子集（Two Dimensional Subset）
+
+用户代理可能不能总是渲染出三维变换，那么它们只支持该规范的一个二维子集。在这种情况下，[三维变换](http://www.w3.org/TR/css-transforms-1/#three-d-transform-functions)和[transform-style](http://www.w3.org/TR/css-transforms-1/#propdef-transform-style)、[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)、[perspective-origin](http://www.w3.org/TR/css-transforms-1/#propdef-perspective-origin)和[backface-visibility](http://www.w3.org/TR/css-transforms-1/#propdef-backface-visibility)属性将不被支持。[3D变换渲染](http://www.w3.org/TR/css-transforms-1/#3d-transform-rendering)章节也不会应用到。矩阵分解使用从“图形宝石II，由吉姆·阿尔沃编辑”中的`unmatrix`的方法所采取的技术，简化为2D的情况。[Mathematical Description of Transform Functions](http://www.w3.org/TR/css-transforms-1/#mathematical-description)章节荏苒是有效的，只是它们减少为一个3*3的变换矩阵，其中`a`等于`m11`，`b`等于`m12`，`c`等于`m21`，`d`等于`m22`，`e`等于`m41`，`f`等于`m42`。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/3x3matrix.png)
+</center>
+<center>
+图片一：二维变换的3*3矩阵
+</center>
+
+**实例一：**
+
+如果用户代理不提供三维变换支持，作者可以很容易地提供一个备用方案。下面的例子中对于[transform](http://www.w3.org/TR/css-transforms-1/#propdef-transform)属性有两条属性定义。第一个定义包含了两个二维的变换函数。第二个包含了一个二维的和一个三维的变换函数。
+
+```css
+div {
+  transform: scale(2) rotate(45deg);
+  transform: scale(2) rotate3d(0, 0, 1, 45deg);
+}
+```
+
+有了3D的支持，第二条定义会覆盖第一条。如果没有3D的支持，第二条定义是不合法的，用户代理会退回到第一条定义。
+
+## 6 变换渲染模型（The Transform Rendering Model）
+
+当在元素上的

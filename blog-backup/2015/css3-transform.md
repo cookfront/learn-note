@@ -104,4 +104,315 @@ div {
 
 ## 6 变换渲染模型（The Transform Rendering Model）
 
-当在元素上的
+当指定了一个除[none](http://www.w3.org/TR/css-transforms-1/#none)之外的[transform](http://www.w3.org/TR/css-transforms-1/#propdef-transform)属性值时在元素上建立了一个[局部坐标系](http://www.w3.org/TR/css-transforms-1/#local-coordinate-system)，并且它被应用。映射是从元素已经渲染到的局部坐标系中通过元素的[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)给定。变换是累积的。也就是说，元素在父坐标系中建立自己的局部坐标系。从用户的视角来看，一个元素有效地累积祖先的所有[变换](http://www.w3.org/TR/css-transforms-1/#propdef-transform)属性以及任何的局部变换被应用。这些变换的累积为元素定义了[当前变换矩阵（current transformation matrix）](http://www.w3.org/TR/css-transforms-1/#current-transformation-matrix-ctm)（CTM）。
+
+坐标空间是有两个轴的一个坐标系：`X`轴是水平向右增加，`Y`轴是垂直向下增加。三维变换函数则扩展了这个坐标空间到三维，添加了垂直于屏幕平面一个`Z`轴，并且沿着观察者的方向增加。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/coordinates.svg)
+</center>
+
+<center>
+图片2：初始坐标空间的示范
+</center>
+
+[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)是通过[transform](http://www.w3.org/TR/css-transforms-1/#propdef-transform)和[transform-origin](http://www.w3.org/TR/css-transforms-1/#propdef-transform-origin)通过以下步骤计算而来：
+
+ 1. 通过特性矩阵开始
+ 2. 通过[transform-origin](http://www.w3.org/TR/css-transforms-1/#propdef-transform-origin)的计算出的`X`，`Y`值来转换
+ 3. 从左到右乘以在[transform](http://www.w3.org/TR/css-transforms-1/#propdef-transform)属性中的每一个变换函数
+ 4. 通过[transform-origin](http://www.w3.org/TR/css-transforms-1/#propdef-transform-origin)的负计算`X`，`Y`值来转换
+
+变换应用到[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)上。
+
+> 注意：变换会影响画布上的视觉布局（visual layout），但对CSS布局本身没有影响。这也意味着不会影响在IE浏览器下的[getClientRects()](http://www.w3.org/TR/cssom-view/#dom-element-getclientrects)和标准浏览器的[getBoundingClientRect()](http://www.w3.org/TR/cssom-view/#dom-element-getboundingclientrect)函数的值。
+
+**实例二：**
+
+```css
+div {
+  transform: translate(100px, 100px);
+}
+```
+
+上面的代码会将元素在`X`和`Y`方向上移动`100px`。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/translate1.svg)
+</center>
+
+**实例三：**
+
+```css
+div {
+  height: 100px; width: 100px;
+  transform-origin: 50px 50px;
+  transform: rotate(45deg);
+}
+```
+
+[transform-origin](http://www.w3.org/TR/css-transforms-1/#propdef-transform-origin)属性将变换的原点在`X`和`Y`方向上分别移动了`50px`。旋转变换将元素以原点顺时针方向旋转45度。在所有的变换函数被应用后，原点的转化被转化为在`X`和`Y`方向上返回`-50px`。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/origin1.svg)
+</center>
+
+**实例四：**
+
+```css
+div {
+  height: 100px; width: 100px;
+  transform: translate(80px, 80px) scale(1.5, 1.5) rotate(45deg);
+}
+```
+
+该变换分别将元素在`X`和`Y`方向移动`80px`，然后将元素缩放150%，然后绕`Z`轴顺时针旋转45度。可以注意到缩放和旋转是以元素的中心来操作的，由于元素具有`50％ 50％`的默认变换原点。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/compound_transform.svg)
+</center>
+
+> 注意：一个相同的渲染可以通过用等效变换的嵌套元素来获得：
+
+```html
+<div style="transform: translate(80px, 80px)">
+  <div style="transform: scale(1.5, 1.5)">
+      <div style="transform: rotate(45deg)"></div>
+  </div>
+</div>
+```
+
+对于布局是由CSS盒模型支配的元素，`transform`属性不影响变换元素周围的内容的流动。然而，溢出区域的范围考虑到了被变换元素。它的行为类似于元素通过相对定位来偏移时的情况。因此，如果[overflow](http://www.w3.org/TR/css-overflow-3/#overflow)属性的值为`scroll`或`auto`时，根据需要为了看到内容，滚动条会出现，因为被变换到了可视区域的外面。
+
+对于布局是由CSS盒模型支配的元素，任何非[none](http://www.w3.org/TR/css-transforms-1/#none)值的`transform`会导致创建一个堆栈上下文和包含块。这个对象作为一个包含块，为它固定定位的后代。
+
+在根元素上的[固定背景](http://www.w3.org/TR/css3-background/#fixed0)受到任何为那个元素被指定的变换的影响。对于任何其他元素被一个变换所影响（例如，应用一个变换到它们自身或者任何它们的祖先元素），当[background-attachment](http://dev.w3.org/csswg/css-backgrounds-4/#background-attachment)属性的值为`fixed`时，它会被认为好像值是`scroll`。[background-attachment](http://dev.w3.org/csswg/css-backgrounds-4/#background-attachment)的计算值不会受到影响。
+
+### 6.1 3D变换渲染（3D Transform Rendering）
+
+通常情况下，元素是在平面上渲染，并且作为其包含块会被渲染到同一平面。通常，这个平面就是被页面其他部分共享的平面。二维变换函数可以改变的元素的呈现，但是元素仍然作为其包含块被渲染到同一平面。
+
+三维变换可导致变换矩阵具有非零的`Z`分量。这会导致元素对于它的包含块渲染到不同到平面，这可能会导致影响那个元素相对于其他元素的从前到后的渲染顺序，以及会导致它与其他元素相交。这种行为取决于元素是否是[3D渲染上下文](http://www.w3.org/TR/css-transforms-1/#3d-rendering-context)中的一员，将在下面描述。
+
+**实例五：**
+
+这个例子展示了被应用了三维变换元素的效果。
+
+```html
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  border: 1px solid black;
+  background-color: #ccc;
+}
+.transformed {
+  transform: rotateY(50deg);
+  background-color: blue;
+}
+</style>
+
+<div class="container">
+  <div class="transformed"></div>
+</div>
+```
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/simple-3d-example.png)
+</center>
+
+该变换沿着`Y`轴旋转了50度。可以注意到这会使蓝色的盒子更窄，但不是立体的。
+
+[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)和[perspective-origin](http://www.w3.org/TR/css-transforms-1/#propdef-perspective-origin)属性可以被用于添加一种深度的感觉到场景中，它是使元素在`Z`轴更高（更接近观看者），从而会显得更大，那些远的将会显得更小。`d`缩放成比例于`d/(d − Z)`，[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)的值，是从绘图平面（drawing plane）到观看者的眼睛假定位置的距离。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/perspective_distance.png)
+</center>
+
+<center>
+图片3：示意图展示了缩放如何依赖于[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)属性和`Z`的位置。在上面的示意图，`Z`是`d`的一半。为了使其显示的原始圆（实线轮廓）出现在Z（虚线圆），画布上的实体圆将扩大两倍，如浅蓝色的圆。在底部的示意图，圆按比例缩小，致使虚线圆出现在画布后面，并且z的大小是距原始位置三分之一。
+</center>
+
+通常情况下，观看者的眼睛的假定位置为图的中心。这个位置可以根据需要移动－例如，如果一个网页包含多个图形应该共享一个共同的视角，可以通过设置[perspective-origin](http://www.w3.org/TR/css-transforms-1/#propdef-perspective-origin)。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/perspective_origin.png)
+</center>
+
+<center>
+图片4：示意图展示了将视角上移的效果。
+</center>
+
+[透视矩阵](http://www.w3.org/TR/css-transforms-1/#perspective-matrix)将按照以下来计算：
+
+ 1. 通过特性矩阵开始
+ 2. 通过[perspective-origin](http://www.w3.org/TR/css-transforms-1/#propdef-perspective-origin)的计算`X`，`Y`值来转换
+ 3. 乘以从[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)变换函数获得的矩阵，其中长度是由[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)属性的值提供
+ 4. 通过[perspective-origin](http://www.w3.org/TR/css-transforms-1/#propdef-perspective-origin)的负计算`X`，`Y`值来转换
+
+**实例6：**
+
+这个例子说明了`perspective`如何被用于一个三维变换，使其看起来更加真实。
+
+```html
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  perspective: 500px;
+  border: 1px solid black;
+}
+.transformed {
+  transform: rotateY(50deg);
+  background-color: blue;
+}
+</style>
+
+<div class="container">
+  <div class="transformed"></div>
+</div>
+```
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/simple-perspective-example.png)
+</center>
+
+内部的元素和前面的例子中是有着一样的变换，但它的渲染现在被它父元素的`perspective`属性影响。`perspective`导致有正的`Z`坐标（更接近观看者）的顶点在`X`和`Y`轴伸缩，使那些远离的按比例缩小，给人一种深度的感觉。
+
+具有三维变换的元素，当它不包含在3D渲染上下文中，渲染时会有适当变换被应用，但不与任何其他元素相交。三维变换在这种情况下，可以被认为就像一个喷绘效果，就像二维变换。类似地，变换不影响绘制顺序。例如，一个正Z平移变换使元素看起来更大，但不会导致元素渲染到没有Z平移元素的前面。
+
+具有三维变换的元素，当它包含在3D渲染上下文中，它可以明显的与在相同3D渲染上下文中的其他元素进行交互；参与到相同3D渲染上下文的元素集合可能会隐藏彼此或者相交，基于它们计算后的变换。它们被渲染就好像它们全是兄弟元素，定位在一个共同的三维坐标空间。在该三维空间中每个元素的位置由通过是对于给定元素是一个包含块的每个元素建立了3D渲染上下文的元素的变换矩阵的累积决定，将在下面描述。
+
+**实例7：**
+
+```html
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  perspective: 500px;
+  border: 1px solid black;
+}
+.transformed {
+  transform: rotateY(50deg);
+  background-color: blue;
+}
+.child {
+  transform-origin: top left;
+  transform: rotateX(40deg);
+  background-color: lime;
+}
+</style>
+
+<div class="container">
+  <div class="transformed">
+      <div class="child"></div>
+  </div>
+</div>
+```
+
+这个例子展示了在[transform-style: preserve-3d](http://www.w3.org/TR/css-transforms-1/#propdef-transform-style)缺席的情况下嵌套的3D变换如何被渲染。蓝色的`div`就像前面例子中一样被变换，其渲染受到了父元素`perspective`的影响。绿黄色的元素也有一个3D变换，是一个绕`X`轴的旋转。然而，绿黄的元素被渲染到父元素到平面上，因为它不是3D渲染上下文的一个成员，父元素是扁平的。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/3d-rendering-context-flat.png)
+</center>
+
+元素建立和参与到3D渲染上下文如下所示：
+
+ - 一个[3D渲染上下文](http://www.w3.org/TR/css-transforms-1/#3d-rendering-context)由[transform-style](http://www.w3.org/TR/css-transforms-1/#propdef-transform-style)属性的计算值为`preserve-3d`的[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)建立，且它自身不是3D渲染上下文的一部分。需要注意的是这样的元素始终是一个包含块。一个建立了3D渲染上下文的元素同样会参与到那个上下文中。（这种就是上面的.container）
+ - 一个[transform-style](http://www.w3.org/TR/css-transforms-1/#propdef-transform-style)属性的计算值为`preserve-3d`的元素，且它自身也参与到了一个3D渲染上下文，它扩展那个3D渲染上下文，而不是建立一个新的。
+ - 如果元素的包含块建立或扩展了3D渲染上下文，该元素则参与到了3D渲染上下文中。
+
+变换的最终值用于元素在3D渲染上下文中的渲染，这个最终值是由[累计3D变换矩阵（accumulated 3D transformation matrix）](http://www.w3.org/TR/css-transforms-1/#accumulated-3d-transformation-matrix)累积计算而来，下面计算步骤：
+
+ 1. 通过特性矩阵开始
+ 2. 对于在3D渲染上下文的根和问题元素之间的任何包含块：
+   3. 将被累积的矩阵（accumulated matrix）乘以元素包含块上的透视矩阵（perspective matrix）（如果有包含块的话）。包含块不是必须为一个3D渲染上下文的成员。
+   4. 应用被累积矩阵的平移，等价于元素相对于它的包含块在水平和垂直方向的偏移
+   5. 将被累积的矩阵乘以[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)
+
+**实例8：**
+
+```html
+<style>
+div {
+  height: 150px;
+  width: 150px;
+}
+.container {
+  perspective: 500px;
+  border: 1px solid black;
+}
+.transformed {
+  transform-style: preserve-3d;
+  transform: rotateY(50deg);
+  background-color: blue;
+}
+.child {
+  transform-origin: top left;
+  transform: rotateX(40deg);
+  background-color: lime;
+}
+</style>
+```
+
+这个例子和前面的例子是相同的，只是在蓝色元素上额外添加了[transform-style: preserve-3d](http://www.w3.org/TR/css-transforms-1/#propdef-transform-style)属性。蓝色元素现在建立了一个3D渲染上下文，其中的绿黄元素就是一个成员。现在蓝色和绿黄元素共享共同的三维空间，所以绿黄元素渲染为从其父元素倾斜，是由容器的透视所影响。
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/3d-rendering-context-3d.png)
+</center>
+
+在相同的3D渲染上下文元素可以彼此相交。用户代理必须通过细分所描述的[纽维尔算法](http://en.wikipedia.org/wiki/Newell%27s_algorithm)交叉元素的面来渲染交集。
+
+在3D渲染上下文中没有变换的元素在`Z=0`平面渲染，但仍可能与变换元素相交。
+
+在一个3D渲染上下文内，非相交元素的渲染顺序是基于应用的被累积矩阵在`Z`轴上的位置。
+
+**实例9：**
+
+```html
+<style>
+div {
+  width: 150px;
+  height: 150px;
+}
+.container {
+  background-color: rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+.container > div {
+  position: absolute;
+  left: 0;
+}
+.container > :first-child {
+  transform: rotateY(45deg);
+  background-color: orange;
+  top: 10px;
+  height: 135px;
+}
+.container > :last-child {
+  transform: translateZ(40px);
+  background-color: rgba(0, 0, 255, 0.75);
+  top: 50px;
+  height: 100px;
+}
+</style>
+
+<div class="container">
+  <div></div>
+  <div></div>
+</div>
+```
+
+该例子展示了元素在3D上下文中可以相交，容器元素为它自身和两个孩子建立了3D渲染上下文。孩子互相相交，且橘色多元素与容器相交。（目前浏览器支持还不是很好，可能看不到下面图片的效果）
+
+<center>
+![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/3d-intersection.png)
+</center>

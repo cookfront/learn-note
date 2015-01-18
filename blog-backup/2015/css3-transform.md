@@ -416,3 +416,221 @@ div {
 <center>
 ![enter image description here](http://www.w3.org/TR/css-transforms-1/examples/3d-intersection.png)
 </center>
+
+使用三维变换，有可能将元素变换的反面朝向观看者。3D变换元素在两侧显示相同的内容，所以背面看起来像前面的镜像。通常情况下，元素的反面朝向观看者并保持可见。然而，[backface-visibility](http://www.w3.org/TR/css-transforms-1/#propdef-backface-visibility)属性允许作者使元素不可见，当元素的背面朝向观看者的时候。这种行为是`生动`的；如果一个[backface-visibility: hidden](http://www.w3.org/TR/css-transforms-1/#propdef-backface-visibility)的元素正在动画，使得其正面和反面分别交替地可见，此时只有当正面朝向观察者的时候才是可见的。
+
+### 6.2 透视变换盒的处理（Processing of Perspective-Transformed Boxes）
+
+[累计3D变换矩阵（accumulated 3D transformation matrix）](http://www.w3.org/TR/css-transforms-1/#accumulated-3d-transformation-matrix)是一个4*4的矩阵，而将被变换的对象是二维盒子。要变换盒子的每个脚（a, b）
+
+// todo
+
+## 7 `transform`属性
+
+一个变换被应用到坐标系的元素是通过`transform`属性来渲染。这个属性包含了一个[变换函数](http://www.w3.org/TR/css-transforms-1/#transform-functions)列表。一个坐标系的最终变换值是将列表中的每个函数转换其相应的矩阵来取得的，就像在[变换函数的数学描述](http://www.w3.org/TR/css-transforms-1/#mathematical-description)中定义的，然后将这些矩阵相乘。
+
+ - 名称：`transform`
+ - 取值：`none | <transform-list>`
+ - 初始值：`none`
+ - 应用于：[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)
+ - 继承：无
+ - 媒体：视觉
+ - 计算值：指定的值，相对的值会转化成绝对值
+ - 百分比：相对于[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)的尺寸
+ 
+对于变换的结果，任何除了[`none`](http://www.w3.org/TR/css-transforms-1/#none)的计算值会创建一个堆栈上下文和包含块。这个对象会为它固定定位的后代扮演包含块的角色。
+
+上面取值的`<transform-list>`为：
+
+```c
+<transform-list> = <transform-function>+
+```
+
+## 8 `transform-origin`属性
+
+ - 名称：`transform-origin`
+ - 取值：` [ left | center | right | top | bottom | <percentage> | <length> ]
+| 
+  [ left | center | right | <percentage> | <length> ]
+  [ top | center | bottom | <percentage> | <length> ] <length>?
+|
+  [ center | [ left | right ] ] && [ center | [ top | bottom ] ] <length>?`
+  
+ - 初始值：`50% 50%`
+ - 应用于：[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)
+ - 继承：无
+ - 媒体：视觉
+ - 计算值：对于`<length>`的取值为绝对值，否则为百分比
+ - 百分比：相对于[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)的尺寸
+ - 能否动画：一个[长度、百分比或计算值](http://dev.w3.org/csswg/css3-transitions/#animtype-lpcalc)的[简单列表](http://dev.w3.org/csswg/css3-transitions/#animtype-simple-list)
+
+对于`SVG`元素没有关联的`CSS`布局框时该属性默认值为`0 0`。
+
+`transform`和`transform-origin`属性的值是被用于计算[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)，像上面描述的一样。
+
+如果只指定了一个值，第二个被假设为`center`。如果指定了一个或两个值，第三个值被假设为`0px`。
+
+如果定义了两个或多个值时，或者这些值没有一个关键字时，或只使用了`center`关键字，然后第一个关键字代表水平位置，第二个关键字代表垂直位置。第三个值代表`Z`轴位置且它必须是`<length>`类型。
+
+属性值的意义：
+
+**`<percentage>`**
+ 对于水平偏移的百分比是相对于[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)的宽度，对于垂直偏移的百分比是相对于[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)的高度。水平和垂直的偏移值代表了从[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)左上角的偏移。
+ 
+ **`<length>`**
+ 一个`length`值给出了固定的长度作为偏移。水平和垂直的偏移值代表了从[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)左上角的偏移。
+
+对于`SVG`元素没有关联的`CSS`布局框时水平和垂直的偏移值代表了从元素的局部坐标空间的原点的偏移。
+
+**top**
+计算为垂直位置的`0%`
+
+**right**
+计算为水平位置的`100%`
+
+**bottom**
+计算为垂直位置的`100%`
+
+**left**
+计算为水平位置的`0%`
+
+**center**
+当水平位置没有指定时计算为水平位置的`50%`，或垂直位置的`50%`
+
+## 9 `transform-style`属性
+
+ - 名称：`transform-style`
+ - 取值：`flat | preserve-3d`
+ - 初始值：`flat`
+ - 应用于：[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)
+ - 继承：无
+ - 媒体：视觉
+ - 计算值：指定的值
+ - 百分比：`N/A`
+ - 可动画：否
+
+`transform-style`的`preserve-3d`值会创建一个堆栈上下文。
+
+下面的`CSS`属性值要求用户代理在被应用之前创建后代元素的扁平表示，所以会覆盖`transform-style: preserve-3d`的行为。
+
+ - [`overflow`](http://www.w3.org/TR/css-overflow-3/#overflow)：除了`visible`的任何值
+ - [`filter`](http://www.w3.org/TR/filter-effects/#effects)：除了`none`的任何值
+ - [`clip`](http://www.w3.org/TR/css-masking/#propdef-clip)：除了`auto`的任何值
+ - [`clip-path`](http://www.w3.org/TR/css-masking/#propdef-clip-path)：除了`none`的任何值
+ - [`isolation`](http://www.w3.org/TR/compositing-1/#propdef-isolation)：使用值`isolate`
+ - [`mask-image`](http://www.w3.org/TR/css-masking/#propdef-mask-image)：除了`none`的任何值
+ - [`mask-box-image-source`](http://www.w3.org/TR/css-masking/#propdef-mask-box-image-source)：除了`none`的任何值
+ - [`mix-blend-mode`](http://www.w3.org/TR/compositing-1/#propdef-mix-blend-mode)：除了`normal`的任何值
+
+`transform-style`的计算值不会被影响。
+
+`transform`和`transform-origin`属性的值是被用于计算[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)，像上面描述的一样。
+
+## 10 `perspective`属性
+
+ - 名称：`perspective`
+ - 取值：`none | <length>`
+ - 初始值：`none`
+ - 应用于：[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)
+ - 继承：无
+ - 媒体：视觉
+ - 计算值：绝对长度或none
+ - 百分比：`N/A`
+ - 可否动画：同[length](http://dev.w3.org/csswg/css3-transitions/#animtype-length)
+
+`<length>`的值必须是正数的。
+
+属性值的意义：
+
+**`<length>`**
+距离投影中心的距离。
+
+**`none`**
+没有透视变换被应用。它的效果类似于一个无穷大的`<length>`值。所有的对象在画布上呈平面显示。
+
+使用这个属性的非`none`值时会建立一个堆栈上下文。它同样建立了一个包含块，就像[transform](http://www.w3.org/TR/css-transforms-1/#propdef-transform)属性一样。
+
+[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)和[perspective-origin](http://www.w3.org/TR/css-transforms-1/#propdef-perspective-origin)属性的值是用于计算[透视矩阵](http://www.w3.org/TR/css-transforms-1/#perspective-matrix)，就如上面描述的。
+
+## 11 `perspective-origin`属性
+
+ - 名称：`perspective-origin`
+ - 取值：` [ left | center | right | top | bottom | <percentage> | <length> ]
+| 
+  [ left | center | right | <percentage> | <length> ]
+  [ top | center | bottom | <percentage> | <length> ] <length>?
+|
+  [ center | [ left | right ] ] && [ center | [ top | bottom ] ] <length>?`
+  
+ - 初始值：`50% 50%`
+ - 应用于：[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)
+ - 继承：无
+ - 媒体：视觉
+ - 计算值：对于`<length>`的取值为绝对值，否则为百分比
+ - 百分比：相对于[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)的尺寸
+ - 能否动画：一个[长度、百分比或计算值](http://dev.w3.org/csswg/css3-transitions/#animtype-lpcalc)的[简单列表](http://dev.w3.org/csswg/css3-transitions/#animtype-simple-list)
+
+[perspective](http://www.w3.org/TR/css-transforms-1/#propdef-perspective)和[perspective-origin](http://www.w3.org/TR/css-transforms-1/#propdef-perspective-origin)属性的值是用于计算[透视矩阵](http://www.w3.org/TR/css-transforms-1/#perspective-matrix)，就如上面描述的。
+
+如果只指定了一个值，第二个被假设为`center`。
+
+如果两个值中至少一个不是关键字，第一个关键字代表水平位置，第二个关键字代表垂直位置。
+
+`perspective-origin`的值代表了从[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)左上角透视原点的一个偏移。
+
+**`<percentage>`**
+ 对于水平偏移的百分比是相对于[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)的宽度，对于垂直偏移的百分比是相对于[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)的高度。水平和垂直的偏移值代表了从[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)左上角的偏移。
+ 
+ **`<length>`**
+ 一个`length`值给出了固定的长度作为偏移。水平和垂直的偏移值代表了从[边界框](http://www.w3.org/TR/css-transforms-1/#bounding-box)左上角的偏移。
+
+**top**
+计算为垂直位置的`0%`
+
+**right**
+计算为水平位置的`100%`
+
+**bottom**
+计算为垂直位置的`100%`
+
+**left**
+计算为水平位置的`0%`
+
+**center**
+当水平位置没有指定时计算为水平位置的`50%`，或垂直位置的`50%`
+
+## 12 `backface-visibility`属性
+
+`backface-visibility`属性决定了当一个被变换元素的背面朝向观看者时背面是否可见。使用特性矩阵，元素的前面是朝向观看者的。当应用了一个绕`Y`轴旋转180度的变换时背面朝向了观看者。
+
+ - 名称：`backface-visibility`
+ - 取值：`visible | hidden`
+ - 初始值：`visible`
+ - 应用于：[可变换元素](http://www.w3.org/TR/css-transforms-1/#transformable-element)
+ - 继承：无
+ - 媒体：视觉
+ - 计算值：指定值
+ - 百分比：`N/A`
+ - 可否动画：否
+
+一个`backface-visibility: hidden`的元素的可见性由以下决定：
+
+ 1. 对于一个在[3D渲染上下文](http://www.w3.org/TR/css-transforms-1/#3d-rendering-context)的元素，计算它的累积3D变换矩阵。对于一个不在[3D渲染上下文](http://www.w3.org/TR/css-transforms-1/#3d-rendering-context)的元素，计算它的[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)
+ 2. 如果矩阵的第三行第三列是负数的，则元素应该被隐藏。否则它是可见的。
+
+## 13 SVG的`transform`属性
+## 14 SVG动画
+
+这两个章节没有翻译，有兴趣的自行研究哟。[SVG](http://www.w3.org/TR/css-transforms-1/#svg-transform)
+
+## 15 变换函数
+
+`transform`属性的值一个`<transform-function>`的列表。允许的变换函数集合在下面给出了。当在该规范中[`<angle>`](http://www.w3.org/TR/css3-values/#angle-value)被使用时，一个等价于0的[`<number>`](http://www.w3.org/TR/css3-values/#number-value)是同样被允许的，它被认为是角度0一样。
+
+### 15.1 2D变换函数
+
+[2D Transform Functions](http://www.w3.org/TR/css-transforms-1/#two-d-transform-functions)
+
+### 15.2 3D变换函数
+
+[3D Transform Functions](http://www.w3.org/TR/css-transforms-1/#three-d-transform-functions)

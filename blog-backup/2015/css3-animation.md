@@ -81,4 +81,292 @@ div {
 
 如果`0%`或`from`没有被指定，那么用户代理会使用将要动画的属性的计算值构造一个`0%`的关键帧。如果`100%`或`to`没有被指定，那么用户代理会使用将要动画的属性的计算值构造一个`100%`的关键帧。如果关键帧选择器指定了一个负的或者是大于`100%`百分比值，该关键帧将被忽略。
 
-一个关键帧规则的**关键帧声明块（keyframe declaration block）**包含属性和值，那些不能动画的属性将在规则中被忽略，
+一个关键帧规则的**关键帧声明块（keyframe declaration block）**包含属性和值，那些不能动画的属性将在规则中被忽略，除了[animation-timing-function](http://www.w3.org/TR/css3-animations/#animation-timing-function)之外，该属性的行为将在下面说明。此外，关键帧规则声明中想具有`!important`资格将被忽略（没有!important优先级）。
+
+动画所使用的`@keyframes`规则将是在被排序后的规则顺序中最后一个遇到的，且匹配在[animation-name](http://www.w3.org/TR/css3-animations/#animation-name)引用到）属性中指定的动画名称 。`@keyframes`规则不会层叠；因此，一个动画永远不会从多个`@keyframes`规则中获得关键帧。
+
+为了确定该组的关键帧，所有的选择器的值按时间递增顺序排序。如果有任何重复，那么`@keyframes`规则内指定的最后一个关键帧将被用于提供那时关键帧的信息。如果有多个关键帧指定了相同的关键帧选择器值时，在`@keyframes`规则中不会重叠。
+
+如果一个属性不是为关键帧指定，或者它的指定是无效的，动画的那个属性进行就好像那个关键帧不存在一样。概念上，就好像构造一组关键帧的每个属性存在于任何关键帧，且动画是为每个属性独立运行的。
+
+**实例2：**
+
+```css
+@keyframes wobble {
+  0% {
+    left: 100px;
+  }
+
+  40% {
+    left: 150px;
+  }
+
+  60% {
+    left: 75px;
+  }
+
+  100% {
+    left: 100px;
+  }
+}
+```
+
+四个关键帧在动画名为`wobble`的动画中指定。在第一个关键帧中，显示了动画周期的开始，`left`属性的值被动画到`100px`。在`40%`时，`left`为`150px`。以此类推。下面的图展示了动画的状态，如果动画持续时间被指定为10s的话。
+
+<ceter>
+![enter image description here](http://www.w3.org/TR/css3-animations/animation1.png)
+</center>
+
+下面是关键帧规则的语法：
+
+```c
+keyframes_rule: KEYFRAMES_SYM S+ IDENT S* '{' S* keyframes_blocks '}' S*;
+
+keyframes_blocks: [ keyframe_selector '{' S* declaration? [ ';' S* declaration? ]* '}' S* ]* ;
+
+keyframe_selector: [ FROM_SYM | TO_SYM | PERCENTAGE ] S* [ ',' S* [ FROM_SYM | TO_SYM | PERCENTAGE ] S* ]*;
+
+@{K}{E}{Y}{F}{R}{A}{M}{E}{S}   {return KEYFRAMES_SYM;}
+{F}{R}{O}{M}                   {return FROM_SYM;}
+{T}{O}                         {return TO_SYM;}
+```
+
+### 4.1 关键帧的缓动函数
+
+关键帧样式同样可以定义缓动函数，这个缓动函数将用于动画从这个帧运行到下个帧。
+
+**实例3：**
+
+```css
+@keyframes bounce {
+
+  from {
+    top: 100px;
+    animation-timing-function: ease-out;
+  }
+
+  25% {
+    top: 50px;
+    animation-timing-function: ease-in;
+  }
+
+  50% {
+    top: 100px;
+    animation-timing-function: ease-out;
+  }
+
+  75% {
+    top: 75px;
+    animation-timing-function: ease-in;
+  }
+
+  to {
+    top: 100px;
+  }
+
+}
+```
+
+动画名为`bounce`的动画指定了五个关键帧。在第一个关键帧到第二个关键帧之间使用的缓动函数为`ease-out`（也即0%到25%），25%到50%之间使用的缓动函数为`ease-in`，以此类推了。
+
+在`100%`或`to`上指定的缓动函数将被忽略。
+
+### 4.2 `animation-name`属性
+
+`animation-name`属性定义了应用的动画列表。每一个名字被用于选择关键帧规则，以提供该动画的属性值。如果该名字没有匹配任何关键帧`@`规则，没有属性进行动画且动画将不会执行（这里指的是该名字指定的动画，而不是说整个动画不会执行）。此外，如果动画名称为`none`，那么将不会有动画。这可以用于覆盖层叠而来的任何动画。如果多个动画尝试修改同一个属性，那么靠近列表的最后的动画会胜出。
+
+对于下面列出的其他动画属性的值，按名称列出的每个动画应该有相应的值（简单点说，比如我定义了animation-name: aa bb; 在animation-duration中应该有相应的值，例如animation-name: 2s 4s;或者其他）。如果对于其他动画属性值的列表不具有相同的长度，`animation-name`列表的长度决定了启动动画时检查每个列表项的数量。列表是从第一个值开始匹配：不使用尾部剩余的值。如果其他属性中的一个没有足够的逗号分隔的值去匹配`animation-name`属性值的数量时，用户代理必须通过列表中的值计算，直到有足够的值。这些截断和重复不影响属性的计算值。
+
+ - 名称：`animation-name`
+ - 取值：`<single-animation-name> [ ‘,’ <single-animation-name> ]*`
+ - 初始值：`none`
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+ 
+其中：
+
+```c
+<single-animation-name> = none | <IDENT>
+```
+
+### 4.3 `animation-duration`属性
+
+`animation-duration`属性一个动画完成一个周期的时间。
+
+ - 名称：`animation-duration`
+ - 取值：`<time> [, <time>]*`
+ - 初始值：`0s`
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+
+初始值为`0s`，这意味着动画不花时间。当持续时间为`0s`时，`animation-fill-mode`仍然会被应用，所以一个动画填充为`backwards`将在一个延迟时间（如果有的话）后显示`0%`的关键帧，填充为`forwards`的将显示`100%`的关键帧，即使动画是瞬时的。同样，动画事件也会被触发。一个负的`animation-duration`值将导致该声明无效。
+
+### 4.4 `animation-timing-function`属性
+
+`animation-timing-function`属性描述了动画在一个周期内如何进展。更多关于缓动函数：http://www.w3.org/TR/css3-animations/#CSS3-TRANSITIONS
+
+ - 名称：`animation-timing-function`
+ - 取值：`<single-timing-function> [ ‘,’ <single-timing-function> ]*`
+ - 初始值：`ease`
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+
+### 4.5 `animation-iteration-count`属性
+
+这个属性看名字就能看出来了，它定义动画运行周期的次数。初始值为`1`，意味着动画会从开始到结束运行一次。一个`infinite`值将会使动画运行无限次。非整数的值将会导致动画运行到一个循环的一部分结束。`animation-iteration-count`属性值为负值时是无效的。这个属性通常结合`animation-direction`属性值的`alternate`使用，这会导致动画交替运行。
+
+ - 名称：`animation-iteration-count`
+ - 取值：`<single-animation-iteration-count> [ ‘,’ <single-animation-iteration-count> ]*`
+ - 初始值：1
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+
+其中：
+
+```c
+<single-animation-iteration-count> = infinite | <number>
+```
+
+### 4.6 `animation-direction`属性
+
+`animation-direction`属性定义了动画运行的方向。当一个动画运行是`reverse`（倒着运行）时，缓动函数也将是相反的。例如，当指定的缓动函数为`ease-in`，倒着运行时缓动函数为`ease-out`。
+
+ - 名称：`animation-direction`
+ - 取值：`<single-animation-direction> [ ‘,’ <single-animation-direction> ]*`
+ - 初始值：`normal`
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+
+其中：
+
+```c
+<single-animation-direction> = normal | reverse | alternate | alternate-reverse
+```
+
+属性值的意义：
+
+**normal**
+动画的所有迭代按着指定的运行
+
+**reverse**
+动画的所有迭代按着定义的相反方向来运行
+
+**alternate**
+动画周期在奇数次按着`normal`方向运行，偶数次按着`reverse`方向运行。也就是交替运行
+
+**alternate-reverse**
+这个和`alternate`相反。奇数次按着`reverse`方向运行，偶数次按着`normal`方向运行
+
+### 4.7 `animation-play-state`属性
+
+`animation-play-state`属性定义了动画是否运行还是暂停。一个运行中的动画可以通过设置该属性为`pasued`。为了继续运行这个暂停的动画可以设置该属性为`running`。一个暂停的动画将继续处于静止状态显示动画的当前值，就好像动画的时间是常数。当已暂停的动画被恢复，它从当前值重新启动，而没必要从动画的开始。
+
+ - 名称：`animation-play-state`
+ - 取值：`<single-animation-play-state> [ ‘,’ <single-animation-play-state> ]*`
+ - 初始值：`running`
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+
+其中：
+
+```c
+<single-animation-play-state> = running | paused
+```
+
+### 4.8 `animation-delay`属性
+
+`animation-delay`属性定义了动画什么时候开始。它允许动画开始执行一段时间（就是延迟一段时间执行）后在它被应用之后。当`animation-delay`的值为`0s`，意味着动画会在被应用后立即执行。否则，该值指定了从动画被应用时刻的偏移，以及动画将用该偏移延迟执行。
+
+如果`animation-delay`的值是负的时间偏移，则动画将在它被应用的时刻执行，但是会出现在指定的偏移开始执行。也就是说，动画会出现从运行周期的一部分开始。
+
+ - 名称：`animation-delay`
+ - 取值：`<time> [, <time>]*`
+ - 初始值：0s
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+
+### 4.9 `animation-fill-mode`属性
+
+`animation-fill-mode`属性定义了什么值被应用在动画之外的执行时间。默认情况下，动画不会影响在它被应用的时间和它开始执行的时间之间的属性值。同样，默认情况下动画也不会影响在动画结束后的属性值。`animation-fill-mode`可以覆盖这种行为。
+
+如果`animation-fill-mode`的值为`backwards`，则动画会应用在定义在动画第一个迭代开始的关键帧的属性值，在定义在`animation-delay`的时间之间。
+
+如果`animation-fill-mode`的值为`forwards`，则在动画结束后，动画将应用在动画结束后的属性值。
+
+如果`animation-fill-mode`的值为`both`，则动画会遵循`backwards`和`forwards`的规则。也就是说，它会扩展两个方向的动画属性。
+
+ - 名称：`animation-fill-mode`
+ - 取值：`<single-animation-fill-mode> [ ‘,’ <single-animation-fill-mode> ]*`
+ - 初始值：`none`
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：指定的值
+
+其中：
+
+```c
+<single-animation-fill-mode> = none | forwards | backwards | both
+```
+
+### 4.10 `animation`简写属性
+
+`animation`属性是一个逗号分隔的动画定义列表，其中结合了7个动画属性成单个组件的值。
+
+ - 名称：`animation`
+ - 取值：`<single-animation> [ ‘,’ <single-animation> ]*`
+ - 初始值：看单个属性的初始值
+ - 应用于：所有元素，`::before`和`::after`伪元素
+ - 继承：无
+ - 可否动画：否
+ - 百分比：`N/A`
+ - 媒体：视觉
+ - 计算值：看单个属性
+
+其中：
+
+```c
+<single-animation> = <single-animation-name> || <time> || <single-animation-timing-function> || <time> || <single-animation-iteration-count> || <single-animation-direction> || <single-animation-fill-mode> || <single-animation-play-state>
+```
+
+要注意，在每个动画定义中顺序是非常重要的：第一个`<time>`值被赋给`animation-duration`，第二个`<time>`值赋给`animation-delay`。
+
+## 5 动画事件
+
+事件相关可以自己看文档啦：http://www.w3.org/TR/css3-animations/#animation-events
+
+这里说下动画的三个事件：
+
+ - animationStart：发生在动画开始
+ - animationEnd：发生在动画结束
+ - animationiteration：发生在动画每个迭代的结束

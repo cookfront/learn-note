@@ -221,4 +221,101 @@ p[title*="hello"]
 
 #### 3.3.3 属性选择器和命名空间
 
-在属性选择器中的属性名是以[CSS限定名](http://www.w3.org/TR/css3-namespace/#css-qnames)给出：
+在属性选择器中的属性名是以[CSS限定名](http://www.w3.org/TR/css3-namespace/#css-qnames)给出：先前已声明的命名空间前缀可预先准备给由命名空间分隔符`|`分隔的属性名。为了保持命名空间在`XML`中的推荐，默认的命名空间不会应用到属性中，因此，没有命名空间组件的属性选择器只应用到那些没有命名空间的属性。一个`*`可能被用于命名空间前缀以表明该选择器可匹配所有属性名而不用考虑属性的命名空间。
+
+一个属性选择器有一个属性名包含了命名空间前缀，但是该命名空间没有在之前定义，这时该属性选择器是一个无效的选择器。
+
+`CSS`实例：
+
+```css
+@namespace foo "http://www.example.com";
+[foo|att=val] { color: blue }
+[*|att] { color: yellow }
+[|att] { color: green }
+[att] { color: green }
+```
+
+第一条规则只匹配有在`http://www.example.com`命名空间下的属性`att`，且值为`val`的元素。
+
+第二条规则只匹配具有属性`att`，且不管属性的命名空间。
+
+最后两条规则是等价的，且只匹配具有属性`att`，且该属性不在任何命名空间下的元素。
+
+#### 3.3.4 在`DTDs`中的默认属性值
+
+属性选择器代表了在文档树中的属性值。文档树如何构建是在选择器之外的。在某些文档格式中，默认的属性值可以定义在`DTD`或其他地方，如果它们出现在文档树中的话，这些只能通过属性选择器来选择。选择器的设计应该使它们工作，不管默认值是否包含在文档树中。
+
+例如，一个`XML`的用户代理可能并不需要去读取一个`DTD`的`外部子集`，但是需要在文档的`内部子集`寻找默认属性值（看这里：[XML10](http://www.w3.org/TR/css3-selectors/#XML10)）。取决于用户代理，一个定义在`DTD`的外部子集的默认的属性值可能会或可能不会出现在文档树中。
+
+一个识别`XML`命名空间的用户代理可能不需要利用它的对于那个命名空间的认知来对待默认的属性值，就好像它们就在文档中。（例如，一个`XHTML`的用户代理不需要利用它内置的该`XHTML DTD`的认知）
+
+**实例：**
+
+考虑一个元素`example`，它有一个属性`radix`，且其默认值为`decimal`。`DTD`片段可能为：
+
+```html
+<!ATTLIST EXAMPLE radix (decimal,octal) "decimal">
+```
+
+如果样式表包含了这些规则：
+
+```css
+EXAMPLE[radix=decimal] { /*... default property settings ...*/ }
+EXAMPLE[radix=octal]   { /*... other settings...*/ }
+```
+
+第一条规则可能不会匹配那些`radix`属性被设置为默认值的元素，即为明确设置。为了捕获所有情况，属性选择器的默认值必须被舍弃：
+
+```css
+EXAMPLE                { /*... default property settings ...*/ }
+EXAMPLE[radix=octal]   { /*... other settings...*/ }
+```
+
+### 3.4 类选择器
+
+与`HTML`工作，作者可能会使用`句点`符号（也就是`.`）来代替`~=`符号表示`class`属性。因此，对于`HTML`，`div.value`和`div[class~=value]`是具有同样的含义的。该属性值必须紧跟在`.`符号后面。
+
+如果用户代理具有命名空间特定的知识，且允许它确定哪个属性是`class`属性用于各个命名空间，用户代理可能使用`.`符号在`XML`文档中应用选择器。
+
+**CSS实例：**
+
+我们可以通过以下方式来分配样式给所有`class~="pastoral"`的元素：
+
+```css
+*.pastoral { color: green }  /* all elements with class~=pastoral */
+```
+
+或者只是：
+
+```css
+.pastoral { color: green }  /* all elements with class~=pastoral */
+```
+
+以下只分配样式给所有`class~="pastoral"`的`h1`元素：
+
+```css
+H1.pastoral { color: green }  /* H1 elements with class~=pastoral */
+```
+
+### 3.5 ID选择器
+
+文档语言可以包含声明为ID类型的属性。ID类型属性的特殊之处在于在一致性的文档中没有两个这样的属性可以有相同的值，且不管携带该属性的元素类型；无论什么文档语言，一个ID类型属性可被用于唯一地标识其元素。
+
+ID选择器是以`#`开头，然后紧跟着ID值。
+
+**实例：**
+
+以下ID选择器代表了一个`h1`元素，且它的id属性值为`chapter1`
+
+```css
+h1#chapter1
+```
+
+不过很少会像上面这样写，一般是像下面这样：
+
+```css
+#chapter1
+```
+
+### 3.6 伪类
+

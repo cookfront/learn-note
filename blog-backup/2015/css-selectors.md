@@ -765,8 +765,162 @@ button:not([DISABLED])
 *|*:not(*)
 ```
 
-## 7. 伪元素
+## 4. 伪元素
 
-### 7.1 `::first-line`伪元素
+在文档语言规定之外，伪元素创建了一个关于文档树的抽象引用。例如，文档语言不提供机制来访问的一个元素的内容的第一个字母或第一行。伪元素允许作者引用这个本来无法访问的信息。伪元素还能提供作者一种方式去引用源文档中不存在的内容（`::before`和`::after`）。
 
-### 
+一个伪元素是由`::`跟着伪元素名称组成的。
+
+`::`符号在文档中被引入是为了在伪类和伪元素之间建立一个区别。为了与现有的样式表的兼容性，用户代理必须同样接受一个冒号`:`的写法。
+
+### 4.1 `::first-line`伪元素
+
+`::first-line`伪元素描述了元素的内容中被格式化的第一行。
+
+**CSS实例：**
+
+```css
+p::first-line { text-transform: uppercase }
+```
+
+上面的规则意思为将每个`p`元素的第一行的每个字母变为大写。
+
+注意，第一行的长度取决于许多因素，包括该页面的宽度，字体大小等。因此，一个普通的HTML段落，如：
+
+```html
+<P>This is a somewhat long HTML 
+paragraph that will be broken into several 
+lines. The first line will be identified
+by a fictional tag sequence. The other lines 
+will be treated as ordinary lines in the 
+paragraph.</P>
+```
+
+其中折行如下所示：
+
+```html
+THIS IS A SOMEWHAT LONG HTML PARAGRAPH THAT
+will be broken into several lines. The first
+line will be identified by a fictional tag 
+sequence. The other lines will be treated as 
+ordinary lines in the paragraph.
+```
+
+该段落可能可能被用户代理`重写`，包括虚构的标签`::first-line`。这个虚构的标签序列有助于说明属性如何继承。
+
+```html
+<P><P::first-line> This is a somewhat long HTML 
+paragraph that </P::first-line> will be broken into several
+lines. The first line will be identified 
+by a fictional tag sequence. The other lines 
+will be treated as ordinary lines in the 
+paragraph.</P>
+```
+
+如果伪元素折断了一个真实的元素，所需的效果通常被描述为一个虚构的标签序列关闭，然后重新打开该元素。例如：
+
+```html
+<P><SPAN class="test"> This is a somewhat long HTML
+paragraph that will be broken into several
+lines.</SPAN> The first line will be identified
+by a fictional tag sequence. The other lines 
+will be treated as ordinary lines in the 
+paragraph.</P>
+```
+
+用户代理会像下面这样处理：
+
+```html
+<P><P::first-line><SPAN class="test"> This is a
+somewhat long HTML
+paragraph that will </SPAN></P::first-line><SPAN class="test"> be
+broken into several
+lines.</SPAN> The first line will be identified
+by a fictional tag sequence. The other lines
+will be treated as ordinary lines in the 
+paragraph.</P>
+```
+
+#### 4.1.1 CSS中格式化的第一行的定义
+
+在CSS中，`::first-line`伪元素只能在`block-like`容器上有效果，这些容器有`block box`，`inline-block`，`table-caption`和`table-cell`。
+
+一个元素的格式化第一行可能发生在相同流的一个`block-level`后代中（例如，一个`block-level`后代没有脱离流）。例如，在`<DIV><P>This line...</P></DIV>`中`DIV`的第一行为`p`元素的第一行。
+
+`table-cell`和`inline-block`的第一行不能成为一个祖先元素的格式化的第一行。因此，在`<DIV><P STYLE="display: inline-block">Hello<BR>Goodbye</P> etcetera</DIV>`中，`DIV`的格式化第一行不是`Hello`的那一行。
+
+一个用户代理应当表现的就好像`::first-line`的虚拟开始标签伪元素被嵌套到最内层的`block-level`元素中。例如：
+
+```html
+<DIV>
+  <P>First paragraph</P>
+  <P>Second paragraph</P>
+</DIV>
+```
+
+加上虚拟标签后：
+
+```html
+<DIV>
+  <P><DIV::first-line><P::first-line>First paragraph</P::first-line></DIV::first-line></P>
+  <P><P::first-line>Second paragraph</P::first-line></P>
+</DIV>
+```
+
+`::first-line`伪元素类似于一个`inline-level`元素，但有一定的限制。以下CSS属性应用到一个`::first-line`伪元素：字体属性、背景属性、颜色属性、`word-spacing`，`letter-spacing`，`text-decoration`，`vertical-align`，`text-transform`，`line-height`。用户代理也可能应用其他属性。
+
+在CSS继承时，发生在第一行的子元素的一部分只从`::first-line`伪元素继承`::first-line`上可应用的属性。对于所有的其他属性，继承时从第一行伪元素的非鱼伪元素父元素中继承。
+
+### 4.2 `::first-letter`伪元素
+
+`::first-letter`代表了一个元素的第一个字母，如果在该行中在它前面没有任何其他内容。`::first-letter`伪元素可能被用于`首字母大写`等用途。
+
+标点符号，即第一个字母前面或后面也应包括在内。
+
+![enter image description here](http://www.w3.org/TR/css3-selectors/first-letter2.png)
+
+当第一个字母为数字时，`::first-line`也同样被应用，例如，在`67 million dollars is a lot of money.`中的`6`。
+
+#### 4.2.1 在CSS中的应用
+
+在CSS中，`::first-letter`伪元素只能在`block-like`容器上有效果，这些容器有`block`，`list-item`，`inline-block`，`table-caption`和`table-cell`。
+
+`::first-letter`伪元素可和所有这些包含文本的元素或有一个后代包含文本且在相同的流的元素使用。用户代理也应该表现为好像虚拟的标签被加上。
+
+**实例：**
+
+```html
+<div>
+<p>The first text.
+```
+
+表现为：
+
+```html
+<div>
+<p><div::first-letter><p::first-letter>T</...></...>he first text.
+```
+
+`table-cell`和`inline-block`的第一个字母不能成为一个祖先元素的的第一字母。因此，在`<DIV><P STYLE="display: inline-block">Hello<BR>Goodbye</P> etcetera</DIV>`中，`DIV`的第一字母不是`H`。实际上，`DIV`没有第一个字母。
+
+如果元素是一个`list item`，`::first-letter`应用在主体框标记后的第一个字母。如果`list item`设置了`list-style-position: inside`，用户代理将忽略该列表项的`::first-letter`。如果一个元素有`::before`和`::after`内容，`::first-letter`应用的时候包含了`::before`和`::after`的内容。
+
+**实例：**
+
+例如：
+
+```css
+p::before {content: "Note: "}
+```
+
+`p::first-letter`匹配`Note`中的`N`。
+
+在CSS中，`::first-letter`伪元素类似于一个`inline-level`元素，如果该元素的`float`为`none`；否则，它和浮动元素相同。
+
+### 4.3 空白
+
+这里是故意留白的。（之前定义了`::selection`伪元素）
+
+### 4.4 `::before`和`::after`伪元素
+
+这两个伪元素在[CSS21](http://www.w3.org/TR/css3-selectors/#CSS21)中定义。

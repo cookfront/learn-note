@@ -402,15 +402,368 @@ p.note:target
 
 #### 3.6.3 语言伪类`:lang`
 
+如果文档语言指定了一个元素的人类语言如何确定，则可以使用选择器来代表基于该语言的元素。例如，在`HTML`中，语言是由`lang`属性和从`meta`元素的信息或`HTTP`协议联合决定的。`XML`使用一个叫做`xml:lang`的属性，并且还可能有其他的文档语言特定的方法，用于确定使用的语言。
 
+伪类`:lang(C)`代表了在语言`C`中的元素。一个元素是否通过`:lang`被代表是完全基于元素的语言值是否和标识符`C`相等，或者是以标识符`C`开始并紧跟着`-`。对`C`和元素语言值的匹配是不区分大小写的。标识符`C`不必须是一个有效的语言名称。
+
+`C`必须是一个有效的`CSS`标识符，且不能为空。
+
+实例：
+
+```css
+html:lang(fr-be)
+html:lang(de)
+:lang(fr-be) > q
+:lang(de) > q
+```
 
 #### 3.6.4 UI元素状态伪类
 
+##### 3.6.4.1 `:enabled`和`:disabled`伪类
+
+`:enabled`伪类代表了处于激活状态的用户界面元素；这些元素都有相应的禁用状态。
+
+相反地，`:disabled`伪类代表了处于禁用状态的用户界面元素；这些元素都有相应的激活状态。
+
+什么构成激活状态、禁用状态和用户界面元素是语言决定的。在一个典型的文档中大多数元素即不会是`:enabled`也不会是`:disabled`。
+
+那什么元素有这种状态呢，`input`、`textarea`等元素。
+
+```html
+<style>
+input:disabled {
+	border: 1px solid blue;
+}
+input:enabled {
+	border: 1px solid red;
+}
+</style>
+	
+<input type="text" disabled>
+<input type="text">
+```
+
+##### 3.6.4.2 `:checked`伪类
+
+单选框和复选框元素可以被用户切换。一些菜单项被勾选，当用户选择它们的时候。`:checked`伪类就是应用在这些有`selected`和`checked`属性的元素，这些元素包含`checkbox`、`radio`、`option`等。
+
+实例：
+
+```html
+<style>
+input:checked + label {
+	color: red;
+}
+</style>
+	
+<input type="checkbox">
+<label>checkbox</label>
+<input type="radio">
+<label>radio</label>
+```
+
+##### 3.6.4.3 `:indeterminate`伪类
+
+这个是对于`radio`和`checkbox`有时处于一种模糊的状态，即不是`checked`，也不是`unchecked`。
+
 #### 3.6.5 结构伪类
+
+选择器引入了结构伪类的概念，允许基于在文档树中确定的信息来选择，但是不能通过其他简单选择器或连结符来表示。
+
+当在它父亲的孩子列表中计算一个元素的位置时，独立文本和其他非元素节点不计算在内当计算在其父亲的孩子列表中的元素的位置，该指数的编号从1开始。
+
+##### 3.6.5.1 `:root`伪类
+
+`:root`伪类代表了文档的根元素。在`HTML4`中总是`html`元素。
+
+##### 3.6.5.2 `:nth-child()`伪类
+
+`:nth-child(an+b)`伪类可以代表在文档树中在它之前的有`an+b-1`个兄弟的元素，`n`可以为任何的正数或0，且有一个父元素。对于大于0的`a`和`b`，这有效的将元素的孩子分成每组`a`个元素，然后选择每组中的第`b`个元素。例如，这使得选择器解决`table`中每隔一行的问题，并可以用于段落文本中每四个交替颜色。`a`和`b`的值必须为整数。元素的子元素的索引是从`1`开始（要注意不是`JavaScript`等语言的0哟）。
+
+除此之外，`:nth-child()`还可以接受`odd`和`even`作为参数。`odd`其实等价于`2n+1`，`even`其实等价于`2n`。
+
+`:nth-child()`的参数必须匹配以下语法规则，`INTEGER`匹配`[0-9]+`，标记的其余部分是由[Lexical scanner](http://www.w3.org/TR/css3-selectors/#lex)给出。
+
+```c
+nth
+  : S* [ ['-'|'+']? INTEGER? {N} [ S* ['-'|'+'] S* INTEGER ]? |
+         ['-'|'+']? INTEGER | {O}{D}{D} | {E}{V}{E}{N} ] S*
+  ;
+```
+
+**实例：**
+
+```css
+tr:nth-child(2n+1) /* represents every odd row of an HTML table */
+tr:nth-child(odd)  /* same */
+tr:nth-child(2n+0) /* represents every even row of an HTML table */
+tr:nth-child(even) /* same */
+
+/* Alternate paragraph colours in CSS */
+p:nth-child(4n+1) { color: navy; }
+p:nth-child(4n+2) { color: green; }
+p:nth-child(4n+3) { color: maroon; }
+p:nth-child(4n+4) { color: purple; }
+```
+
+当`b`的值前面有一个负号，则`+`字符必须从表达式中移除。
+
+**实例：**
+
+```css
+:nth-child(10n-1)  /* represents the 9th, 19th, 29th, etc, element */
+:nth-child(10n+9)  /* Same */
+:nth-child(10n+-1) /* Syntactically invalid, and would be ignored */
+```
+
+当`a=0`，则`an`部分可以不包含。当`an`未包含且`b`为非负数，则在`b`前面的`+`字符也可省略。
+
+**实例：**
+
+```css
+foo:nth-child(0n+5)   /* represents an element foo that is the 5th child
+                         of its parent element */
+foo:nth-child(5)      /* same */
+```
+
+当`a=1`或`a=-1`，数字可以从规则中省略。
+
+**实例：**
+
+```css
+bar:nth-child(1n+0)   /* represents all bar elements, specificity (0,1,1) */
+bar:nth-child(n+0)    /* same */
+bar:nth-child(n)      /* same */
+bar                   /* same but lower specificity (0,0,1) */
+```
+
+当`b=0`，则每一个第`a`个元素被选择。在这种情况，`+b`或`-b`部分可能省略，除非`a`部分已经被省略。
+
+**实例：**
+
+```css
+tr:nth-child(2n+0) /* represents every even row of an HTML table */
+tr:nth-child(2n) /* same */
+```
+
+空白是允许出现在`(之后`或`)`之前，也可以出现在`+`或`-`任何一方以分割`an`和`b`部分，当它们都没有省略的时候。
+
+**有效的实例：**
+
+```css
+:nth-child( 3n + 1 )
+:nth-child( +3n - 2 )
+:nth-child( -n+ 6)
+:nth-child( +6 )
+```
+
+下面是无效的：
+
+```css
+:nth-child(3 n)
+:nth-child(+ 2n)
+:nth-child(+ 2)
+```
+
+当`a`和`b`都为0时，该伪类没有选择文档树中的任何元素。
+
+`a`的值可能为负数，但是只有在`an+b`的正数位置才可以被选择。
+
+**实例：**
+
+```css
+html|tr:nth-child(-n+6)  /* represents the 6 first rows of XHTML tables */
+```
+
+##### 3.6.5.3 `:nth-last-child()`伪类
+
+其实这个伪类和前面的`:nth-child()`是很类似的，它只是从最后一个元素开始计算索引。`:nth-last-child(an+b)`伪类可以代表在文档树中在它之`后`的有`an+b-1`个兄弟的元素，`n`可以为任何的正数或0，且有一个父元素。这个可以参考上面的`:nth-child()`语法。它同样接受`odd`和`even`作为参数。
+
+实例：
+
+```css
+tr:nth-last-child(-n+2)    /* represents the two last rows of an HTML table */
+
+foo:nth-last-child(odd)    /* represents all odd foo elements in their parent element,
+                              counting from the last one */
+```
+
+##### 3.6.5.4 `:nth-of-type()`伪类
+
+这个伪类其实可以看成对`:nth-child()`施加了一个限制，那就是元素类型必须相同。`:nth-of-type(an+b)`伪类可以代表在文档树中在它之前有`an+b-1`个兄弟，且`元素类型必须相同`的元素，`n`可以为任何的正数或0，且有一个父元素。这个可以参考上面的`:nth-child()`语法。它同样接受`odd`和`even`作为参数。
+
+**实例：**
+
+```css
+img:nth-of-type(2n+1) { float: right; }
+img:nth-of-type(2n) { float: left; }
+```
+
+再看一个例子：
+
+```css
+<style>
+/*#demo p:nth-of-type(even) {
+	color: red;
+}*/
+#demo :nth-child(even) {
+	color: blue;
+}
+</style>
+
+<div id="demo">
+	<p>1</p>
+	<p>2</p>
+	<p>3</p>
+	<a href="">4</a>
+	<p>5</p>
+	<p>6</p>
+	<p>7</p>
+</div>
+```
+
+你可以在浏览器中对比以下这两个选择器的效果哟。
+
+##### 3.6.5.5 `:nth-last-of-type()`伪类
+
+这个伪类和`:nth-of-type()`，只是从最后一个元素开始计算索引啦。`:nth-last-of-type(an+b)`伪类可以代表在文档树中在它之`后`有`an+b-1`个兄弟，且`元素类型必须相同`的元素，`n`可以为任何的正数或0，且有一个父元素。这个可以参考上面的`:nth-child()`语法。它同样接受`odd`和`even`作为参数。
+
+**实例：**
+
+```css
+body > h2:nth-of-type(n+2):nth-last-of-type(n+2)
+```
+
+##### 3.6.5.6 `:first-child`伪类
+
+和`:nth-child(1)`相同。`:first-child`伪类代表一个元素为其他元素的第一个子元素。
+
+实例：
+
+下面的例子代表了一个`p`元素是`div`中的第一个元素。
+
+```css
+div > p:first-child
+```
+
+选择器可以匹配下面HTML中`div`中的`p`：
+
+```html
+<p> The last P before the note.</p>
+<div class="note">
+   <p> The first P inside the note.</p>
+</div>
+```
+
+但是不能匹配下面`div`中`p`元素，因为`p`不是`div`中的第一个子元素。
+
+```html
+<p> The last P before the note.</p>
+<div class="note">
+   <h2> Note </h2>
+   <p> The first P inside the note.</p>
+</div>
+```
+
+##### 3.6.5.7 `:last-child`伪类
+
+和`:nth-last-child(1)`相同。`:last-child`伪类代表一个元素为其他元素的最后一个子元素。
+
+实例：
+
+```css
+ol > li:last-child
+```
+
+##### 3.6.5.8 `:first-of-type`伪类
+
+和`:nth-of-type(1)`相同。`:first-of-type`伪类代表一个元素，它是父元素中第一个具有相同元素名的元素。
+
+实例：
+
+```css
+dl dt:first-of-type {
+	color: red;
+}
+
+<dl>
+ <dt>gigogne</dt>
+ <dd>
+  <dl>
+   <dt>fusée</dt>
+   <dd>multistage rocket</dd>
+   <dt>table</dt>
+   <dd>nest of tables</dd>
+  </dl>
+ </dd>
+</dl>
+```
+
+##### 3.6.5.9 `:last-of-type`伪类
+
+和`:nth-last-of-type(1)`相同。`:last-of-type`伪类代表一个元素，它是父元素中最后一个具有相同元素名的元素。
+
+实例：
+
+```css
+tr > td:last-of-type
+```
+
+##### 3.6.5.10 `:only-child`伪类
+
+该伪类代表了一个元素，它的父元素除了它没有其他元素。其实等价于`:first-child:last-child`。
+
+##### 3.6.5.11 `:only-of-type`伪类
+
+该伪类代表了一个元素，它的父元素除了它没有其他元素，且和指定的元素类型相同。等价于`:first-of-type:last-of-type `。
+
+##### 3.6.5.12 `:empty`伪类
+
+`:empty`伪类代表了一个元素始终没有子元素。
+
+**实例：**
+
+`p:empty`可以代表以下`html`片段：
+
+```htmL
+<p></p>
+```
+
+而`foo:empty`不能代表以下片段：
+
+```html
+<foo>bar</foo>
+<foo><bar>bla</bar></foo>
+<foo>this is not <bar>:empty</bar></foo>
+```
 
 #### 3.6.6 空白
 
+本节有意留为空白。（本节之前定义了一个`:contains()`伪类）
+
 #### 3.6.7 否定伪类
+
+否定伪类，`:not(x)`是一个功能性的符号，它接受一个简单选择器作为参数。它代表了这些不是参数所代表的元素。
+
+否定不能嵌套，`:not(:not(...))`是无效的。要注意当伪元素不是简单选择器，所以它们不是`:not()`的有效参数。
+
+**实例：**
+
+以下选择器匹配在HTML中没有被禁用的按钮：
+
+```css
+button:not([DISABLED])
+```
+
+默认的命名空间声明不会影响否定伪类的参数，除非该参数是一个通用选择器或类型选择器。
+
+**实例：**
+
+假设默认的命名空间为`http://example.com/`，下面的选择器代表了所有不在该命名空间的元素：
+
+```css
+*|*:not(*)
+```
 
 ## 7. 伪元素
 

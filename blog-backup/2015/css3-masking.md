@@ -46,3 +46,7 @@ CSS Masking Module Level 1
 ## 2. 模块交互
 
 该规范定义了一组CSS属性，这组属性会影响元素被应用的属性的视觉渲染。在元素根据[[CSS21]](http://www.w3.org/TR/css-masking-1/#biblio-css21)中的视觉格式模型确定尺寸和位置后，这些效果然后被应用。
+
+## 3. 取值
+
+该规范遵循[CSS21](http://www.w3.org/TR/css-masking-1/#biblio-css21)中的(http://www.w3.org/TR/css-masking-1/#biblio-css21)[CSS属性定义约定](http://www.w3.org/TR/CSS21/about.html#property-defs)。一些基本形状定义在`CSS Shapes Module Level 1`中[[CSS-SHAPES]](http://www.w3.org/TR/css-masking-1/#biblio-css-shapes)。在该规范中没有定义的值类型定义在`CSS Values and Units Module Level 3`[CSS3VAL](http://www.w3.org/TR/css-masking-1/#biblio-css3val)。

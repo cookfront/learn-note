@@ -1,0 +1,31 @@
+.slider-pager {
+	position: absolute;
+	bottom: 10px;
+	right: 30px;
+	text-align: center;
+
+	> li {
+		float: left;
+		width: 16px;
+		height: 16px;
+		background: #ccc;
+		color: #fff;
+		margin: 0 5px;
+		cursor: pointer;
+
+		&.selected {
+			background: #f60;
+		}
+	}
+}
+.slider-prev,
+.slider-next {
+	position: absolute;
+	top: 50px;
+}
+.slider-prev {
+	left: 10px;
+}
+.slider-next {
+	right: 10px;
+}

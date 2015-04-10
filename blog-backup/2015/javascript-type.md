@@ -10,7 +10,7 @@ JavaScript  类型与类型转换
 
 ## 类型检测
 
-说到类型检测主要包括了：`typeof`、`instanceof`和`Object.prototype.toString.call(xxx)或{}.prototype.toString.call(xxx)。这里在玉伯的博文[Sea.js 源码解析（三）](https://github.com/lifesinger/lifesinger.github.com/issues/175)`中有讨论过`Object.prototype.toString.call(xxx)或{}.prototype.toString.call(xxx)`哪一个更好，有兴趣的可以看一看。
+说到类型检测主要包括了：`typeof`、`instanceof`和`Object.prototype.toString.call(xxx)或{}.toString.call(xxx)。这里在玉伯的博文[Sea.js 源码解析（三）](https://github.com/lifesinger/lifesinger.github.com/issues/175)`中有讨论过`Object.prototype.toString.call(xxx)或{}.toString.call(xxx)`哪一个更好，有兴趣的可以看一看。
 
 ### typeof
 
@@ -83,7 +83,7 @@ function INSTANCE_OF(F) {
 }
 ```
 
-### Object.prototype.toString.call(xxx)或{}.prototype.toString.call(xxx)
+### Object.prototype.toString.call(xxx)或{}.toString.call(xxx)
 
 这两个的区别在[JavaScript's typeof operator](http://blog.alexanderdickson.com/javascript-typeof)中有说到：`You can always swap {} with Object.prototype, to save creating an object just to exploit its toString() method.`。也就是使用`Object.prototype.toString`会节省创建一个对象。
 

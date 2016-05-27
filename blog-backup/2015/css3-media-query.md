@@ -1,5 +1,8 @@
-CSS3 Media Query
-========
+title: CSS3 Media Query
+date: 2015-01-07 11:47:42
+categories: CSS
+tags: [CSS3, Media Query]
+---
 
 2015年的第一篇文章，新的一年更加努力的学习前端，重新开始，之前翻译的文章以及自己写的和一些笔记都放在了这里[2014‘s Blog](https://github.com/cookfront/learn-note/tree/master/blog-backup/2014)。
 

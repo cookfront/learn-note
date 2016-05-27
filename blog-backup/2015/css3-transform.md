@@ -1,5 +1,8 @@
-CSS3 Transform
-========
+title: CSS3 Transform
+date: 2015-01-18 11:47:42
+categories: CSS
+tags: [CSS3, Transform]
+---
 
 本文是[CSS Transforms Module Level 1](http://www.w3.org/TR/css-transforms-1/)的翻译，翻译主要还是自己去熟悉标准、学习标准，最后再分享出来。文中如有读不通的地方可以移步官方文档哟，英语渣渣呀。
 
@@ -333,9 +336,9 @@ div {
 
  1. 通过特性矩阵开始
  2. 对于在3D渲染上下文的根和问题元素之间的任何包含块：
-   3. 将被累积的矩阵（accumulated matrix）乘以元素包含块上的透视矩阵（perspective matrix）（如果有包含块的话）。包含块不是必须为一个3D渲染上下文的成员。
-   4. 应用被累积矩阵的平移，等价于元素相对于它的包含块在水平和垂直方向的偏移
-   5. 将被累积的矩阵乘以[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)
+	 3. 将被累积的矩阵（accumulated matrix）乘以元素包含块上的透视矩阵（perspective matrix）（如果有包含块的话）。包含块不是必须为一个3D渲染上下文的成员。
+	 4. 应用被累积矩阵的平移，等价于元素相对于它的包含块在水平和垂直方向的偏移
+	 5. 将被累积的矩阵乘以[变换矩阵](http://www.w3.org/TR/css-transforms-1/#transformation-matrix)
 
 **实例8：**
 

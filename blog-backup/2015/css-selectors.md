@@ -1,5 +1,8 @@
-CSS 选择器
-========
+title: CSS 选择器
+date: 2015-02-05 16:47:42
+categories: CSS
+tags: [selector]
+---
 
 本文是从[Selectors Level 3](http://www.w3.org/TR/css3-selectors/#selector-syntax)提取出的一些重点，如有不懂的地方可以看原文对照。
 
@@ -924,3 +927,5 @@ p::before {content: "Note: "}
 ### 4.4 `::before`和`::after`伪元素
 
 这两个伪元素在[CSS21](http://www.w3.org/TR/css3-selectors/#CSS21)中定义。
+
+

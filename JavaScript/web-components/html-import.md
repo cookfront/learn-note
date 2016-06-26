@@ -1,42 +1,7 @@
-## Template
+HTML Import
+========
 
-[HTML's New Template Tag](http://www.html5rocks.com/zh/tutorials/webcomponents/template/)
-
-## Shadow DOM
-
-[Shadow DOM 101](http://www.html5rocks.com/zh/tutorials/webcomponents/shadowdom/)
-
-## Custom Element
-
-以下内容基于最新的`W3C`的`Custom Element`标准：[Custom Elements](http://w3c.github.io/webcomponents/spec/custom/)。最新的标准和之前的标准接口都有所不同，之前的标准请看这里：[Custom Elements 中文规范](http://w3c-html-ig-zh.github.io/webcomponents/spec-zh/custom/)。也可以看这里关于`Custom Element`的介绍：[Custom Elements](http://www.html5rocks.com/zh/tutorials/webcomponents/customelements/)
-
-### 自定义元素命名
-
-新标准和旧标准中唯一相同的地方就是对于自定义元素的命名。
-
-> 自定义元素类型标识一个自定义元素接口必须和NCName产生方式相匹配的字符串，必须包含一个`U+002D`连字符号字符，且不能包含任何ASCII大写字母。
-
-且自定于元素不能为以下名称中的任何一个：
-
-- annotation-xml
-- color-profile
-- font-face
-- font-face-src
-- font-face-uri
-- font-face-format
-- font-face-name
-- missing-glyph
-
-### 自定义元素类型
-
-自定义元素类型包含：
-
-- customized built-in element
-- autonomous custom elements
-
-## HTML Import
-
-### 链接类型import
+## 链接类型import
 
 为了能在HTML中声明`import`，HTML的`link`标签增加了一个新的链接类型：
 
@@ -65,7 +30,7 @@
 </html>
 ```
 
-### HTMLLinkElement接口扩展
+## HTMLLinkElement接口扩展
 
 ```c
 partial interface HTMLLinkElement {
@@ -138,10 +103,10 @@ linkElement.onload = function() {
 </html>
 ```
 
-### Document接口扩展
+## Document接口扩展
 
 如果对导入的文档调用`open()`，`write()`和`close()`方法会抛出`InvalidStateError`异常。
 
-### document.currentScript
+## document.currentScript
 
-### 样式style
+## 样式style

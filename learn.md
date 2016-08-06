@@ -9,11 +9,12 @@
 ### 工程化
 
 - 热加载
+ - [hot module replacement](https://github.com/webpack/docs/wiki/hot-module-replacement)
  - [探究Webpack中的HMR(hot module replacement)](https://blog.oyyd.net/post/how_does_react_hot_loader_works)
  - [[译] Webpack 用来做模块热替换(hot module replacement)](https://segmentfault.com/a/1190000003872635)
  - [Hot Module Replacement 介绍](http://cupools.github.io/2016/07010/)
+ - [Live Editing JavaScript with Webpack (Part III)](http://jlongster.com/Backend-Apps-with-Webpack--Part-III)
 - webpack
- - [webpack入坑之旅](http://guowenfh.github.io/2016/03/24/vue-webpack-01-base/) 
 
 ### Web Components
 
@@ -21,6 +22,8 @@
 
 - Backbone.js
 - Vue.js
+ - [vuejs-templates文档](http://vuejs-templates.github.io/webpack/index.html)
+ - [vuejs components](https://coligo.io/vuejs-components/)
 - React
 - Angular.js
 

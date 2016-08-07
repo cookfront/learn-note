@@ -24,6 +24,8 @@
 - Vue.js
  - [vuejs-templates文档](http://vuejs-templates.github.io/webpack/index.html)
  - [vuejs components](https://coligo.io/vuejs-components/)
+ - 路由：[vue-router](http://router.vuejs.org/zh-cn/installation.html)
+ - http请求：[vue-resource http请求](https://github.com/vuejs/vue-resource)
 - React
 - Angular.js
 

@@ -44,3 +44,15 @@
 - Ionic
 
 ### 单元测试
+
+## PHP
+
+- [PHP手册](http://php.net/manual/zh/index.php)
+
+## 数据库
+
+- 数据库设计
+
+## Linux
+
+- [Linux工具快速教程](http://linuxtools-rst.readthedocs.io/zh_CN/latest/)

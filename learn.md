@@ -48,6 +48,8 @@
 ## PHP
 
 - [PHP手册](http://php.net/manual/zh/index.php)
+- [PHP之道](http://laravel-china.github.io/php-the-right-way/)
+- [PHP 开发者实践](https://www.gitbook.com/book/ryancao/php-developer-prepares/details)
 
 ## 数据库
 
@@ -56,3 +58,10 @@
 ## Linux
 
 - [Linux工具快速教程](http://linuxtools-rst.readthedocs.io/zh_CN/latest/)
+
+## RESTful API
+
+- [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
+- [撰写安全合格的REST API](https://zhuanlan.zhihu.com/p/20034107)
+- [PRINCIPLES OF GOOD RESTFUL API DESIGN](https://codeplanet.io/principles-good-restful-api-design/)
+- [RESTful API 设计参考文献列表](https://github.com/aisuhua/restful-api-design-references)

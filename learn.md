@@ -22,10 +22,11 @@
 
 - Backbone.js
 - Vue.js
- - [vuejs-templates文档](http://vuejs-templates.github.io/webpack/index.html)
+ - [vuejs-templates](http://vuejs-templates.github.io/webpack/index.html)
  - [vuejs components](https://coligo.io/vuejs-components/)
- - 路由：[vue-router](http://router.vuejs.org/zh-cn/installation.html)
- - http请求：[vue-resource http请求](https://github.com/vuejs/vue-resource)
+ - [vue-router](http://router.vuejs.org/zh-cn/installation.html)
+ - [vue-resource](https://github.com/vuejs/vue-resource)
+ - [vuex](https://github.com/vuejs/vuex)
 - React
 - Angular.js
 
@@ -45,7 +46,11 @@
 
 ### 单元测试
 
+## Node.js
+
 ## PHP
+
+### 教程
 
 - [PHP手册](http://php.net/manual/zh/index.php)
 - [PHP之道](http://laravel-china.github.io/php-the-right-way/)
@@ -53,7 +58,15 @@
 
 ## 数据库
 
-- 数据库设计
+### 书籍
+
+ - 数据库系统概念
+ - 高性能mysql
+
+### 教程
+
+ - [一篇文章，掌握所有开源数据库的现状](http://mp.weixin.qq.com/s?__biz=MzA5NzkxMzg1Nw==&mid=2653159940&idx=1&sn=8dae7a9184290fcc164fc9afe46ee78f&scene=1&srcid=0629y6BPCB62CZehWrcvyarf#wechat_redirect)
+ - [大众点评工程师：从特性说起，漫谈MySQL中的事务及其实现](http://dbaplus.cn/news-11-515-1.html)
 
 ## Linux
 
@@ -65,3 +78,13 @@
 - [撰写安全合格的REST API](https://zhuanlan.zhihu.com/p/20034107)
 - [PRINCIPLES OF GOOD RESTFUL API DESIGN](https://codeplanet.io/principles-good-restful-api-design/)
 - [RESTful API 设计参考文献列表](https://github.com/aisuhua/restful-api-design-references)
+
+## iOS
+
+## Python
+
+## Java
+
+### 教程
+
+ - [互联网新人如何入门和掌握 Java 开发](https://zhuanlan.zhihu.com/p/21371311?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)

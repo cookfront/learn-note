@@ -41,4 +41,19 @@ box-shadow: 10px 10px 20px -5px red, 5px 5px 20px -2px blue;
 box-shadow: inset 10px 10px 20px red;
 ```
 
+利用`box-shadow`的多个外阴影我们可以实现一种类似多边框的效果：
+
+```css
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    box-shadow: 0 0 0 10px #655,
+                0 0 0 15px deeppink,
+                0 0 0 20px green;
+}
+```
+
+还有一种实现多边框效果的是`outline`，不过使用它你最多能得到两层边框，还有个问题就是`outline`不会应用圆角属性，即`outline`不会因为设置`border-radius`而有圆角，而`box-shadow`会有对应的圆角效果。
+
 更多请看标准：[box-shadow](http://www.w3.org/TR/css3-background/#the-box-shadow)

@@ -54,6 +54,6 @@ box-shadow: inset 10px 10px 20px red;
 }
 ```
 
-还有一种实现多边框效果的是`outline`，不过使用它你最多能得到两层边框，还有个问题就是`outline`不会应用圆角属性，即`outline`不会因为设置`border-radius`而有圆角，而`box-shadow`会有对应的圆角效果。
+还有一种实现多边框效果的是`outline`，不过使用它你最多能得到两层边框，还有个问题就是`outline`不会应用圆角属性，即`outline`不会因为设置`border-radius`而有圆角，而`box-shadow`会有对应的圆角效果。但`box-shadow`的缺点就是只能模拟实线边框，如果你要实现虚线边框，`box-shadow`就无能为力了。所以要根据实际场景来选择。
 
 更多请看标准：[box-shadow](http://www.w3.org/TR/css3-background/#the-box-shadow)

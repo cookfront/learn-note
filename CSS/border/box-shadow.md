@@ -18,7 +18,7 @@ box-shadow: none | [inset? && [ <offset-x> <offset-y> <blur-radius>? <spread-rad
  - offset-x：设置阴影的水平偏移量，如果是负值则阴影位于元素左边
  - offset-y：设置阴影的垂直偏移量，如果是负值则阴影位于元素上面
  - blur-radius：值越大，模糊面积越大，阴影就越大越淡。 不能为负值。默认为0，此时阴影边缘锐利
- - spread-radius：伸缩半径，取正值时，阴影扩大；取负值时，阴影.收缩。默认为0，此时阴影与元素同样大
+ - spread-radius：伸缩半径，取正值时，阴影扩大；取负值时，阴影收缩。默认为0，此时阴影与元素同样大
  - color：阴影颜色
 
 如果一个元素设置了`border-radius`，阴影也会有圆角效果。

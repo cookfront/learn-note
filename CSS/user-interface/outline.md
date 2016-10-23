@@ -24,7 +24,7 @@ outline
 }
 ```
 
-语法：
+**语法：**
 
 ```c
 outline: <'outline-color'> || <'outline-style'> || <'outline-width'>

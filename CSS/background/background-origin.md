@@ -15,15 +15,18 @@ background-origin
 
 **语法：**
 
-```c
+- 语法： 
+
+```css
 background-origin: <box> [ , <box> ]*
-
+    
 /* where */
-
+    
 <box> = padding-box | border-box | content-box
 ```
-
-其初始值为`padding-box`。
+* 初始值： `padding-box`
+* 应用于： 所有元素
+* 动画： 否
 
 
 **Demo：**

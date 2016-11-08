@@ -24,10 +24,11 @@ Learn Note
  - [Hot Module Replacement 介绍](http://cupools.github.io/2016/07010/)
  - [Live Editing JavaScript with Webpack (Part III)](http://jlongster.com/Backend-Apps-with-Webpack--Part-III)
 - webpack
+ - [多页为王：webpack多页应用架构专题系列](http://array_huang.coding.me/webpack-book/)
 
 ### Web Components
 
-### MVVM
+### 框架
 
 - Backbone.js
 - Vue.js
@@ -38,6 +39,7 @@ Learn Note
  - [vuex](https://github.com/vuejs/vuex)
 - React
 - Angular.js
+- rxjs
 
 ### ES6/7
 
@@ -92,6 +94,7 @@ Learn Note
 ### 教程
 
  - [Dijkstra's Algorithm](https://www.programmingalgorithms.com/algorithm/dijkstra's-algorithm?lang=PHP)
+ - [学 [数据结构、算法] 的资源推荐](https://zhuanlan.zhihu.com/p/23191006?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ## Linux
 
@@ -118,6 +121,12 @@ Learn Note
 
  - [互联网新人如何入门和掌握 Java 开发](https://zhuanlan.zhihu.com/p/21371311?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
  - [我的Java后端书架 (2016年暖冬4.0版)](http://calvin1978.blogcn.com/articles/bookshelf16.html?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+
+## 架构
+
+### 教程
+
+ - [memcached与redis实现的对比](https://www.qcloud.com/community/article/129?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ## Golang
 

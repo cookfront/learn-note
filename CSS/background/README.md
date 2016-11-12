@@ -1,7 +1,8 @@
 # CSS Background
 
-- [backgrond-clip](./background-clip.md)
-- [backgrond-origin](./background-origin.md)
-- [backgrond-position](./background-position.md)
-- [backgrond-size](./background-size.md)
+- [background][./background.md]
+- [background-clip](./background-clip.md)
+- [background-origin](./background-origin.md)
+- [background-position](./background-position.md)
+- [background-size](./background-size.md)
 

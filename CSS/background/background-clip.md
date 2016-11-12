@@ -15,6 +15,3 @@
 * 应用于： 所有元素
 * 动画： 否
 
-`background-clip` 和 `background-origin` 的不同之处在于 
-
-

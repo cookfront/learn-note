@@ -1,5 +1,4 @@
 # background-size
-#css/background
 
 `background-size` 属性是用于指定背景图片的大小。
 

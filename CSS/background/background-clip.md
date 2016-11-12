@@ -1,5 +1,4 @@
 # background-clip
-#css/background
 
 元素的背景通常绘制在 `border-box` 区域内。这将导致背景将绘制在边框下面的事实，这也是 `CSS`的默认行为。
 

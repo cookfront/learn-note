@@ -1,6 +1,6 @@
 # CSS Background
 
-- [background][./background.md]
+- [background](./background.md)
 - [background-clip](./background-clip.md)
 - [background-origin](./background-origin.md)
 - [background-position](./background-position.md)

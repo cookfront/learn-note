@@ -39,6 +39,8 @@
 - React
 - Angular.js
 - rxjs
+ - [RxJS文档](http://reactivex.io/rxjs/manual/overview.html)
+ - [让我们一起来学习 RxJS](https://fe.ele.me/let-us-learn-rxjs/)
 
 ### ES6/7
 

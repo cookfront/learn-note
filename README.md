@@ -1,15 +1,14 @@
-Learn Note
-========
+# learn-note
 
 ## 前端
 
-### 基础深入（HTML/CSS/JS）
+### HTML
 
-#### HTML
+### CSS
 
-#### CSS
+### JavaScript
 
-#### JavaScript
+- [6周学习计划，攻克JavaScript难关(React/Redux/ES6 etc.)](https://zhuanlan.zhihu.com/p/23412169?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ### 调试/抓包
 
@@ -44,13 +43,6 @@ Learn Note
 ### ES6/7
 
 ### 模块化
-
-- CMD
-- AMD
-- UMD
-- ES6 Module
-
-**教程：**
 
 - [JavaScript 模块化入门Ⅰ：理解模块](https://zhuanlan.zhihu.com/p/22890374?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 

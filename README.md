@@ -9,6 +9,7 @@
 ### JavaScript
 
 - [6周学习计划，攻克JavaScript难关(React/Redux/ES6 etc.)](https://zhuanlan.zhihu.com/p/23412169?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [Exploring EcmaScript Decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.q9y6lds89)
 
 ### 调试/抓包
 

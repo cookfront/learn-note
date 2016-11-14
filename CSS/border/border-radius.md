@@ -1,60 +1,70 @@
-border-radius
-========
+# border-radius
 
-`CSS`的`border-radius`属性用于定义元素的圆角，每一个角都可以定义一个或两个半径。
+`border-radius` 属性用于定于元素的圆角。
 
-![enter image description here](https://developer.mozilla.org/files/3638/border-radius-sh.png)
+`border-radius` 属性是这4个属性的缩写： `border-top-left-radius`、 `border-top-right-radius`、 `border-bottom-right-ridius` 和 `border-bottom-left-radius` 的缩写。
 
-`border`属性是这4个属性的缩写：`border-top-left-radius`、`border-top-right-radius`、`border-bottom-right-ridius`和`border-bottom-left-radius`的缩写。
+`border-radius` 可以设置一到四个值，或由斜杠 `/` 分隔的八个值，在斜杠的每一侧有一到四个值：
 
- - 初始值：
-	 - border-top-left-radius: 0
-	 - border-top-right-radius: 0
-	 - border-bottom-right-radius: 0
-	 - border-bottom-left-radius: 0
- - 应用于：所有元素。但是用户代理在`table`和`inline-table`的元素上`border-collapse`为`collapse`时，`border-radius`没有定义
- - 继承：无
- - 百分比：相对于对应的`border box`的尺寸。例如，水平方向的半径相对于`border box`尺寸的宽度，垂直方向的半径相对于`border box`的高度。
-
-语法：
-
-```c
-border-radius: [ <length> | <percentage> ]{1,4} [ / [ <length> | <percentage> ]{1,4} ]?
+- 如果没有斜杠，它可以接受一个，两个，三个或四个值。
+```
+border-radius: [radius value] [radius value]? [radius value]? [radius value]?; // '?' indicates value is optional
 ```
 
-可以看到`border-radius`也可以设置一到四个值，这个其实和`margin`很想，只是分别对应了`border-top-left-radius`、`border-top-right-radius`、`border-bottom-right-ridius`和`border-bottom-left-radius`。这里说下稍微复杂的`border-radius`设置三个值时的情况：
-
-```c
-border-radius: 20px 30px 10px; 
-
-/* 等价于 */
-border-top-left-radius: 20px;
-border-top-right-radius: 30px;
-border-bottom-right-radius: 10px;
-border-bottom-left-radius: 30px;
-```
-
-可以看到`border-radius`后面还跟着一个`/`的，这又是什么意思呢？这里`/`前面的代表水平方向半径，`/`后面的代表垂直方向的半径。这可以使你更细粒度的控制各个角的`radius`。
+	- 如果设置了四个值，则四个值分别设置每个角的半径；
+	* 如果设置了三个值，
+	* 如果设置了两个值，
+	* 如果设置了一个值，
 
 例如：
 
-```c
-border-radius: 20px/10px;
+```
+border-radius: 1em 3em 2em;
+```	
+
+等价于：
+
+```
+border-top-left-radius:     1em;
+border-top-right-radius:    3em;
+border-bottom-right-radius: 2em;
+border-bottom-left-radius:  3em;
 ```
 
-当然你也可以通过`border-top-left-radius`等来分别设置各个角的`radius`：
+在上述每种情况下，不使用斜杠时，元素的四个角将是圆的，并且它们的曲率将是正圆。
 
-例如：
+![border-radius](http://codropspz.tympanus.netdna-cdn.com/codrops/wp-content/uploads/2014/09/circular-corner-curve.png)
 
-```c
-border-top-left-radius: 20px 10px; /* 这里表示top left处的水平半径为20px，垂直半径为10px */
+- 如果使用了斜杠，则可以设置最多八个值，斜杠两边分别可以设置一到四个值。
+```
+border-radius: [top-left horizontal radius] [top-right horizontal radius]? [bottom-right horizontal radius]? [bottom-left horizontal radius]? / [top-left vertical radius] [top-right vertical radius]? [bottom-right vertical radius]? [bottom-left vertical radius]?
 ```
 
-再来说说百分比，因为在部分旧版浏览器和移动端浏览器有部分`bug`：
+## 语法
 
- - 在旧版本的`chrome`和`safire`不支持百分比，现在已修复
- - `Opera`的11.5版本前的百分比有bug
- - 在`Gecko 2.0`之前的版本没有按照标准来实现。水平和垂直的半径都是相对于`border box`的宽度。
- - 在`ios`的5.0之前的版本和`Android`旧版本不支持百分比
+## 取值
 
-这里还有一篇一丝关于移动端`border-radius`的相关文章：[border-radius 移动之伤](https://github.com/yisibl/blog/issues/2)
+## Demo
+`border-radius` 可以产生很多形状，在 `CSS Secrets` 这本书中也降到了 `border-radius` 产生圆、椭圆、半椭圆和四分之一椭圆等形状的例子。
+
+- 圆
+
+要产生一个圆形，首先元素必须设置等高等宽，然后设置 `border-radius` 的值为宽的一半即可：
+
+```
+background: #ccc;
+width: 200px;
+height: 200px;
+border-radius: 100px;
+```
+
+其实指定任何大于 **100px** 的半径，仍然可以得到一个圆形，规范中有讲到：
+
+> When the sum of any two adjacent border radii exceeds the size of the border box, UAs must proportionally reduce the used values of all border radii until none of them overlap. 
+> 当任意两个相邻圆角的半径之和超过 `border box` 的尺寸时，用户代理必须按比例减小各个边框半径所使用的值，直到它们不会相互重叠为止。
+
+- 椭圆
+
+- 半椭圆
+
+- 四分之一椭圆

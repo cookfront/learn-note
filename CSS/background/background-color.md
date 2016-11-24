@@ -1,4 +1,5 @@
 # background-color
+#css/background
 
 `background-color` 是用于设置元素的背景颜色。
 
@@ -10,3 +11,12 @@
 * 初始值： `transparent`
 * 应用于： 所有元素
 * 动画： 是
+
+## Demo
+
+```
+h1 { 
+    background-color: #000;
+    color: white;
+} 
+```

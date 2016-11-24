@@ -6,7 +6,7 @@
 
 `background-clip` 属性也可以有多个逗号分隔的值，从而可以在我们设置多个背景图片时对每个背景图设置对应的 `background-clip` 。
 
-> 根元素（html）有它自己的背景绘制区域，因此当我们在根元素上设置 `background-clip` 属性时是没有任何效果的。  
+> 根元素（html）有它自己的背景绘制区域，因此当我们在根元素上设置 `background-clip` 属性时是没有任何效果的。
 
 ## 语法
 
@@ -15,3 +15,27 @@
 * 应用于： 所有元素
 * 动画： 否
 
+## 取值
+
+- border-box
+* padding-box
+* content-box
+
+## Demo
+
+单个背景时：
+
+```
+background-clip: border-box;
+background-clip: padding-box;
+background-clip: content-box;
+```
+
+多个背景图片时：
+
+```
+.element {
+    background-image: url(path/to/first/image.jpg), url(path/to/second/image.png);
+    background-clip: content-box, border-box;
+}
+```

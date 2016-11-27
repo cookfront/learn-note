@@ -1,41 +1,43 @@
-background-origin
-========
+# background-origin
 
-`background-origin`属性指定了称之为`background position`的区域。也就是说，当背景被绘制时，它指定了背景图片的原点在哪里。
+`background-origin` 属性指定了所谓的背景定位区域（ `background position area` ）。也就是说，它指定了背景图片在绘制背景时的原点。
 
-> 注：当`background-attachment: fixed`时，`background-origin`属性将会忽略。
+> 当 `background-attachment` 属性值设置为 `fixed` 时， `background-origin` 属性值将被忽略。
 
-以下为`CSS`的盒模型图：
+元素在CSS中有三个区域，称之为 `box` ，它们有： `border box` 、 `padding-box` 和 `content-box` 。
 
-![](http://codropspz.tympanus.netdna-cdn.com/codrops/wp-content/uploads/2014/09/box-areas.png)
+![box  model](http://codropspz.tympanus.netdna-cdn.com/codrops/wp-content/uploads/2014/09/box-areas.png)
 
-而我们的背景图片通常是在元素的`padding-box`的左上角。
+通常，元素的背景图片是相对于 `padding-box` 的左上角来绘制的。
 
-当我们设置多个背景图片时，`background-origin`也可以接受逗号分隔的值，从而可以细粒度的设置每一个背景图片的`background-origin`。
+`background-origin` 属性也可以有多个逗号分隔的值，从而可以在我们设置多个背景图片时对每个背景图设置对应的 `background-origin` 。
 
-**语法：**
+## 语法
 
 - 语法： 
-
-```css
+```
 background-origin: <box> [ , <box> ]*
-    
+
 /* where */
-    
+
 <box> = padding-box | border-box | content-box
 ```
 * 初始值： `padding-box`
 * 应用于： 所有元素
 * 动画： 否
 
+## Demo
+单个背景图片时：
 
-**Demo：**
-
-```css
+```
 background-origin: border-box;
 background-origin: padding-box;
 background-origin: content-box;
+```
 
+多个背景图片时：
+
+```
 .element {
     background-image: url(path/to/first/image.jpg), url(path/to/second/image.png);
     background-origin: content-box, border-box;

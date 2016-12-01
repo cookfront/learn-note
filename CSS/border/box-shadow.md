@@ -20,6 +20,8 @@ box-shadow: inset [horizontal offset] [vertical offset] [blur radius] [spread ra
 
 `box-shadow`虽能创建很好的阴影效果，但是阴影的渲染成本是很高的，特别是在固定元素上应用大的阴影时会变得更糟糕。因为它需要强制浏览器在页面滚动时重绘页面的大部分。可以看这里：[Fixed elements and large CSS box shadows can bring browsers to a crawl](https://makandracards.com/makandra/12123-fixed-elements-and-large-css-box-shadows-can-bring-browsers-to-a-crawl)。所以最好避免在你的应用中使用很大的阴影或者说很多阴影，因为它会对您的应用程序的性能产生显着不良的影响。
 
+还有一个需要注意的点是`box-shadow`和`border-radius`一起使用时，需要更多的渲染时间。可以看这篇文章： [CSS Paint Times and Page Render Weight - HTML5 Rocks](https://www.html5rocks.com/en/tutorials/speed/css-paint-times/)
+
 ## 语法
 
 - 语法

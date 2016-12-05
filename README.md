@@ -25,6 +25,8 @@
  - [Live Editing JavaScript with Webpack (Part III)](http://jlongster.com/Backend-Apps-with-Webpack--Part-III)
 - webpack
  - [多页为王：webpack多页应用架构专题系列](http://array_huang.coding.me/webpack-book/)
+ - [Tree-shaking with webpack 2 and Babel 6](http://www.2ality.com/2015/12/webpack-tree-shaking.html)
+- rollup
 
 ### Web Components
 
@@ -55,6 +57,8 @@
 - Ionic
 
 ### 单元测试
+
+### 微信小程序
 
 ## Node.js
 

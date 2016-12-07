@@ -95,6 +95,7 @@
  - [Dijkstra's Algorithm](https://www.programmingalgorithms.com/algorithm/dijkstra's-algorithm?lang=PHP)
  - [学 [数据结构、算法] 的资源推荐](https://zhuanlan.zhihu.com/p/23191006?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
  - [排序算法总结](http://ccc013.github.io/2016/11/20/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+ - [红黑树解法的why而非how](https://my.oschina.net/pingpangkuangmo/blog/795748?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ## Linux
 

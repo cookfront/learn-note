@@ -4,9 +4,9 @@
 
 ## CSS
 
-## JavaScript
+- [CSS Reference](http://tympanus.net/codrops/css_reference/)
 
-### 教程
+## JavaScript
 
 - [6周学习计划，攻克JavaScript难关(React/Redux/ES6 etc.)](https://zhuanlan.zhihu.com/p/23412169?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [Exploring EcmaScript Decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.q9y6lds89)
@@ -31,6 +31,11 @@
  - [Tree-shaking with webpack 2 and Babel 6](http://www.2ality.com/2015/12/webpack-tree-shaking.html)
 - rollup
 
+### 类型检查
+
+- [flow](https://flowtype.org/)
+- [typescript](https://www.typescriptlang.org/)
+
 ## Web Components & 模块化
 
 - [JavaScript 模块化入门Ⅰ：理解模块](https://zhuanlan.zhihu.com/p/22890374?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
@@ -47,17 +52,16 @@
 
 ### RxJS
 
-#### 教程
-
 - [RxJS文档](http://reactivex.io/rxjs/manual/overview.html)
 - [让我们一起来学习 RxJS](https://fe.ele.me/let-us-learn-rxjs/)
 
 ## ES6/7
 
-## 移动应用开发框架
+## 移动应用开发
 
 - React Native
 - Ionic
+- JSBridge
 
 ## 单元测试
 
@@ -70,3 +74,5 @@
 - [微信小程序开发思考总结——腾讯“信用卡还款”项目实践](http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578147&idx=1&sn=dc8ed8974bd7086389155eecc82e524d&chksm=84b3b1a4b3c438b275dc04bc454b1177fce1e3175841bd09a3be23ca8bf17679e3be90556d68&scene=21#wechat_redirect)
 - [打造“微信小程序”组件化开发框架](http://mp.weixin.qq.com/s/2nQzsuqq7Avgs8wsRizUhw)
 - [微信小程序完整项目演示——同性交友平台](https://my.oschina.net/osccreate/blog/795761?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+
+## 函数式编程

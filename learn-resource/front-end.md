@@ -46,7 +46,11 @@
 
 ### Vue
 
+- [Vue 2.0数据绑定实现一瞥](http://jimliu.net/2016/04/29/a-brief-look-at-vue-2-reactivity/)
+
 ### React
+
+- [RxJS + Redux + React = Amazing!](https://zhuanlan.zhihu.com/p/24263212?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ### Angular
 

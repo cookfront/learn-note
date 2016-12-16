@@ -10,6 +10,7 @@
 
 - [6周学习计划，攻克JavaScript难关(React/Redux/ES6 etc.)](https://zhuanlan.zhihu.com/p/23412169?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [Exploring EcmaScript Decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.q9y6lds89)
+- [Exploring ES6](http://exploringjs.com/es6/index.html#toc_ch_proxies)
 
 ## 性能优化
 
@@ -42,11 +43,16 @@
 
 ## 框架
 
+- [界面之下：还原真实的MV*模式](https://github.com/livoras/blog/issues/11)
+
 ### Backbone
 
 ### Vue
 
 - [Vue 2.0数据绑定实现一瞥](http://jimliu.net/2016/04/29/a-brief-look-at-vue-2-reactivity/)
+- [Vue 2.0源码学习](https://segmentfault.com/a/1190000007484936)
+- [深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
+- [How to write your own Virtual DOM](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060#.n7053pm53)
 
 ### React
 

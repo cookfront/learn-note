@@ -64,6 +64,12 @@
 
 - [RxJS文档](http://reactivex.io/rxjs/manual/overview.html)
 - [让我们一起来学习 RxJS](https://fe.ele.me/let-us-learn-rxjs/)
+- [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
+- [2 minute introduction to Rx](https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877#.itaurw3t0)
+- [RxJS + Redux + React = Amazing!](https://www.youtube.com/watch?v=AslncyG8whg)
+- [redux-observable](https://github.com/redux-observable/redux-observable)
+- [vue-rx](https://github.com/vuejs/vue-rx)
+- [Redux Observable RxJS: Going Epic with Reactive Programming](http://www.robinwieruch.de/redux-observable-rxjs/)
 
 ## ES6/7
 

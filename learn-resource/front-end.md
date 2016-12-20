@@ -53,6 +53,7 @@
 - [Vue 2.0源码学习](https://segmentfault.com/a/1190000007484936)
 - [深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
 - [How to write your own Virtual DOM](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060#.n7053pm53)
+- [Vue 2.0源码学习](https://segmentfault.com/a/1190000007484936)
 
 ### React
 

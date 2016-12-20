@@ -5,6 +5,7 @@
 ## CSS
 
 - [CSS Reference](http://tympanus.net/codrops/css_reference/)
+- [前端：『REM』手机屏幕高清适配方案](https://github.com/hbxeagle/rem/blob/master/HD_ADAPTER.md?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ## JavaScript
 

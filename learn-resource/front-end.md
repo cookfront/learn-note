@@ -49,7 +49,7 @@
 - [vue-rx](https://github.com/vuejs/vue-rx)
 - [Redux Observable RxJS: Going Epic with Reactive Programming](http://www.robinwieruch.de/redux-observable-rxjs/)
 
-#### clojurescript
+#### ClojureScript
 
 ### Web Components & 模块化
 

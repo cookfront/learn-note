@@ -16,8 +16,7 @@
 - [Master the JavaScript Interview: What is a Closure?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36#.ousbqclrp)
 - [7 Surprising Things I Learned Writing a Fibonacci Generator in JavaScript](https://medium.com/javascript-scene/7-surprising-things-i-learned-writing-a-fibonacci-generator-4886a5c87710#.37vob8f4r)
 - [The Hidden Power of ES6 Generators: Observable Async Flow Control](https://medium.com/javascript-scene/the-hidden-power-of-es6-generators-observable-async-flow-control-cfa4c7f31435#.wvvx6nnai)
-
-### ES6/7
+- [How to Learn ES6](https://medium.com/javascript-scene/how-to-learn-es6-47d9a1ac2620#.hf22cwadg)
 
 ### 框架
 
@@ -88,6 +87,10 @@
 ## 单元测试
 
 ## 调试/抓包
+
+### 教程
+
+- [Chrome DevTools Overview](https://developer.chrome.com/devtools)
 
 ## 性能优化
 

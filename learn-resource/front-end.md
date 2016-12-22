@@ -8,6 +8,7 @@
 
 - [CSS Reference](http://tympanus.net/codrops/css_reference/)
 - [前端：『REM』手机屏幕高清适配方案](https://github.com/hbxeagle/rem/blob/master/HD_ADAPTER.md?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [CSS Modules](https://github.com/css-modules/css-modules)
 
 ## JavaScript
 
@@ -37,6 +38,10 @@
 - [Vue 2.0源码学习](https://segmentfault.com/a/1190000007484936)
 
 #### React
+
+- [Immutable.js](https://facebook.github.io/immutable-js/)
+ - [Immutable 详解及 React 中实践](https://github.com/camsong/blog/issues/3)
+- [Realy](https://facebook.github.io/relay/)
 
 #### Angular
 
@@ -86,7 +91,7 @@
 - [flow](https://flowtype.org/)
 - [typescript](https://www.typescriptlang.org/)
 
-## 单元测试
+### 单元测试
 
 ## 调试/抓包
 

@@ -95,6 +95,11 @@
 
 ## 性能优化
 
+> 性能优化是一门做减法的艺术。
+
+- [Performance](https://developers.google.com/web/fundamentals/performance/)
+- [Awesome WPO ](https://github.com/davidsonfellipe/awesome-wpo)
+
 ## 微信小程序
 
 - [微信小程序开发思考总结——腾讯“信用卡还款”项目实践](http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578147&idx=1&sn=dc8ed8974bd7086389155eecc82e524d&chksm=84b3b1a4b3c438b275dc04bc454b1177fce1e3175841bd09a3be23ca8bf17679e3be90556d68&scene=21#wechat_redirect)

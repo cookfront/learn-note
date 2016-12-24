@@ -22,6 +22,10 @@
 - [7 Surprising Things I Learned Writing a Fibonacci Generator in JavaScript](https://medium.com/javascript-scene/7-surprising-things-i-learned-writing-a-fibonacci-generator-4886a5c87710#.37vob8f4r)
 - [The Hidden Power of ES6 Generators: Observable Async Flow Control](https://medium.com/javascript-scene/the-hidden-power-of-es6-generators-observable-async-flow-control-cfa4c7f31435#.wvvx6nnai)
 - [How to Learn ES6](https://medium.com/javascript-scene/how-to-learn-es6-47d9a1ac2620#.hf22cwadg)
+- [JS函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)
+- [Functional Programming for JavaScript People](https://medium.com/@chetcorcos/functional-programming-for-javascript-people-1915d8775504#.y9m8fb21q)
+- [Functors, Applicatives, And Monads In Pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
+- [The Little Idea of Functional Programming](http://jaysoo.ca/2016/01/13/functional-programming-little-ideas/)
 
 ### 框架
 
@@ -41,7 +45,12 @@
 
 - [Immutable.js](https://facebook.github.io/immutable-js/)
  - [Immutable 详解及 React 中实践](https://github.com/camsong/blog/issues/3)
+ - [react如何性能达到最大化(前传)，暨react为啥非得使用immutable.js](https://segmentfault.com/a/1190000004290333)
+ - [Persistent data structure](https://en.wikipedia.org/wiki/Persistent_data_structure)
+ - [Immutable.js, persistent data structures and structural sharing](https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structural-sharing-6d163fbd73d2#.6i7cu7kr6)
+ - [Advanced Immutable.js Recipes: How to use Immutable.js in the real world](http://untangled.io/advanced-immutable-js-recipes-how-to-use-immutable-js-in-the-real-world/)
 - [Realy](https://facebook.github.io/relay/)
+- [react-router](https://github.com/ReactTraining/react-router)
 
 #### Angular
 

@@ -51,6 +51,11 @@
  - [Advanced Immutable.js Recipes: How to use Immutable.js in the real world](http://untangled.io/advanced-immutable-js-recipes-how-to-use-immutable-js-in-the-real-world/)
 - [Realy](https://facebook.github.io/relay/)
 - [react-router](https://github.com/ReactTraining/react-router)
+- [Redux](http://redux.js.org/)
+ - [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.6kei1svbd)
+ - [Leveling Up with React: Redux](https://css-tricks.com/learning-react-redux/)
+ - [redux-saga](https://redux-saga.github.io/redux-saga/index.html)
+ - [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
 
 #### Angular
 

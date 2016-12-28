@@ -12,3 +12,4 @@
  - [Java新手学习路线](http://www.jianshu.com/p/196f5e3be91a)
  - [How Do I Become a Java Web Developer?](https://dzone.com/articles/how-do-i-become-a-java-web-developer)
  - [Java Web 开发实战](https://www.gitbook.com/book/universsky/java-web/details)
+ - [深入理解Java 8 Lambda（类库篇——Streams API，Collectors和并行）](http://lucida.me/blog/java-8-lambdas-inside-out-library-features/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)

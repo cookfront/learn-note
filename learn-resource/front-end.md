@@ -56,6 +56,7 @@
  - [Leveling Up with React: Redux](https://css-tricks.com/learning-react-redux/)
  - [redux-saga](https://redux-saga.github.io/redux-saga/index.html)
  - [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
+ - [Redux异步方案选型](https://segmentfault.com/a/1190000007248878)
 
 #### Angular
 

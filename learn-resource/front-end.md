@@ -61,7 +61,6 @@
  - [Redux异步方案选型](https://segmentfault.com/a/1190000007248878)
  - [redux-observable](https://github.com/redux-observable/redux-observable)
  - [Full-Stack Redux Tutorial](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
- - [redux-observable](https://github.com/redux-observable/redux-observable)
 
 #### Angular
 

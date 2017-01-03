@@ -13,3 +13,4 @@
  - [How Do I Become a Java Web Developer?](https://dzone.com/articles/how-do-i-become-a-java-web-developer)
  - [Java Web 开发实战](https://www.gitbook.com/book/universsky/java-web/details)
  - [深入理解Java 8 Lambda（类库篇——Streams API，Collectors和并行）](http://lucida.me/blog/java-8-lambdas-inside-out-library-features/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+ - [Intellij IDEA 14 环境下开发 servlet 入门](http://simonic512.github.io/2015/11/13/Intellij-IDEA-14-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BC%80%E5%8F%91-servlet-%E5%85%A5%E9%97%A8/)

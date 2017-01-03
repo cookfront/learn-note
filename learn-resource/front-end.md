@@ -26,6 +26,7 @@
 - [Functional Programming for JavaScript People](https://medium.com/@chetcorcos/functional-programming-for-javascript-people-1915d8775504#.y9m8fb21q)
 - [Functors, Applicatives, And Monads In Pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
 - [The Little Idea of Functional Programming](http://jaysoo.ca/2016/01/13/functional-programming-little-ideas/)
+- [2016前端开发技术巡礼](http://www.infoq.com/cn/articles/2016-review-frontend)
 
 ### 框架
 
@@ -49,6 +50,7 @@
  - [Persistent data structure](https://en.wikipedia.org/wiki/Persistent_data_structure)
  - [Immutable.js, persistent data structures and structural sharing](https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structural-sharing-6d163fbd73d2#.6i7cu7kr6)
  - [Advanced Immutable.js Recipes: How to use Immutable.js in the real world](http://untangled.io/advanced-immutable-js-recipes-how-to-use-immutable-js-in-the-real-world/)
+ - [How to Build a Todo App Using React, Redux, and Immutable.js](https://www.sitepoint.com/how-to-build-a-todo-app-using-react-redux-and-immutable-js/)
 - [Realy](https://facebook.github.io/relay/)
 - [react-router](https://github.com/ReactTraining/react-router)
 - [Redux](http://redux.js.org/)
@@ -57,6 +59,9 @@
  - [redux-saga](https://redux-saga.github.io/redux-saga/index.html)
  - [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
  - [Redux异步方案选型](https://segmentfault.com/a/1190000007248878)
+ - [redux-observable](https://github.com/redux-observable/redux-observable)
+ - [Full-Stack Redux Tutorial](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
+ - [redux-observable](https://github.com/redux-observable/redux-observable)
 
 #### Angular
 
@@ -67,7 +72,6 @@
 - [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 - [2 minute introduction to Rx](https://medium.com/@andrestaltz/2-minute-introduction-to-rx-24c8ca793877#.itaurw3t0)
 - [RxJS + Redux + React = Amazing!](https://www.youtube.com/watch?v=AslncyG8whg)
-- [redux-observable](https://github.com/redux-observable/redux-observable)
 - [vue-rx](https://github.com/vuejs/vue-rx)
 - [Redux Observable RxJS: Going Epic with Reactive Programming](http://www.robinwieruch.de/redux-observable-rxjs/)
 
@@ -124,4 +128,3 @@
 
 - [微信小程序开发思考总结——腾讯“信用卡还款”项目实践](http://mp.weixin.qq.com/s?__biz=MzA3NTYzODYzMg==&mid=2653578147&idx=1&sn=dc8ed8974bd7086389155eecc82e524d&chksm=84b3b1a4b3c438b275dc04bc454b1177fce1e3175841bd09a3be23ca8bf17679e3be90556d68&scene=21#wechat_redirect)
 - [打造“微信小程序”组件化开发框架](http://mp.weixin.qq.com/s/2nQzsuqq7Avgs8wsRizUhw)
-- [微信小程序完整项目演示——同性交友平台](https://my.oschina.net/osccreate/blog/795761?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)

@@ -99,10 +99,10 @@
 
 ### 打包工具
  
-- webpack
+- [webpack](https://webpack.github.io/)
  - [多页为王：webpack多页应用架构专题系列](http://array_huang.coding.me/webpack-book/)
  - [Tree-shaking with webpack 2 and Babel 6](http://www.2ality.com/2015/12/webpack-tree-shaking.html)
-- rollup
+- [rollup](http://rollupjs.org/)
 
 ### 类型检查
 
@@ -110,6 +110,13 @@
 - [typescript](https://www.typescriptlang.org/)
 
 ### 单元测试
+
+- [Mocha](https://mochajs.org/)
+- [Chai](http://chaijs.com/)
+- [Should](https://github.com/tj/should.js)
+- [Jasmine](https://jasmine.github.io/)
+- [Karma](https://karma-runner.github.io/1.0/index.html)
+- [Istanbul](https://github.com/gotwarlost/istanbul)
 
 ## 调试/抓包
 

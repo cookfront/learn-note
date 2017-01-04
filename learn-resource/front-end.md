@@ -27,6 +27,9 @@
 - [Functors, Applicatives, And Monads In Pictures](http://adit.io/posts/2013-04-17-functors,_applicatives,_and_monads_in_pictures.html)
 - [The Little Idea of Functional Programming](http://jaysoo.ca/2016/01/13/functional-programming-little-ideas/)
 - [2016前端开发技术巡礼](http://www.infoq.com/cn/articles/2016-review-frontend)
+- [值得前端开发者在2017学习的东西【译】](https://zhuanlan.zhihu.com/p/24612841?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [Sku 多维属性状态判断算法](https://keelii.github.io/2016/12/22/sku-multi-dimensional-attributes-state-algorithm/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [深入研究Virtual DOM](http://www.lixuejiang.me/2016/12/18/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6Virtual-DOM/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ### 框架
 
@@ -40,7 +43,6 @@
 - [Vue 2.0源码学习](https://segmentfault.com/a/1190000007484936)
 - [深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
 - [How to write your own Virtual DOM](https://medium.com/@deathmood/how-to-write-your-own-virtual-dom-ee74acc13060#.n7053pm53)
-- [Vue 2.0源码学习](https://segmentfault.com/a/1190000007484936)
 
 #### React
 

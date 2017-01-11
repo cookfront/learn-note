@@ -17,6 +17,7 @@
 - [6周学习计划，攻克JavaScript难关(React/Redux/ES6 etc.)](https://zhuanlan.zhihu.com/p/23412169?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [Exploring EcmaScript Decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.q9y6lds89)
 - [Exploring ES6](http://exploringjs.com/es6/index.html#toc_ch_proxies)
+- [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 - [Master the JavaScript Interview: What is a Pure Function?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976#.zhugbzufn)
 - [Master the JavaScript Interview: What is a Closure?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36#.ousbqclrp)
 - [7 Surprising Things I Learned Writing a Fibonacci Generator in JavaScript](https://medium.com/javascript-scene/7-surprising-things-i-learned-writing-a-fibonacci-generator-4886a5c87710#.37vob8f4r)
@@ -30,6 +31,9 @@
 - [值得前端开发者在2017学习的东西【译】](https://zhuanlan.zhihu.com/p/24612841?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [Sku 多维属性状态判断算法](https://keelii.github.io/2016/12/22/sku-multi-dimensional-attributes-state-algorithm/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [深入研究Virtual DOM](http://www.lixuejiang.me/2016/12/18/%E6%B7%B1%E5%85%A5%E7%A0%94%E7%A9%B6Virtual-DOM/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [也谈JavaScript数组去重](https://www.toobug.net/article/array_unique_in_javascript.html)
+- [What is a functor?](https://medium.com/@dtinth/what-is-a-functor-dcf510b098b6#.b6i8x22f7)
+- [复杂单页应用的数据层设计](https://zhuanlan.zhihu.com/p/24677176?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ### 框架
 
@@ -63,6 +67,7 @@
  - [Redux异步方案选型](https://segmentfault.com/a/1190000007248878)
  - [redux-observable](https://github.com/redux-observable/redux-observable)
  - [Full-Stack Redux Tutorial](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
+ - [10 Tips for Better Redux Architecture](https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44#.36venl2o2)
 
 #### Angular
 

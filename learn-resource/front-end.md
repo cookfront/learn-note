@@ -50,6 +50,7 @@
 
 #### React
 
+- [深入理解 React 高阶组件](https://zhuanlan.zhihu.com/p/24776678)
 - [Immutable.js](https://facebook.github.io/immutable-js/)
  - [Immutable 详解及 React 中实践](https://github.com/camsong/blog/issues/3)
  - [react如何性能达到最大化(前传)，暨react为啥非得使用immutable.js](https://segmentfault.com/a/1190000004290333)
@@ -61,6 +62,7 @@
 - [react-router](https://github.com/ReactTraining/react-router)
 - [Redux](http://redux.js.org/)
  - [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.6kei1svbd)
+ - [Container Components](https://medium.com/@learnreact/container-components-c0e67432e005#.3huek9a6n)
  - [Leveling Up with React: Redux](https://css-tricks.com/learning-react-redux/)
  - [redux-saga](https://redux-saga.github.io/redux-saga/index.html)
  - [深入到源码：解读 redux 的设计思路与用法](http://div.io/topic/1309)
@@ -68,6 +70,7 @@
  - [redux-observable](https://github.com/redux-observable/redux-observable)
  - [Full-Stack Redux Tutorial](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
  - [10 Tips for Better Redux Architecture](https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44#.36venl2o2)
+ - [Build an Image Gallery Using React, Redux and redux-saga](http://joelhooks.com/blog/2016/03/20/build-an-image-gallery-using-redux-saga/?utm_content=bufferbadc3&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
 
 #### Angular
 
@@ -124,6 +127,10 @@
 - [Jasmine](https://jasmine.github.io/)
 - [Karma](https://karma-runner.github.io/1.0/index.html)
 - [Istanbul](https://github.com/gotwarlost/istanbul)
+
+#### 教程
+
+- [5 Questions Every Unit Test Must Answer](https://medium.com/javascript-scene/what-every-unit-test-needs-f6cd34d9836d#.p6fb51pm4)
 
 ## 调试/抓包
 

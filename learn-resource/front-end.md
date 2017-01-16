@@ -71,6 +71,7 @@
  - [Full-Stack Redux Tutorial](http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html)
  - [10 Tips for Better Redux Architecture](https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44#.36venl2o2)
  - [Build an Image Gallery Using React, Redux and redux-saga](http://joelhooks.com/blog/2016/03/20/build-an-image-gallery-using-redux-saga/?utm_content=bufferbadc3&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
+ - [Redux best practices](https://medium.com/lexical-labs-engineering/redux-best-practices-64d59775802e#.s2iinova9)
 
 #### Angular
 

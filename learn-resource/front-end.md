@@ -34,6 +34,8 @@
 - [也谈JavaScript数组去重](https://www.toobug.net/article/array_unique_in_javascript.html)
 - [What is a functor?](https://medium.com/@dtinth/what-is-a-functor-dcf510b098b6#.b6i8x22f7)
 - [复杂单页应用的数据层设计](https://zhuanlan.zhihu.com/p/24677176?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [编写「可读」代码的实践](http://taobaofed.org/blog/2017/01/05/writing-readable-code/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [2017前端性能优化清单](https://github.com/Findow-team/Blog/issues/11?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ### 框架
 
@@ -72,6 +74,7 @@
  - [10 Tips for Better Redux Architecture](https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44#.36venl2o2)
  - [Build an Image Gallery Using React, Redux and redux-saga](http://joelhooks.com/blog/2016/03/20/build-an-image-gallery-using-redux-saga/?utm_content=bufferbadc3&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer)
  - [Redux best practices](https://medium.com/lexical-labs-engineering/redux-best-practices-64d59775802e#.s2iinova9)
+- [MobX](https://mobx.js.org/)
 
 #### Angular
 
@@ -113,6 +116,7 @@
 - [webpack](https://webpack.github.io/)
  - [多页为王：webpack多页应用架构专题系列](http://array_huang.coding.me/webpack-book/)
  - [Tree-shaking with webpack 2 and Babel 6](http://www.2ality.com/2015/12/webpack-tree-shaking.html)
+ - [[译] Webpack 2 有哪些新东西](https://github.com/cssmagic/blog/issues/58)
 - [rollup](http://rollupjs.org/)
 
 ### 类型检查
@@ -144,6 +148,7 @@
 
 - [Performance](https://developers.google.com/web/fundamentals/performance/)
 - [Awesome WPO ](https://github.com/davidsonfellipe/awesome-wpo)
+- [Lighthouse Google开发的新的性能审查工具](https://github.com/GoogleChrome/lighthouse)
 
 ## 微信小程序
 

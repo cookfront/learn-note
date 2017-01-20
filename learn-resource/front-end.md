@@ -36,6 +36,7 @@
 - [复杂单页应用的数据层设计](https://zhuanlan.zhihu.com/p/24677176?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [编写「可读」代码的实践](http://taobaofed.org/blog/2017/01/05/writing-readable-code/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [2017前端性能优化清单](https://github.com/Findow-team/Blog/issues/11?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [essential-javascript-links](https://github.com/ericelliott/essential-javascript-links)
 
 ### 框架
 
@@ -126,16 +127,21 @@
 
 ### 单元测试
 
-- [Mocha](https://mochajs.org/)
-- [Chai](http://chaijs.com/)
-- [Should](https://github.com/tj/should.js)
-- [Jasmine](https://jasmine.github.io/)
-- [Karma](https://karma-runner.github.io/1.0/index.html)
-- [Istanbul](https://github.com/gotwarlost/istanbul)
+- 测试框架
+  - [Mocha](https://mochajs.org/)
+  - [Jasmine](https://jasmine.github.io/)
+  - [Karma](https://karma-runner.github.io/1.0/index.html)
+  - [Tape](https://github.com/substack/tape)
+- 断言库
+  - [Chai](http://chaijs.com/)
+  - [Should](https://github.com/tj/should.js)
+- 测试覆盖率
+  - [Istanbul](https://github.com/gotwarlost/istanbul)
 
 #### 教程
 
 - [5 Questions Every Unit Test Must Answer](https://medium.com/javascript-scene/what-every-unit-test-needs-f6cd34d9836d#.p6fb51pm4)
+- [Why I use Tape Instead of Mocha & So Should You](https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4#.d7umaspl3)
 
 ## 调试/抓包
 

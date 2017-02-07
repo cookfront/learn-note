@@ -7,6 +7,7 @@
 ## 教程
 
 - [Java新手学习路线](http://www.jianshu.com/p/196f5e3be91a)
+- [Java工程师成神之路](http://mp.weixin.qq.com/s?__biz=MjM5NzMyMjAwMA==&mid=402553062&idx=1&sn=fc004290e4f190d78c48bce6f155ce07&scene=1&srcid=01185yabuPAF25IsLxkoudZV#rd)
 - [互联网新人如何入门和掌握 Java 开发](https://zhuanlan.zhihu.com/p/21371311?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [我的Java后端书架 (2016年暖冬4.0版)](http://calvin1978.blogcn.com/articles/bookshelf16.html?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [How Do I Become a Java Web Developer?](https://dzone.com/articles/how-do-i-become-a-java-web-developer)

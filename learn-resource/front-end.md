@@ -18,6 +18,7 @@
 - [Exploring EcmaScript Decorators](https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841#.q9y6lds89)
 - [Exploring ES6](http://exploringjs.com/es6/index.html#toc_ch_proxies)
 - [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
+- [ECMAScript 6 modules: the final syntax](http://www.2ality.com/2014/09/es6-modules-final.html)
 - [Master the JavaScript Interview: What is a Pure Function?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976#.zhugbzufn)
 - [Master the JavaScript Interview: What is a Closure?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36#.ousbqclrp)
 - [7 Surprising Things I Learned Writing a Fibonacci Generator in JavaScript](https://medium.com/javascript-scene/7-surprising-things-i-learned-writing-a-fibonacci-generator-4886a5c87710#.37vob8f4r)
@@ -37,6 +38,7 @@
 - [编写「可读」代码的实践](http://taobaofed.org/blog/2017/01/05/writing-readable-code/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [2017前端性能优化清单](https://github.com/Findow-team/Blog/issues/11?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [essential-javascript-links](https://github.com/ericelliott/essential-javascript-links)
+- [TEMPORAL DEAD ZONE (TDZ) DEMYSTIFIED](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/)
 
 ### 框架
 
@@ -88,6 +90,9 @@
 - [RxJS + Redux + React = Amazing!](https://www.youtube.com/watch?v=AslncyG8whg)
 - [vue-rx](https://github.com/vuejs/vue-rx)
 - [Redux Observable RxJS: Going Epic with Reactive Programming](http://www.robinwieruch.de/redux-observable-rxjs/)
+- [Hello RxJS](https://zhuanlan.zhihu.com/p/23331432)
+- [用 RxJS 连接世界](https://zhuanlan.zhihu.com/p/23464709)
+- [使用 RxJS 掌控异步](https://zhuanlan.zhihu.com/p/25059824)
 
 #### ClojureScript
 

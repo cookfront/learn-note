@@ -39,6 +39,7 @@
 - [2017前端性能优化清单](https://github.com/Findow-team/Blog/issues/11?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [essential-javascript-links](https://github.com/ericelliott/essential-javascript-links)
 - [TEMPORAL DEAD ZONE (TDZ) DEMYSTIFIED](http://jsrocks.org/2015/01/temporal-dead-zone-tdz-demystified/)
+- [从Chrome源码看浏览器如何计算CSS](https://zhuanlan.zhihu.com/p/25380611)
 
 ### 框架
 
@@ -160,6 +161,7 @@
 - [Performance](https://developers.google.com/web/fundamentals/performance/)
 - [Awesome WPO ](https://github.com/davidsonfellipe/awesome-wpo)
 - [Lighthouse Google开发的新的性能审查工具](https://github.com/GoogleChrome/lighthouse)
+- [Effective前端2：优化html标签](http://yincheng.site/make-the-best-of-html-label)
 
 ## 微信小程序
 

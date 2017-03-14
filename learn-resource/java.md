@@ -17,6 +17,9 @@
 - [Intellij IDEA 14 环境下开发 servlet 入门](http://simonic512.github.io/2015/11/13/Intellij-IDEA-14-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BC%80%E5%8F%91-servlet-%E5%85%A5%E9%97%A8/)
 - [JVM源码分析之堆内存的初始化](http://www.jianshu.com/p/0f7bed2df952?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [Spring Framework Reference Documentation](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html)
+- [Spring Boot参考指南](https://www.gitbook.com/book/qbgbook/spring-boot-reference-guide-zh/details)
+- [Java面试题集](http://blog.csdn.net/dd864140130/article/details/55833087?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [Springboot 实现 Restful 服务，基于 HTTP / JSON 传输](http://www.bysocket.com/?hmsr=toutiao.io&p=1627&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ## 工具
 

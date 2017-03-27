@@ -3,7 +3,6 @@
 ## 教程
 
 - [普通程序员如何转向AI方向](http://www.cnblogs.com/subconscious/p/6240151.html?f=tt&hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
-- [ 如何学习数据科学、机器学习与深度学习](http://blog.csdn.net/v_july_v/article/details/54561427)
 - [机器学习Machine-Learning](https://github.com/JustFollowUs/Machine-Learning?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [【机器学习】Bootstrap详解](https://zhuanlan.zhihu.com/p/24851814?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [关于机器学习的领悟与反思](http://mp.weixin.qq.com/s/yVqPbzNQ_vZMl2qVy21tRw)
@@ -23,3 +22,8 @@
 - [Intro to Machine Learning](https://www.udacity.com/course/intro-to-machine-learning--ud120)
 - [机器学习教程 二十四-[吐血整理]涉及面最广的机器学习资料大全](http://www.shareditor.com/blogshow/?blogId=123&hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [Deep Learning Book](https://exacity.github.io/deeplearningbook-chinese/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [机器学习、深度学习与自然语言处理领域推荐的书籍列表](https://zhuanlan.zhihu.com/p/25612011?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [PHP-ML - Machine Learning library for PHP](https://php-ml.readthedocs.io/en/latest/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
+- [斯坦福大学公开课 ：机器学习课程](http://open.163.com/special/opencourse/machinelearning.html)
+- [麻省理工公开课：线性代数](http://open.163.com/special/opencourse/daishu.html)
+- [机器学习理论篇1：机器学习的数学基础](https://zhuanlan.zhihu.com/p/25197792?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
